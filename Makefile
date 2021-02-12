@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/02/09 13:12:25 by juasanto         ###   ########.fr        #
+#    Updated: 2021/02/12 11:28:06 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ LIBFT 		= 	libft.a
 LIB_DIR		=	libft/
 OBJ_DIR		=	obj/
 SRC_DIR		=	sources/
-SRC_FILES 	= 	cube3d.c
+SRC_FILES 	= 	cube3d.c \
+				chk_args.c
 
 SRC = $(SRC_FILES:%=$(SRC_DIR)%)
 OBJ_FILES = $(SRC_FILES:.c=.o)
@@ -26,7 +27,7 @@ CC = cc
 RM = rm -rf
 AR = ar rc
 RANLIB = ranlib
-NORM = ~/.norminette/norminette.rb
+NORM = /usr/bin/norminette
 
 RESET = \033[0m
 YELLOW = \033[33m
@@ -45,11 +46,12 @@ $(NAME):	$(OBJ)
 		make -C $(LIB_DIR)
 		# @cp $(LIB_DIR)$(LIBFT) ./$(NAME)
 		# @$(AR) $(NAME) $(OBJ)
+		@echo "$(YELLOW)=========== Compilando $(NAME) ==========="
 		$(CC) $(FLAGS) $(LFLAGS) $(LIB_DIR)$(LIBFT) -o $(NAME) $(OBJ)
 		@echo "=========== DONE ==========$(RESET)"
 
 $(OBJ): $(SRC)
-		@echo "$(GREEN)=========== Compilando $(NAME) ==========="
+		@echo "$(GREEN)=========== Compilando Objects de $(NAME) ==========="
 		@$(MAKE) $(OBJ_FILES)
 
 		@echo "$(GREEN)=========== DONE ===========$(RESET)"

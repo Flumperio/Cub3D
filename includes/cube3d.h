@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:37:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/09 12:42:58 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/12 11:26:42 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "../Libft/libft.h"
 
-# endif
+int			chk_args(int argc, char **argv);
+
+#endif
