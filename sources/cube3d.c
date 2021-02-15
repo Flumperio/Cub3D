@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 10:22:37 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/12 11:51:43 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/15 12:59:34 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 int		main(int argc, char **argv)
 {
-	char	**error_msg;
+	char	*error_msg[]= { "Error. No hay parametros", "Error. Demasiados parámetros" };
+	int		chk;
 
-	error_msg = NULL;
-	error_msg[1] = "Error de Mapa";
-	error_msg[2] = "Demasiados parámetros";
-	if (chk_args(argc, argv) == 1)
-		printf("Falta nombre del mapa");
-	if (chk_args(argc, argv) == 2)
-		printf("Demasiados parámetros");
+	chk = 0;
+	chk = chk_args(argc, argv);
+	printf("Valor de chk: %i\n", chk);
+	if (chk != 0)
+	{
+		printf("%s", error_msg[chk - 1]);
+		return (chk);
+	}
+	printf("OK");
 	return (0);
 }
