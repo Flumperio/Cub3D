@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:37:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/12 11:26:42 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/16 13:15:09 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include <stdio.h>
 # include "../Libft/libft.h"
 
-int			chk_args(int argc, char **argv);
+typedef struct s_parms
+{
+	char	*f_name;
+	int		save_parm;
+
+}				t_parms;
+
+int			chk_args(int argc, char **argv, t_parms *s_c3d);
 
 #endif

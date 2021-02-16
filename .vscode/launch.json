@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/cube3d",
-            "args": ["hola.cub"],
+            "args": ["hola.cub", "--sa"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
