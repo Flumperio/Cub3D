@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 10:22:37 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/16 13:15:02 by juasanto         ###   ########.fr       */
+/*   Created: 2021/02/18 11:01:06 by juasanto          #+#    #+#             */
+/*   Updated: 2021/02/18 13:56:54 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	char	*error_msg[4];
-	int		chk;
-	t_parms		s_c3d;
+	char		*error_msg[4];
+	int			chk;
+	t_cube		s_c3d;
 
 	error_msg[0] = "Error. No hay parametros";
 	error_msg[1] = "Error. Demasiados parámetros";

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+         #
+#    By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/02/12 11:28:06 by juasanto         ###   ########.fr        #
+#    Updated: 2021/02/18 14:01:25 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,8 @@ $(OBJ_DIR):
 $(NAME):	$(OBJ)
 		@echo "$(CYAN)=========== Compilando LIBFT.A ==========="
 		make -C $(LIB_DIR)
-		# @cp $(LIB_DIR)$(LIBFT) ./$(NAME)
-		# @$(AR) $(NAME) $(OBJ)
 		@echo "$(YELLOW)=========== Compilando $(NAME) ==========="
-		$(CC) $(FLAGS) $(LFLAGS) $(LIB_DIR)$(LIBFT) -o $(NAME) $(OBJ)
+		@$(CC) $(FLAGS) $(LFLAGS) $(LIB_DIR)$(LIBFT) -o $(NAME) $(OBJ)
 		@echo "=========== DONE ==========$(RESET)"
 
 $(OBJ): $(SRC)
@@ -57,7 +55,7 @@ $(OBJ): $(SRC)
 		@echo "$(GREEN)=========== DONE ===========$(RESET)"
 
 $(OBJ_FILES):
-		$(CC) $(FLAGS) $(LFLAGS) -c -o $(OBJ_DIR)$@ $(SRC_DIR)$(@:%.o=%.c)
+		@$(CC) $(FLAGS) $(LFLAGS) -c -o $(OBJ_DIR)$@ $(SRC_DIR)$(@:%.o=%.c)
 		@echo "$(GREEN)Compilando $@...$(RESET)"
 
 test: re
