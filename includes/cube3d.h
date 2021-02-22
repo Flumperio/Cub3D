@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:37:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/18 14:00:10 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/22 12:40:19 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ typedef struct	s_cube
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *s_c3d);
+int				chk_file(t_cube *s_c3d);
 
 #endif

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.c                                           :+:      :+:    :+:   */
+/*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 11:01:06 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/22 12:45:42 by juasanto         ###   ########.fr       */
+/*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
+/*   Updated: 2021/02/22 13:45:43 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int	main(int argc, char **argv)
+int		chk_file(t_cube *s_c3d)
 {
-	int			chk;
-	t_cube		s_c3d;
+	int		fd1;
+	int		gnl;
+	char	*line;
 
-	chk = chk_args(argc, argv, &s_c3d);
-	printf("valor chk: %i\n", chk);
-	printf("OK\n");
-	chk_file(&s_c3d);
+	line = NULL;
+	gnl = 1;
+	fd1 = open(s_c3d->f_name, O_RDONLY);
+	if (fd1 < 0)
+		ft_msgerror("No existe el ficheo", 5);
+	while (gnl == 1)
+	{
+		gnl = get_next_line(fd1, &line);
+		printf("gnl: %s\n", line);
+	}
 	return (0);
 }

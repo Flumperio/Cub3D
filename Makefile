@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+         #
+#    By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/02/18 18:12:41 by juasanto         ###   ########.fr        #
+#    Updated: 2021/02/22 12:37:22 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ LIB_DIR		=	libft/
 OBJ_DIR		=	obj/
 SRCS_DIR	=	sources/
 SRCS		= 	cube3d.c \
-				chk_args.c
+				chk_args.c \
+				chk_file.c
 
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)
@@ -49,7 +50,7 @@ $(NAME): $(OBJS)
 		@echo "=========== DONE ==========$(RESET)"
 
 		@echo "$(YELLOW)=========== Compilando $(NAME) ==========="
-		@$(CC) $(CFLAGS) $(LFLAGS) $(LIB_DIR)$(LIBFT) -o $(NAME) $(OBJS)
+		$(CC) $(CFLAGS) $(LFLAGS) $(LIB_DIR)$(LIBFT) -o $(NAME) $(OBJS)
 		@echo "=========== DONE ==========$(RESET)"
 
 

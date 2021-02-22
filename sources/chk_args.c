@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/18 17:48:16 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/22 12:22:52 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ int		chk_args(int argc, char **argv, t_cube *s_c3d)
 	int		cnt;
 
 	cnt = 0;
-	/* While para comprobar los argumentos, Borrar */
-	while (cnt < argc)
-	{
-		printf("N.Args: %i -- Argumento: %i --- Parametro: %s\n", argc, cnt, argv[cnt]);
-		cnt++;
-	}
-	/* Borrar While */
 	if (argc <= 1)
 		ft_msgerror("No hay parametros", 1);
 	if (argc > 3)
