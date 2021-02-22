@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:37:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/22 12:40:19 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/22 16:45:45 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct	s_cube
 {
 	char		*f_name;
 	int			save_parm;
+	int			res;
 
 }				t_cube;
 
