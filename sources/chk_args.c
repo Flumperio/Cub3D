@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/18 13:56:44 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/18 17:48:16 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ int		chk_args(int argc, char **argv, t_cube *s_c3d)
 	if (argc <= 1)
 		ft_msgerror("No hay parametros", 1);
 	if (argc > 3)
-		return (2);
+		ft_msgerror("Demasiados parámetros", 2);
 	if (chk_name(argv[1]) == 0)
 		s_c3d->f_name = argv[1];
 	else
-		return (3);
+		ft_msgerror("La extensión del archivo no es correcta", 3);
 	if (argv[2])
 	{
 		if (chk_save(argv[2]) == 0)
 			s_c3d->save_parm = 1;
 		else
-			return (4);
+			ft_msgerror("El argumento no es correcto.", 4);
 	}
 	return (0);
 }
