@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:37:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/22 16:45:45 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:51:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,16 @@ typedef struct	s_cube
 {
 	char		*f_name;
 	int			save_parm;
-	int			res;
+	int			cnt_i;
+	int			p_r;
+	int			p_no;
+	int			p_so;
+	int			p_we;
+	int			p_ea;
+	int			p_s;
+	int			p_f;
+	int			p_c;
+
 
 }				t_cube;
 

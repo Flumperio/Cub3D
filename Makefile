@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+         #
+#    By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/02/22 12:37:22 by juasanto         ###   ########.fr        #
+#    Updated: 2021/02/23 18:02:08 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)
 
 LFLAGS = -I includes/
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g #-Wall -Wextra -Werror -g
 CC = cc
 RM = rm -rf
 AR = ar rc
