@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/22 17:38:52 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/23 13:40:25 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,17 @@ int		chk_parms(char *line, t_cube *s_c3d)
 
 	cnt = 0;
 	tmp_num = NULL;
-	while(line[cnt] != '\0')
-		if(line[cnt] == 'R' && (ft_isblank(line[cnt + 1])))
+	while (line[cnt] != '\0')
+	{
+		if (line[cnt] == 'R' && (ft_isblank(line[cnt + 1])) && s_c3d->res == 0)
 		{
 			s_c3d->res = 1;
 			cnt++;
 		}
-		if(ft_isalnum(line[cnt]) && s_c3d->res == 1)
-		{
-			ft_strjoin(tmp_num, line[cnt]);
-		}
+
+	}
 	return (0);
 }
-
-
 
 int		chk_file(t_cube *s_c3d)
 {
@@ -49,7 +46,10 @@ int		chk_file(t_cube *s_c3d)
 	{
 		gnl++;
 		printf("gnl: %s\n", line);
-		chk_parms(line, s_c3d);
+		//chk_parms(line, s_c3d);
+		//free(line);
 	}
+	//chk_parms(line, s_c3d);
+	//free(line);
 	return (0);
 }
