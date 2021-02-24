@@ -1,5 +1,9 @@
 
-R 1200 600
+C 102,178,255
+
+
+R 1200                       600
+NO ./textures/redbrick.xpm
 NO ./textures/redbrick.xpm
 SO ./textures/wood.xpm
 
@@ -8,7 +12,7 @@ WE ./textures/mossy.xpm
 EA ./textures/colorstone.xpm
 S ./textures/barrel.xpm
 F 0,153,76
-C 102,178,255
+
 
 111111111111111111
 100000000000000001

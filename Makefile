@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/02/23 18:02:08 by juasanto         ###   ########.fr        #
+#    Updated: 2021/02/24 13:13:06 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ OBJ_DIR		=	obj/
 SRCS_DIR	=	sources/
 SRCS		= 	cube3d.c \
 				chk_args.c \
-				chk_file.c
+				chk_file.c \
+				structs.c
 
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)

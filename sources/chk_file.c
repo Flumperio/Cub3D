@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/23 18:19:08 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:10:27 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,34 @@ void	rmv_space(char *line, t_cube *s_c3d)
 	return;
 }
 
+int		atoi_b(const char *line, t_cube *s_c3d)
+{
+	int		result;
+
+	result = 0;
+	while (ft_isdigit(line[s_c3d->cnt_i]))
+	{
+		result = result * 10 + line[s_c3d->cnt_i] - '0';
+		s_c3d->cnt_i++;
+
+	}
+	return (result);
+}
+
 void	r_parm(char *line, t_cube *s_c3d)
 {
 	s_c3d->p_r = 1;
 	s_c3d->cnt_i++;
-	s_c3d->cnt_i = ft_strlen(line) + 1;
+	rmv_space(line, s_c3d);
+	if(line[s_c3d->cnt_i] > '0' && line[s_c3d->cnt_i] < '9')
+		s_c3d->p_rx = atoi_b(line, s_c3d);
+	else
+		ft_msgerror("Resoluciones no validas.", 7);
+	rmv_space(line, s_c3d);
+	if(line[s_c3d->cnt_i] > '0' && line[s_c3d->cnt_i] < '9')
+		s_c3d->p_ry= atoi_b(line, s_c3d);
+	else
+		ft_msgerror("Resoluciones no validas.", 7);
 	return;
 }
 
@@ -36,9 +59,11 @@ void	texture_parm(char *line, t_cube *s_c3d, char *path)
 		s_c3d->p_so = 1;
 	else if(*path == 'W')
 		s_c3d->p_we = 1;
-	else
+	else if(*path == 'E')
 		s_c3d->p_ea = 1;
-	s_c3d->cnt_i = ft_strlen(line) + 1;
+	else
+		s_c3d->p_s = 1;
+	s_c3d->cnt_i = ft_strlen(line);
 	return;
 }
 
@@ -46,7 +71,7 @@ void	f_parm(char *line, t_cube *s_c3d)
 {
 	s_c3d->p_f = 1;
 	s_c3d->cnt_i++;
-	s_c3d->cnt_i = ft_strlen(line) + 1;
+	s_c3d->cnt_i = ft_strlen(line);
 	return;
 }
 
@@ -54,10 +79,16 @@ void	c_parm(char *line, t_cube *s_c3d)
 {
 	s_c3d->p_c = 1;
 	s_c3d->cnt_i++;
-	s_c3d->cnt_i = ft_strlen(line) + 1;
+	s_c3d->cnt_i = ft_strlen(line);
 	return;
 }
 
+void	chk_map(char *line, t_cube *s_c3d)
+{
+	s_c3d->map_lines++;
+	s_c3d->cnt_i = ft_strlen(line);
+	return;
+}
 
 
 int		chk_parms(char *line, t_cube *s_c3d)
@@ -81,15 +112,15 @@ int		chk_parms(char *line, t_cube *s_c3d)
 		(ft_isblank(line[s_c3d->cnt_i + 2])) && s_c3d->p_ea == 0)
 			texture_parm(line, s_c3d, "E");
 		else if (line[s_c3d->cnt_i] == 'S' && (ft_isblank(line[s_c3d->cnt_i + 1])) && s_c3d->p_s == 0)
-			texture_parm(line, s_c3d, "S");
-		else if (line[s_c3d->cnt_i] == 'F' && (ft_isblank(line[s_c3d->cnt_i + 1])) && s_c3d->p_r == 0)
+			texture_parm(line, s_c3d, "P");
+		else if (line[s_c3d->cnt_i] == 'F' && (ft_isblank(line[s_c3d->cnt_i + 1])) && s_c3d->p_f == 0)
 			f_parm(line, s_c3d);
-		else if (line[s_c3d->cnt_i] == 'C' && (ft_isblank(line[s_c3d->cnt_i + 1])) && s_c3d->p_r == 0)
+		else if (line[s_c3d->cnt_i] == 'C' && (ft_isblank(line[s_c3d->cnt_i + 1])) && s_c3d->p_c == 0)
 			c_parm(line, s_c3d);
-		else if (line[s_c3d->cnt_i] == '1')
-			c_parm(line, s_c3d);
-		// else
-		// 	ft_msgerror("Fichero .cub errorneo.", 6);
+		else if (line[s_c3d->cnt_i] == '1' || line[s_c3d->cnt_i] == '0')
+			chk_map(line, s_c3d);
+		else
+			ft_msgerror("Fichero .cub errorneo.", 6);
 
 	}
 	return (0);

@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.c                                           :+:      :+:    :+:   */
+/*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 11:01:06 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/24 13:16:25 by juasanto         ###   ########.fr       */
+/*   Created: 2021/02/24 13:08:21 by juasanto          #+#    #+#             */
+/*   Updated: 2021/02/24 13:44:49 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int	main(int argc, char **argv)
+void		inicialize(t_cube *s_c3d)
 {
-	int			chk;
-	t_cube		s_c3d;
-
-	inicialize(&s_c3d);
-	chk = chk_args(argc, argv, &s_c3d);
-	printf("valor chk: %i\n", chk);
-	printf("OK\n");
-	chk_file(&s_c3d);
-	return (0);
+	s_c3d->f_name = NULL;
+	s_c3d->save_parm = 0;
+	s_c3d->cnt_i = 0;
+	s_c3d->p_r = 0;
+	s_c3d->p_rx = 0;
+	s_c3d->p_ry = 0;
+	s_c3d->p_no = 0;
+	s_c3d->p_so = 0;
+	s_c3d->p_we = 0;
+	s_c3d->p_ea = 0;
+	s_c3d->p_s = 0;
+	s_c3d->p_f = 0;
+	s_c3d->p_c = 0;
+	s_c3d->map_lines = 0;
+	return;
 }
