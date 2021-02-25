@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/02/24 13:13:06 by juasanto         ###   ########.fr        #
+#    Updated: 2021/02/25 17:51:30 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,10 @@ LIB_DIR		=	libft/
 OBJ_DIR		=	obj/
 SRCS_DIR	=	sources/
 SRCS		= 	cube3d.c \
+				utils_file.c \
 				chk_args.c \
 				chk_file.c \
+				chk_textures.c \
 				structs.c
 
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))

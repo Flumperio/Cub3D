@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:01:06 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/24 13:16:25 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:58:03 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	main(int argc, char **argv)
 	printf("valor chk: %i\n", chk);
 	printf("OK\n");
 	chk_file(&s_c3d);
+	system("leaks cube3d");
 	return (0);
 }
