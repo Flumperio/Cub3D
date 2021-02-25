@@ -6,20 +6,20 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/22 12:22:52 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/25 13:43:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int		chk_name(char *name)
+int		chk_ext(char *name, char *ext)
 {
 	char	*test_ext;
 
 	test_ext = &name[(ft_strlen(name) - 4)];
-	if (ft_strcmp(test_ext, ".cub") == 0)
+	if (ft_strcmp(test_ext, ext) == 0)
 		return (0);
-	return (3);
+	return (1);
 }
 
 int		chk_save(char *save)
@@ -38,7 +38,7 @@ int		chk_args(int argc, char **argv, t_cube *s_c3d)
 		ft_msgerror("No hay parametros", 1);
 	if (argc > 3)
 		ft_msgerror("Demasiados parámetros", 2);
-	if (chk_name(argv[1]) == 0)
+	if (chk_ext(argv[1], ".cub") == 0)
 		s_c3d->f_name = argv[1];
 	else
 		ft_msgerror("La extensión del archivo no es correcta", 3);

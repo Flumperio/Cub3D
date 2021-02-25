@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 13:08:21 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/24 13:44:49 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/02/25 13:15:22 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		inicialize(t_cube *s_c3d)
 	s_c3d->p_rx = 0;
 	s_c3d->p_ry = 0;
 	s_c3d->p_no = 0;
+	s_c3d->tex_no = NULL;
 	s_c3d->p_so = 0;
 	s_c3d->p_we = 0;
 	s_c3d->p_ea = 0;
@@ -28,5 +29,5 @@ void		inicialize(t_cube *s_c3d)
 	s_c3d->p_f = 0;
 	s_c3d->p_c = 0;
 	s_c3d->map_lines = 0;
-	return;
+	return ;
 }
