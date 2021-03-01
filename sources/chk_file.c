@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/27 13:02:10 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:04:15 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,13 @@ int	check_nsoe(int index, t_cube *s_c3d)
 
 int		chk_parms(t_cube *s_c3d)
 {
+	int		resto;
 	s_c3d->cnt_i = 0;
 	rmv_space(s_c3d);
 	while (s_c3d->line[s_c3d->cnt_i] != '\0')
 	{
+		resto = ft_isspace(s_c3d->line[s_c3d->cnt_i]);
+		printf ("Resto: %i\n", resto);
 		if (check_nsoe(R, s_c3d) == 1)
 			r_parm(s_c3d);
 		else if (check_nsoe(NO, s_c3d) == 1)
@@ -146,3 +149,34 @@ int		chk_file(t_cube *s_c3d)
 	free(s_c3d->line);
 	return (0);
 }
+
+// int		chk_parms(t_cube *s_c3d)
+// {
+// 	s_c3d->cnt_i = 0;
+// 	rmv_space(s_c3d);
+// 	while (s_c3d->line[s_c3d->cnt_i] != '\0')
+// 	{
+// 		if (check_nsoe(R, s_c3d) == 1)
+// 			r_parm(s_c3d);
+// 		else if (check_nsoe(NO, s_c3d) == 1)
+// 			texture_all(NO, s_c3d);
+// 		else if (check_nsoe(SO, s_c3d) == 1)
+// 			texture_all(SO, s_c3d);
+// 		else if (check_nsoe(WE, s_c3d) == 1)
+// 			texture_all(WE, s_c3d);
+// 		else if (check_nsoe(EA, s_c3d) == 1)
+// 			texture_all(EA, s_c3d);
+// 		else if (check_nsoe(S, s_c3d) == 1)
+// 			texture_all(S, s_c3d);
+// 		else if (check_nsoe(F, s_c3d) == 1)
+// 			f_parm(s_c3d);
+// 		else if (check_nsoe(C, s_c3d) == 1)
+// 			c_parm(s_c3d);
+// 		else if (s_c3d->line[s_c3d->cnt_i] == '1' ||
+// 				s_c3d->line[s_c3d->cnt_i] == '0')
+// 			chk_map(s_c3d);
+// 		else
+// 			ft_msgerror("File .cub error.", 6);
+// 	}
+// 	return (0);
+// }
