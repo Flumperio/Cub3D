@@ -6,7 +6,7 @@
 /*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/27 12:00:43 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:36:22 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct	s_cube
 	int			p_cg;
 	int			p_cb;
 	int			map_lines;
-	t_tex		tex[8];
+	t_tex		tex[9];
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *s_c3d);

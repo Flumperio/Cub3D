@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/01 14:04:15 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/01 17:16:44 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,33 +98,39 @@ int	check_nsoe(int index, t_cube *s_c3d)
 int		chk_parms(t_cube *s_c3d)
 {
 	int		resto;
+	int		cnt;
+	char	*name;
+
+	resto = 1;
+	cnt = 0;
+	name = NULL;
 	s_c3d->cnt_i = 0;
 	rmv_space(s_c3d);
 	while (s_c3d->line[s_c3d->cnt_i] != '\0')
 	{
-		resto = ft_isspace(s_c3d->line[s_c3d->cnt_i]);
+		resto -= ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]);
 		printf ("Resto: %i\n", resto);
-		if (check_nsoe(R, s_c3d) == 1)
-			r_parm(s_c3d);
-		else if (check_nsoe(NO, s_c3d) == 1)
-			texture_all(NO, s_c3d);
-		else if (check_nsoe(SO, s_c3d) == 1)
-			texture_all(SO, s_c3d);
-		else if (check_nsoe(WE, s_c3d) == 1)
-			texture_all(WE, s_c3d);
-		else if (check_nsoe(EA, s_c3d) == 1)
-			texture_all(EA, s_c3d);
-		else if (check_nsoe(S, s_c3d) == 1)
-			texture_all(S, s_c3d);
-		else if (check_nsoe(F, s_c3d) == 1)
-			f_parm(s_c3d);
-		else if (check_nsoe(C, s_c3d) == 1)
-			c_parm(s_c3d);
-		else if (s_c3d->line[s_c3d->cnt_i] == '1' ||
-				s_c3d->line[s_c3d->cnt_i] == '0')
-			chk_map(s_c3d);
-		else
-			ft_msgerror("File .cub error.", 6);
+		name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0, resto + 1);
+		printf("Name: %s\n", name);
+		while (s_c3d->tex[cnt].name != 0)
+		{
+			if(ft_strncmp(name, s_c3d->tex[cnt].name, ft_strlen(name) + 1) == 0)
+			{
+				if (s_c3d->tex[cnt].exis == 1)
+				{
+				ft_printf("File option '%s' duplicated.\n", s_c3d->tex[cnt].name);
+				exit(6);
+				}
+				else
+				{
+					s_c3d->tex[cnt].exis = 1;
+					printf("llamada a la funcion: %s\n", s_c3d->tex[cnt].name);
+					return(1);
+				}
+			}
+		cnt++;
+		}
+	s_c3d->cnt_i++;
 	}
 	return (0);
 }
