@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/01 16:36:22 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:45:39 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 #define C	7
 typedef struct	s_tex
 {
+	char		*name;
 	char		*path;
 	int			exis;
-	char		*name;
-	void		(*func)(char *line);
+	void		(*func)();
 }				t_tex;
 
 typedef struct	s_cube
@@ -49,6 +49,7 @@ typedef struct	s_cube
 	int			p_cg;
 	int			p_cb;
 	int			map_lines;
+	int			tmp;
 	t_tex		tex[9];
 }				t_cube;
 
@@ -59,6 +60,9 @@ int				chk_ext(char *name, char *ext);
 void			rmv_space(t_cube *s_c3d);
 int				atoi_b(t_cube *s_c3d);
 int				file_exist(char *file, char *name);
-void			texture_all(int index, t_cube *s_c3d);
+void			texture_all(t_cube *s_c3d, int index);
+void			r_parm(t_cube *s_c3d);
+void			f_parm(t_cube *s_c3d);
+void			c_parm(t_cube *s_c3d);
 
 #endif

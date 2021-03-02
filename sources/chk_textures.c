@@ -6,13 +6,13 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:47:09 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/26 17:29:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/02 10:31:42 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	texture_all(int index, t_cube *s_c3d)
+void	texture_all(t_cube *s_c3d, int index)
 {
 	s_c3d->cnt_i += 2;
 	rmv_space(s_c3d);

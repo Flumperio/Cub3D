@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/01 17:16:44 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:07:00 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 void	r_parm(t_cube *s_c3d)
 {
+	char	**num_val;
+
+	s_c3d->tmp = 0;
 	s_c3d->tex[R].exis = 1;
-	s_c3d->cnt_i++;
-	rmv_space(s_c3d);
-	if (s_c3d->line[s_c3d->cnt_i] >= '0' && s_c3d->line[s_c3d->cnt_i] <= '9')
-		s_c3d->p_rx = atoi_b(s_c3d);
+	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ' ');
+	while(num_val[s_c3d->tmp] != '\0')
+		s_c3d->tmp++;
+	if(s_c3d->tmp > 2)
+			ft_msgerror("Error in parameters number.", 6);
 	else
-		ft_msgerror("No valid Resolution X.", 7);
-	rmv_space(s_c3d);
-	if (s_c3d->line[s_c3d->cnt_i] >= '0' && s_c3d->line[s_c3d->cnt_i] <= '9')
-		s_c3d->p_ry = atoi_b(s_c3d);
-	else
-		ft_msgerror("No valid Resolution Y.", 7);
-	return ;
+		s_c3d->p_rx = ft_atoi(num_val[0]);
+		s_c3d->p_ry = ft_atoi(num_val[1]);
+	s_c3d->cnt_i = ft_strlen(s_c3d->line);
+	return;
 }
 
 void	f_parm(t_cube *s_c3d)
@@ -97,21 +98,16 @@ int	check_nsoe(int index, t_cube *s_c3d)
 
 int		chk_parms(t_cube *s_c3d)
 {
-	int		resto;
 	int		cnt;
 	char	*name;
 
-	resto = 1;
 	cnt = 0;
 	name = NULL;
 	s_c3d->cnt_i = 0;
 	rmv_space(s_c3d);
+	name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0, !ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]) + 1);
 	while (s_c3d->line[s_c3d->cnt_i] != '\0')
 	{
-		resto -= ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]);
-		printf ("Resto: %i\n", resto);
-		name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0, resto + 1);
-		printf("Name: %s\n", name);
 		while (s_c3d->tex[cnt].name != 0)
 		{
 			if(ft_strncmp(name, s_c3d->tex[cnt].name, ft_strlen(name) + 1) == 0)
@@ -124,7 +120,8 @@ int		chk_parms(t_cube *s_c3d)
 				else
 				{
 					s_c3d->tex[cnt].exis = 1;
-					printf("llamada a la funcion: %s\n", s_c3d->tex[cnt].name);
+					s_c3d->tex[cnt].func(s_c3d, cnt);
+					free(name);
 					return(1);
 				}
 			}
@@ -132,6 +129,7 @@ int		chk_parms(t_cube *s_c3d)
 		}
 	s_c3d->cnt_i++;
 	}
+	free(name);
 	return (0);
 }
 
@@ -185,4 +183,21 @@ int		chk_file(t_cube *s_c3d)
 // 			ft_msgerror("File .cub error.", 6);
 // 	}
 // 	return (0);
+// }
+
+// void	r_parm(t_cube *s_c3d)
+// {
+// 	s_c3d->tex[R].exis = 1;
+// 	s_c3d->cnt_i++;
+// 	rmv_space(s_c3d);
+// 	if (s_c3d->line[s_c3d->cnt_i] >= '0' && s_c3d->line[s_c3d->cnt_i] <= '9')
+// 		s_c3d->p_rx = atoi_b(s_c3d);
+// 	else
+// 		ft_msgerror("No valid Resolution X.", 7);
+// 	rmv_space(s_c3d);
+// 	if (s_c3d->line[s_c3d->cnt_i] >= '0' && s_c3d->line[s_c3d->cnt_i] <= '9')
+// 		s_c3d->p_ry = atoi_b(s_c3d);
+// 	else
+// 		ft_msgerror("No valid Resolution Y.", 7);
+// 	return ;
 // }
