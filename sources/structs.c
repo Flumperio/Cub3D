@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 08:53:35 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/02 10:59:32 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/03 13:48:24 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void		inicialize(t_cube *s_c3d)
 	s_c3d->tex[5] = (t_tex){"R", NULL, 0, r_parm};
 	s_c3d->tex[6] = (t_tex){"F", NULL, 0, f_parm};
 	s_c3d->tex[7] = (t_tex){"C", NULL, 0, c_parm};
-	s_c3d->tex[8].name = NULL;
+	s_c3d->tex[8] = (t_tex){"1", NULL, 0, chk_map};
+	s_c3d->tex[9] = (t_tex){"0", NULL, 0, chk_map};
+	s_c3d->tex[10].name = NULL;
 	//s_c3d->tex[8].func = chk_args;
 }

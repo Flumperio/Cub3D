@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/02 13:45:39 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/03 13:47:57 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,15 @@ typedef struct	s_cube
 	//int			p_r;
 	int			p_rx;
 	int			p_ry;
-	int			p_f;
 	int			p_fr;
 	int			p_fg;
 	int			p_fb;
-	int			p_c;
 	int			p_cr;
 	int			p_cg;
 	int			p_cb;
 	int			map_lines;
 	int			tmp;
-	t_tex		tex[9];
+	t_tex		tex[11];
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *s_c3d);
@@ -61,8 +59,10 @@ void			rmv_space(t_cube *s_c3d);
 int				atoi_b(t_cube *s_c3d);
 int				file_exist(char *file, char *name);
 void			texture_all(t_cube *s_c3d, int index);
+int				chk_value(char *number, int min_value, int max_value);
 void			r_parm(t_cube *s_c3d);
 void			f_parm(t_cube *s_c3d);
 void			c_parm(t_cube *s_c3d);
+void			chk_map(t_cube *s_c3d);
 
 #endif

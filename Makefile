@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juasanto <juasanto@student.42madrid.com    +#+  +:+       +#+         #
+#    By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/02/25 17:51:30 by juasanto         ###   ########.fr        #
+#    Updated: 2021/03/03 12:48:12 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS		= 	cube3d.c \
 				chk_args.c \
 				chk_file.c \
 				chk_textures.c \
+				chk_rfc.c \
 				structs.c
 
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
