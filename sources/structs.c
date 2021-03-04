@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 08:53:35 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/03 13:48:24 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:32:28 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void		inicialize(t_cube *s_c3d)
+void	inicialize(t_cube *s_c3d)
 {
 	ft_bzero(s_c3d, sizeof(t_cube));
 	s_c3d->tex[0] = (t_tex){"NO", NULL, 0, texture_all};
@@ -26,5 +26,4 @@ void		inicialize(t_cube *s_c3d)
 	s_c3d->tex[8] = (t_tex){"1", NULL, 0, chk_map};
 	s_c3d->tex[9] = (t_tex){"0", NULL, 0, chk_map};
 	s_c3d->tex[10].name = NULL;
-	//s_c3d->tex[8].func = chk_args;
 }

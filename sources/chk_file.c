@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/03 14:04:01 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/04 18:05:26 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,62 @@
 
 void	chk_map(t_cube *s_c3d)
 {
-
 	s_c3d->tmp = 0;
 	s_c3d->map_lines++;
 	s_c3d->tex[8].exis = 0;
 	s_c3d->tex[9].exis = 0;
-	while(s_c3d->tex[s_c3d->tmp].exis == 1)
-		s_c3d->tmp++;
-	if(s_c3d->tmp < 8)
-		ft_msgerror("Not enough parameters.", 7);
+	if (s_c3d->map_lines < 2)
+	{
+		while (s_c3d->tex[s_c3d->tmp].exis == 1)
+			s_c3d->tmp++;
+		if (s_c3d->tmp < 8)
+			ft_msgerror("Not enough parameters.", 7);
+	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
 	return ;
 }
 
-int		chk_parms(t_cube *s_c3d)
+int	fill_options(t_cube *s_c3d)
 {
 	char	*name;
 
-	s_c3d->tmp = 0;
-	name = NULL;
-	s_c3d->cnt_i = 0;
-	rmv_space(s_c3d);
-	name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0, !ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]) + 1);
-	while (s_c3d->line[s_c3d->cnt_i] != '\0')
+	name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0,
+			!ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]) + 1);
+	while (s_c3d->tex[s_c3d->tmp].name != 0)
 	{
-		while (s_c3d->tex[s_c3d->tmp].name != 0)
+		if (ft_strncmp(name, s_c3d->tex[s_c3d->tmp].name,
+				ft_strlen(s_c3d->tex[s_c3d->tmp].name)) == 0)
 		{
-			if(ft_strncmp(name, s_c3d->tex[s_c3d->tmp].name, ft_strlen(s_c3d->tex[s_c3d->tmp].name)) == 0)
+			if (s_c3d->tex[s_c3d->tmp].exis == 1)
+				ft_msgerror("Option Duplicated.", 6);
+			else
 			{
-				if (s_c3d->tex[s_c3d->tmp].exis == 1)
-				{
-				ft_printf("File option '%s' duplicated.\n", s_c3d->tex[s_c3d->tmp].name);
-				exit(6);
-				}
-				else
-				{
-					s_c3d->tex[s_c3d->tmp].exis = 1;
-					s_c3d->tex[s_c3d->tmp].func(s_c3d, s_c3d->tmp);
-					free(name);
-					return(1);
-				}
+				s_c3d->tex[s_c3d->tmp].exis = 1;
+				s_c3d->tex[s_c3d->tmp].func(s_c3d, s_c3d->tmp);
+				free(name);
+				return (1);
 			}
-		s_c3d->tmp++;
 		}
-		// if (s_c3d->line[s_c3d->cnt_i] == '1' || s_c3d->line[s_c3d->cnt_i] == '0')
-		// 	chk_map(s_c3d);
-		s_c3d->cnt_i++;
+		s_c3d->tmp++;
 	}
-	free(name);
 	return (0);
 }
 
-int		chk_file(t_cube *s_c3d)
+int	chk_parms(t_cube *s_c3d)
+{
+	s_c3d->tmp = 0;
+	s_c3d->cnt_i = 0;
+	rmv_space(s_c3d);
+	while (s_c3d->line[s_c3d->cnt_i] != '\0')
+	{
+		if (fill_options(s_c3d) == 1)
+			return (1);
+		s_c3d->cnt_i++;
+	}
+	return (0);
+}
+
+int	chk_file(t_cube *s_c3d)
 {
 	int		fd1;
 	int		gnl;
@@ -132,4 +136,44 @@ int		chk_file(t_cube *s_c3d)
 // 	else
 // 		ft_msgerror("No valid Resolution Y.", 7);
 // 	return ;
+// }
+
+
+// int	chk_parms(t_cube *s_c3d)
+// {
+// 	//char	*name;
+
+// 	s_c3d->tmp = 0;
+// 	name = NULL;
+// 	s_c3d->cnt_i = 0;
+// 	rmv_space(s_c3d);
+// 	// name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0,
+// 	// 		!ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]) + 1);
+// 	while (s_c3d->line[s_c3d->cnt_i] != '\0')
+// 	{
+// 		while (s_c3d->tex[s_c3d->tmp].name != 0)
+// 		{
+// 			if (ft_strncmp(name, s_c3d->tex[s_c3d->tmp].name,
+// 					ft_strlen(s_c3d->tex[s_c3d->tmp].name)) == 0)
+// 			{
+// 				if (s_c3d->tex[s_c3d->tmp].exis == 1)
+// 				{
+// 					ft_printf("File option '%s' duplicated.\n",
+// 							s_c3d->tex[s_c3d->tmp].name);
+// 					exit(6);
+// 				}
+// 				else
+// 				{
+// 					s_c3d->tex[s_c3d->tmp].exis = 1;
+// 					s_c3d->tex[s_c3d->tmp].func(s_c3d, s_c3d->tmp);
+// 					free(name);
+// 					return (1);
+// 				}
+// 			}
+// 			s_c3d->tmp++;
+// 		}
+// 		s_c3d->cnt_i++;
+// 	}
+// 	free(name);
+// 	return (0);
 // }

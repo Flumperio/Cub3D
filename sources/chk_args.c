@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   chk_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/25 13:43:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:32:50 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int		chk_ext(char *name, char *ext)
+int	chk_ext(char *name, char *ext)
 {
 	char	*test_ext;
 
@@ -22,14 +22,14 @@ int		chk_ext(char *name, char *ext)
 	return (1);
 }
 
-int		chk_save(char *save)
+int	chk_save(char *save)
 {
 	if (ft_strcmp(save, "--save") == 0)
 		return (0);
 	return (4);
 }
 
-int		chk_args(int argc, char **argv, t_cube *s_c3d)
+int	chk_args(int argc, char **argv, t_cube *s_c3d)
 {
 	int		cnt;
 

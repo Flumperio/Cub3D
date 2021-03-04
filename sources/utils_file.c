@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:49:08 by juasanto          #+#    #+#             */
-/*   Updated: 2021/02/26 17:06:08 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:32:37 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	rmv_space(t_cube *s_c3d)
 	return ;
 }
 
-int		atoi_b(t_cube *s_c3d)
+int	atoi_b(t_cube *s_c3d)
 {
 	int		result;
 
@@ -32,7 +32,7 @@ int		atoi_b(t_cube *s_c3d)
 	return (result);
 }
 
-int		file_exist(char *file, char *name)
+int	file_exist(char *file, char *name)
 {
 	int		fd;
 
