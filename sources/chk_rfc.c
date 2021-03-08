@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_rfc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/04 17:32:01 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/08 13:30:05 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	r_parm(t_cube *s_c3d)
 		ft_msgerror("Error in the parametres of Resolution (R).", 6);
 	else
 	{
-		s_c3d->p_rx = chk_value(num_val[0], 1, 4000);
-		s_c3d->p_ry = chk_value(num_val[1], 1, 4000);
+		s_c3d->p_rx = chk_value(num_val[0], 1, INT32_MAX);
+		s_c3d->p_ry = chk_value(num_val[1], 1, INT32_MAX);
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
 	return ;

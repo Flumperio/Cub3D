@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/04 18:05:26 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/08 13:49:16 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	fill_options(t_cube *s_c3d)
 			!ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]) + 1);
 	while (s_c3d->tex[s_c3d->tmp].name != 0)
 	{
-		if (ft_strncmp(name, s_c3d->tex[s_c3d->tmp].name,
+		if (ft_strncmp(name, s_c3d->tex[s_c3d->tmp].name, \
 				ft_strlen(s_c3d->tex[s_c3d->tmp].name)) == 0)
 		{
 			if (s_c3d->tex[s_c3d->tmp].exis == 1)

@@ -6,13 +6,20 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/03 13:47:57 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/08 13:29:16 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <string.h>
+# include <fcntl.h>
+# include <time.h>
 # include "../Libft/includes/libft.h"
 
 #define NO	0
@@ -23,7 +30,7 @@
 #define R	5
 #define F	6
 #define C	7
-typedef struct	s_tex
+typedef	struct	s_tex
 {
 	char		*name;
 	char		*path;
