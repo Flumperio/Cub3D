@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   chk_rfc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/09 14:38:24 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/09 16:52:57 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	free_array(char **str)
+void	texture_all(t_cube *s_c3d)
 {
-	int	cnt;
-
-	cnt = 0;
-	if (!str)
-		return ;
-	while (str[cnt])
+	s_c3d->cnt_i += 2;
+	rmv_space(s_c3d);
+	s_c3d->tex[s_c3d->tmp].path = ft_strdup(&s_c3d->line[s_c3d->cnt_i]);
+	if (chk_ext(s_c3d->tex[s_c3d->tmp].path, ".xpm") == 0)
+		s_c3d->tex[s_c3d->tmp].exis = 1;
+	else
 	{
-		free(str[cnt]);
-		str[cnt++] = NULL;
+		ft_printf("Texture Extension %s is not correct.\n",
+		s_c3d->tex[s_c3d->tmp].name);
+		exit(9);
 	}
-	free(str);
-	str = NULL;
+	file_exist(s_c3d->tex[s_c3d->tmp].path, s_c3d->tex[s_c3d->tmp].name);
+	s_c3d->cnt_i = ft_strlen(s_c3d->line);
 }
 
 void	r_parm(t_cube *s_c3d)
@@ -45,9 +46,7 @@ void	r_parm(t_cube *s_c3d)
 		s_c3d->p_ry = chk_value(num_val[1], 1, INT32_MAX);
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
-	printf("num_val - r: %p\n", num_val);
-	printf("r_parm - 1: %p\n", *num_val);
-	free_array(num_val);
+	ft_free_array(num_val);
 	return ;
 }
 
@@ -70,8 +69,7 @@ void	f_parm(t_cube *s_c3d)
 		s_c3d->p_fb = chk_value(num_val[2], 0, 255);
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
-	printf("num_val - f: %p\n", num_val);
-	free_array(num_val);
+	ft_free_array(num_val);
 	return ;
 }
 
@@ -93,7 +91,23 @@ void	c_parm(t_cube *s_c3d)
 		s_c3d->p_cb = chk_value(num_val[2], 0, 255);
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
-	printf("num_val - c: %p\n", num_val);
-	free_array(num_val);
+	ft_free_array(num_val);
+	return ;
+}
+
+void	chk_map(t_cube *s_c3d)
+{
+	s_c3d->tmp = 0;
+	s_c3d->map_lines++;
+	s_c3d->tex[8].exis = 0;
+	s_c3d->tex[9].exis = 0;
+	if (s_c3d->map_lines < 2)
+	{
+		while (s_c3d->tex[s_c3d->tmp].exis == 1)
+			s_c3d->tmp++;
+		if (s_c3d->tmp < 8)
+			ft_msgerror("Not enough parameters.", 7);
+	}
+	s_c3d->cnt_i = ft_strlen(s_c3d->line);
 	return ;
 }
