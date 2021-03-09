@@ -3,19 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   chk_rfc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/08 18:55:02 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:18:53 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
+void	free_array(char **str)
+{
+	int	cnt;
+
+	cnt = 0;
+	if (!str)
+		return ;
+	while (str[cnt])
+	{
+		free(str[cnt]);
+		str[cnt++] = NULL;
+	}
+	free(str);
+	str = NULL;
+}
+
 void	r_parm(t_cube *s_c3d)
 {
 	char	**num_val;
+	int		cnt1;
 
+	cnt1 = 0;
 	s_c3d->tmp = 0;
 	chk_r_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ' ');
@@ -29,13 +47,19 @@ void	r_parm(t_cube *s_c3d)
 		s_c3d->p_ry = chk_value(num_val[1], 1, INT32_MAX);
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
+	printf("num_val - r: %p\n", num_val);
+	printf("r_parm - 1: %p\n", *num_val);
+	free_array(num_val);
 	return ;
 }
+
 
 void	f_parm(t_cube *s_c3d)
 {
 	char	**num_val;
+	int		cnt1;
 
+	cnt1 = 0;
 	s_c3d->tmp = 0;
 	chk_fc_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
@@ -50,13 +74,22 @@ void	f_parm(t_cube *s_c3d)
 		s_c3d->p_fb = chk_value(num_val[2], 0, 255);
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
+	printf("num_val - f: %p\n", num_val);
+	while (num_val[cnt1] != NULL)
+	{
+		free(num_val[cnt1]);
+		cnt1++;
+	}
+	free(num_val);
 	return ;
 }
 
 void	c_parm(t_cube *s_c3d)
 {
 	char	**num_val;
+	int		cnt1;
 
+	cnt1 = 0;
 	s_c3d->tmp = 0;
 	chk_fc_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
@@ -71,5 +104,12 @@ void	c_parm(t_cube *s_c3d)
 		s_c3d->p_cb = chk_value(num_val[2], 0, 255);
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
+	printf("num_val - c: %p\n", num_val);
+	while (num_val[cnt1] != NULL)
+	{
+		free(num_val[cnt1]);
+		cnt1++;
+	}
+	free(num_val);
 	return ;
 }

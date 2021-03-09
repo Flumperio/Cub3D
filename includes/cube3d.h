@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/08 18:55:29 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:23:43 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@
 # define F 6
 # define C 7
 
+struct s_cube;
+
 typedef struct s_tex
 {
 	char		*name;
 	char		*path;
 	int			exis;
-	void		(*func)();
+	void		(*func)(struct s_cube *s_s3d);
 }				t_tex;
 
 typedef struct s_cube
@@ -65,7 +67,7 @@ int				chk_ext(char *name, char *ext);
 void			rmv_space(t_cube *s_c3d);
 int				atoi_b(t_cube *s_c3d);
 int				file_exist(char *file, char *name);
-void			texture_all(t_cube *s_c3d, int index);
+void			texture_all(t_cube *s_c3d);
 int				chk_value(char *number, int min_value, int max_value);
 void			r_parm(t_cube *s_c3d);
 void			f_parm(t_cube *s_c3d);

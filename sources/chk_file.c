@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/08 17:42:07 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:27:46 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	fill_options(t_cube *s_c3d)
 {
 	char	*name;
 
+	s_c3d->tmp = 0;
 	name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0,
 			!ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]) + 1);
 	while (s_c3d->tex[s_c3d->tmp].name != 0)
@@ -45,13 +46,14 @@ int	fill_options(t_cube *s_c3d)
 			else
 			{
 				s_c3d->tex[s_c3d->tmp].exis = 1;
-				s_c3d->tex[s_c3d->tmp].func(s_c3d, s_c3d->tmp);
+				s_c3d->tex[s_c3d->tmp].func(s_c3d);
 				free(name);
 				return (1);
 			}
 		}
 		s_c3d->tmp++;
 	}
+	free(name);
 	return (0);
 }
 
