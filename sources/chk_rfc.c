@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/09 14:18:53 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:38:24 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void	free_array(char **str)
 void	r_parm(t_cube *s_c3d)
 {
 	char	**num_val;
-	int		cnt1;
 
-	cnt1 = 0;
 	s_c3d->tmp = 0;
 	chk_r_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ' ');
@@ -57,9 +55,7 @@ void	r_parm(t_cube *s_c3d)
 void	f_parm(t_cube *s_c3d)
 {
 	char	**num_val;
-	int		cnt1;
 
-	cnt1 = 0;
 	s_c3d->tmp = 0;
 	chk_fc_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
@@ -75,21 +71,14 @@ void	f_parm(t_cube *s_c3d)
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
 	printf("num_val - f: %p\n", num_val);
-	while (num_val[cnt1] != NULL)
-	{
-		free(num_val[cnt1]);
-		cnt1++;
-	}
-	free(num_val);
+	free_array(num_val);
 	return ;
 }
 
 void	c_parm(t_cube *s_c3d)
 {
 	char	**num_val;
-	int		cnt1;
 
-	cnt1 = 0;
 	s_c3d->tmp = 0;
 	chk_fc_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
@@ -105,11 +94,6 @@ void	c_parm(t_cube *s_c3d)
 	}
 	s_c3d->cnt_i = ft_strlen(s_c3d->line);
 	printf("num_val - c: %p\n", num_val);
-	while (num_val[cnt1] != NULL)
-	{
-		free(num_val[cnt1]);
-		cnt1++;
-	}
-	free(num_val);
+	free_array(num_val);
 	return ;
 }
