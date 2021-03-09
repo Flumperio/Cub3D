@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/08 13:29:16 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/08 18:55:29 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@
 # include <time.h>
 # include "../Libft/includes/libft.h"
 
-#define NO	0
-#define SO	1
-#define WE	2
-#define EA	3
-#define S	4
-#define R	5
-#define F	6
-#define C	7
-typedef	struct	s_tex
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
+# define S 4
+# define R 5
+# define F 6
+# define C 7
+
+typedef struct s_tex
 {
 	char		*name;
 	char		*path;
@@ -38,13 +39,12 @@ typedef	struct	s_tex
 	void		(*func)();
 }				t_tex;
 
-typedef struct	s_cube
+typedef struct s_cube
 {
 	char		*line;
 	char		*f_name;
 	int			save_parm;
 	int			cnt_i;
-	//int			p_r;
 	int			p_rx;
 	int			p_ry;
 	int			p_fr;
@@ -71,5 +71,7 @@ void			r_parm(t_cube *s_c3d);
 void			f_parm(t_cube *s_c3d);
 void			c_parm(t_cube *s_c3d);
 void			chk_map(t_cube *s_c3d);
+void			chk_r_value(t_cube *s_c3d);
+void			chk_fc_value(t_cube *s_c3d);
 
 #endif

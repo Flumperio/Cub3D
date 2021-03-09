@@ -9,7 +9,7 @@
             "name": "Debug_Make",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cube3d",
+            "program": "${workspaceFolder}/cub3D",
             "args": ["testmap.cub", "--save"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

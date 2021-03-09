@@ -3,32 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   chk_rfc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/08 13:30:05 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/08 18:55:02 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-int	chk_value(char *number, int min_value, int max_value)
-{
-	int		value;
-
-	value = ft_atoi(number);
-	if (value < min_value || value > max_value)
-		ft_msgerror("Error in the value of parameters.", 6);
-	return (value);
-}
 
 void	r_parm(t_cube *s_c3d)
 {
 	char	**num_val;
 
 	s_c3d->tmp = 0;
+	chk_r_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ' ');
-	while (num_val[s_c3d->tmp] != '\0')
+	while (num_val[s_c3d->tmp] != NULL)
 		s_c3d->tmp++;
 	if (s_c3d->tmp != 2)
 		ft_msgerror("Error in the parametres of Resolution (R).", 6);
@@ -46,8 +37,9 @@ void	f_parm(t_cube *s_c3d)
 	char	**num_val;
 
 	s_c3d->tmp = 0;
+	chk_fc_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
-	while (num_val[s_c3d->tmp] != '\0')
+	while (num_val[s_c3d->tmp] != NULL)
 		s_c3d->tmp++;
 	if (s_c3d->tmp != 3)
 		ft_msgerror("Error in the parametres of Floor (F).", 6);
@@ -66,8 +58,9 @@ void	c_parm(t_cube *s_c3d)
 	char	**num_val;
 
 	s_c3d->tmp = 0;
+	chk_fc_value(s_c3d);
 	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
-	while (num_val[s_c3d->tmp] != '\0')
+	while (num_val[s_c3d->tmp] != NULL)
 		s_c3d->tmp++;
 	if (s_c3d->tmp != 3)
 		ft_msgerror("Error in the parametres of Ceilling (C).", 6);

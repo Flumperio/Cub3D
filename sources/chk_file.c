@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/08 13:49:16 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/08 17:42:07 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	chk_parms(t_cube *s_c3d)
 	{
 		if (fill_options(s_c3d) == 1)
 			return (1);
+		else
+			ft_msgerror("Invalid parameters in file.", 6);
 		s_c3d->cnt_i++;
 	}
 	return (0);
