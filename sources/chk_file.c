@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/09 16:34:41 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/10 13:11:32 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,18 @@ int	chk_parms(t_cube *s_c3d)
 int	chk_file(t_cube *s_c3d)
 {
 	int		fd1;
-	int		gnl;
 
-	gnl = 1;
 	fd1 = open(s_c3d->f_name, O_RDONLY);
 	if (fd1 < 0)
 		ft_msgerror("No existe el ficheo", 5);
 	while (get_next_line(fd1, &s_c3d->line) == 1)
 	{
-		gnl++;
-		printf("gnl: %s\n", s_c3d->line);
 		chk_parms(s_c3d);
 		free(s_c3d->line);
 	}
 	chk_parms(s_c3d);
 	free(s_c3d->line);
+	init_wrk_map(s_c3d);
+	strg_map(s_c3d);
 	return (0);
 }
