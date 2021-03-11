@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/09 16:34:36 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:21:08 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	file_exist(char *file, char *name)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error\nFile %s not exist or its no correct.\n", name);
+		printf("Error\nFile %s not exist or its no correct.\n", name);
 		exit(9);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/11 09:45:18 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:22:22 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	texture_all(t_cube *s_c3d)
 			s_c3d->tex[s_c3d->tmp].exis = 1;
 		else
 		{
-			ft_printf("Texture Extension %s is not correct.\n",
+			printf("Texture Extension %s is not correct.\n",
 			s_c3d->tex[s_c3d->tmp].name);
 			exit(9);
 		}
