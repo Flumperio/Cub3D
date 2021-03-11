@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/10 13:11:38 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/11 10:37:45 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,6 @@ void	inicialize(t_cube *s_c3d)
 	s_c3d->tex[10].name = NULL;
 }
 
-void	init_wrk_map(t_cube *s_c3d)
-{
-	int	cnt;
-
-	cnt = 0;
-	while (cnt < 10)
-	{
-		s_c3d->tex[cnt].exis = 0;
-		cnt ++;
-	}
-	return ;
-}
-
 int	main(int argc, char **argv)
 {
 	int			chk;
@@ -51,7 +38,7 @@ int	main(int argc, char **argv)
 	inicialize(&s_c3d);
 	chk = chk_args(argc, argv, &s_c3d);
 	chk_file(&s_c3d);
-	while (s_c3d.wrk_map[tmp] != NULL)
+	while (s_c3d.wrk_map[tmp])
 	{
 		printf("map_line: %s\n", s_c3d.wrk_map[tmp]);
 		tmp++;

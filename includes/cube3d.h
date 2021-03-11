@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/10 12:40:34 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/11 10:37:59 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ void			chk_r_value(t_cube *s_c3d);
 void			chk_fc_value(t_cube *s_c3d);
 void			strg_map(t_cube *s_c3d);
 int				chk_parms(t_cube *s_c3d);
-void			init_wrk_map(t_cube *s_c3d);
 
 #endif

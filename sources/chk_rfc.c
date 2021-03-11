@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/10 13:54:01 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/11 09:45:18 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,25 @@ void	c_parm(t_cube *s_c3d)
 {
 	char	**num_val;
 
-	s_c3d->tmp = 0;
-	chk_fc_value(s_c3d);
-	num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
-	while (num_val[s_c3d->tmp] != NULL)
-		s_c3d->tmp++;
-	if (s_c3d->tmp != 3)
-		ft_msgerror("Error in the parametres of Ceilling (C).", 6);
-	else
+	if (s_c3d->wrk_map == 0)
 	{
-		s_c3d->p_cr = chk_value(num_val[0], 0, 255);
-		s_c3d->p_cg = chk_value(num_val[1], 0, 255);
-		s_c3d->p_cb = chk_value(num_val[2], 0, 255);
+		s_c3d->tmp = 0;
+		chk_fc_value(s_c3d);
+		num_val = ft_split(&s_c3d->line[++s_c3d->cnt_i], ',');
+		while (num_val[s_c3d->tmp] != NULL)
+			s_c3d->tmp++;
+		if (s_c3d->tmp != 3)
+			ft_msgerror("Error in the parametres of Ceilling (C).", 6);
+		else
+		{
+			s_c3d->p_cr = chk_value(num_val[0], 0, 255);
+			s_c3d->p_cg = chk_value(num_val[1], 0, 255);
+			s_c3d->p_cb = chk_value(num_val[2], 0, 255);
+		}
+		s_c3d->cnt_i = ft_strlen(s_c3d->line);
+		ft_free_array(num_val);
+		return ;
 	}
-	s_c3d->cnt_i = ft_strlen(s_c3d->line);
-	ft_free_array(num_val);
-	return ;
 }
 
 void	chk_map(t_cube *s_c3d)

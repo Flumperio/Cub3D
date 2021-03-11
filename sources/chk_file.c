@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/10 13:11:32 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/11 10:36:26 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	fill_options(t_cube *s_c3d)
 		if (ft_strncmp(name, s_c3d->tex[s_c3d->tmp].name, \
 				ft_strlen(s_c3d->tex[s_c3d->tmp].name)) == 0)
 		{
-			if (s_c3d->tex[s_c3d->tmp].exis == 1)
+			if (s_c3d->tex[s_c3d->tmp].exis == 1 && s_c3d->strg_map == 0)
 				ft_msgerror("Option Duplicated.", 6);
 			else
 			{
@@ -70,7 +70,7 @@ int	chk_file(t_cube *s_c3d)
 	}
 	chk_parms(s_c3d);
 	free(s_c3d->line);
-	init_wrk_map(s_c3d);
+	//init_wrk_map(s_c3d);
 	strg_map(s_c3d);
 	return (0);
 }
