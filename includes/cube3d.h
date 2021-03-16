@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/15 19:28:52 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/16 11:35:15 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_map
 	char	p_pos;
 	int		x_pos;
 	int		y_pos;
+	char	*map_value;
 
 }			t_map;
 

@@ -6,13 +6,13 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/11 10:37:45 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/16 13:21:39 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	inicialize(t_cube *s_c3d)
+void	init_c3d(t_cube *s_c3d)
 {
 	ft_bzero(s_c3d, sizeof(t_cube));
 	s_c3d->tex[0] = (t_tex){"NO", NULL, 0, texture_all};
@@ -28,14 +28,22 @@ void	inicialize(t_cube *s_c3d)
 	s_c3d->tex[10].name = NULL;
 }
 
+void	init_map(t_map *st_map)
+{
+	ft_bzero(st_map, sizeof(t_map));
+	st_map->map_value = "012NSWE";
+}
+
 int	main(int argc, char **argv)
 {
 	int			chk;
 	t_cube		s_c3d;
+	t_map		st_map;
 	int			tmp;
 
 	tmp = 0;
-	inicialize(&s_c3d);
+	init_c3d(&s_c3d);
+	init_map(&st_map);
 	chk = chk_args(argc, argv, &s_c3d);
 	chk_file(&s_c3d);
 	while (s_c3d.wrk_map[tmp])

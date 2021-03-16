@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_rfc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/15 19:22:07 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/16 11:39:08 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	r_parm(t_cube *s_c3d)
 		return ;
 	}
 }
-
 
 void	f_parm(t_cube *s_c3d)
 {
