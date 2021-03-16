@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_rfc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/11 12:22:22 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/15 19:22:07 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,7 @@ void	chk_map(t_cube *s_c3d)
 	s_c3d->tex[8].exis = 0;
 	s_c3d->tex[9].exis = 0;
 	if (s_c3d->strg_map == 1)
-	{
-		s_c3d->wrk_map[s_c3d->cnt_map++] = ft_strdup(s_c3d->line);
-		s_c3d->wrk_map[s_c3d->cnt_map] = NULL;
-	}
+		cnvrt_map(s_c3d);
 	else
 	{
 		if (s_c3d->map_lines < 2)

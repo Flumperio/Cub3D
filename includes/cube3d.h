@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/11 10:37:59 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/15 19:28:52 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@
 # define C 7
 
 struct	s_cube;
+
+typedef struct s_map
+{
+	char	p_pos;
+	int		x_pos;
+	int		y_pos;
+
+}			t_map;
 
 typedef struct s_tex
 {
@@ -59,6 +67,7 @@ typedef struct s_cube
 	int			tmp;
 	int			strg_map;
 	char		**wrk_map;
+	char		**tmp_map;
 	int			cnt_map;
 	t_tex		tex[11];
 }				t_cube;
@@ -80,5 +89,6 @@ void			chk_r_value(t_cube *s_c3d);
 void			chk_fc_value(t_cube *s_c3d);
 void			strg_map(t_cube *s_c3d);
 int				chk_parms(t_cube *s_c3d);
+void			cnvrt_map(t_cube *s_c3d);
 
 #endif
