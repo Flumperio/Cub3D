@@ -6,14 +6,15 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/16 11:39:08 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:58:17 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	texture_all(t_cube *s_c3d)
+void	texture_all(t_cube *s_c3d, t_map *st_map)
 {
+	st_map->temp = 0;
 	if (s_c3d->wrk_map == 0)
 	{
 		s_c3d->cnt_i += 2;
@@ -32,10 +33,11 @@ void	texture_all(t_cube *s_c3d)
 	}
 }
 
-void	r_parm(t_cube *s_c3d)
+void	r_parm(t_cube *s_c3d, t_map *st_map)
 {
 	char	**num_val;
 
+	st_map->temp = 0;
 	if (s_c3d->wrk_map == 0)
 	{
 		s_c3d->tmp = 0;
@@ -56,10 +58,11 @@ void	r_parm(t_cube *s_c3d)
 	}
 }
 
-void	f_parm(t_cube *s_c3d)
+void	f_parm(t_cube *s_c3d, t_map *st_map)
 {
 	char	**num_val;
 
+	st_map->temp = 0;
 	if (s_c3d->wrk_map == 0)
 	{
 		s_c3d->tmp = 0;
@@ -81,10 +84,11 @@ void	f_parm(t_cube *s_c3d)
 	}
 }
 
-void	c_parm(t_cube *s_c3d)
+void	c_parm(t_cube *s_c3d, t_map *st_map)
 {
 	char	**num_val;
 
+	st_map->temp = 0;
 	if (s_c3d->wrk_map == 0)
 	{
 		s_c3d->tmp = 0;
@@ -106,13 +110,13 @@ void	c_parm(t_cube *s_c3d)
 	}
 }
 
-void	chk_map(t_cube *s_c3d)
+void	chk_map(t_cube *s_c3d, t_map *st_map)
 {
 	s_c3d->tmp = 0;
 	s_c3d->tex[8].exis = 0;
 	s_c3d->tex[9].exis = 0;
 	if (s_c3d->strg_map == 1)
-		cnvrt_map(s_c3d);
+		cnvrt_map(s_c3d, st_map);
 	else
 	{
 		if (s_c3d->map_lines < 2)

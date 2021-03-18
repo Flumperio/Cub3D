@@ -6,13 +6,13 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/11 10:36:26 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:47:32 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int	fill_options(t_cube *s_c3d)
+int	fill_options(t_cube *s_c3d, t_map *st_map)
 {
 	char	*name;
 
@@ -29,7 +29,7 @@ int	fill_options(t_cube *s_c3d)
 			else
 			{
 				s_c3d->tex[s_c3d->tmp].exis = 1;
-				s_c3d->tex[s_c3d->tmp].func(s_c3d);
+				s_c3d->tex[s_c3d->tmp].func(s_c3d, st_map);
 				free(name);
 				return (1);
 			}
@@ -40,14 +40,14 @@ int	fill_options(t_cube *s_c3d)
 	return (0);
 }
 
-int	chk_parms(t_cube *s_c3d)
+int	chk_parms(t_cube *s_c3d, t_map *st_map)
 {
 	s_c3d->tmp = 0;
 	s_c3d->cnt_i = 0;
 	rmv_space(s_c3d);
 	while (s_c3d->line[s_c3d->cnt_i] != '\0')
 	{
-		if (fill_options(s_c3d) == 1)
+		if (fill_options(s_c3d, st_map) == 1)
 			return (1);
 		else
 			ft_msgerror("Invalid parameters in file.", 6);
@@ -56,7 +56,7 @@ int	chk_parms(t_cube *s_c3d)
 	return (0);
 }
 
-int	chk_file(t_cube *s_c3d)
+int	chk_file(t_cube *s_c3d, t_map *st_map)
 {
 	int		fd1;
 
@@ -65,12 +65,12 @@ int	chk_file(t_cube *s_c3d)
 		ft_msgerror("No existe el ficheo", 5);
 	while (get_next_line(fd1, &s_c3d->line) == 1)
 	{
-		chk_parms(s_c3d);
+		chk_parms(s_c3d, st_map);
 		free(s_c3d->line);
 	}
-	chk_parms(s_c3d);
+	chk_parms(s_c3d, st_map);
 	free(s_c3d->line);
 	//init_wrk_map(s_c3d);
-	strg_map(s_c3d);
+	strg_map(s_c3d, st_map);
 	return (0);
 }

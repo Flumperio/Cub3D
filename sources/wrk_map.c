@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/18 13:26:12 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:17:51 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,16 @@
 // 	}
 // }
 
-void	cnvrt_map(t_cube *s_c3d)
+void	cnvrt_map(t_cube *s_c3d, t_map *st_map)
 {
 	int		cnt;
-	int		cnt1;
-	char	*m_val;
 
 	cnt = 0;
-	cnt1 = 11;
-	m_val = ft_strdup("012NSWE \t");
 	while (s_c3d->line[cnt] != '\0')
 	{
 		if (ft_isblank(s_c3d->line[cnt]))
 			s_c3d->line[cnt] = '0';
-		if (!ft_strchr(m_val, s_c3d->line[cnt]))
+		if (!ft_strchr(st_map->map_value, s_c3d->line[cnt]))
 			ft_msgerror ("No valid map.", 7);
 		cnt++;
 	}
@@ -74,7 +70,7 @@ void	cnvrt_map(t_cube *s_c3d)
 	return ;
 }
 
-void	strg_map(t_cube *s_c3d)
+void	strg_map(t_cube *s_c3d, t_map *st_map)
 {
 	int		fd1;
 
@@ -84,10 +80,10 @@ void	strg_map(t_cube *s_c3d)
 	fd1 = open(s_c3d->f_name, O_RDONLY);
 	while (get_next_line(fd1, &s_c3d->line) == 1)
 	{
-		chk_parms(s_c3d);
+		chk_parms(s_c3d, st_map);
 		ft_free(s_c3d->line);
 	}
-	chk_parms(s_c3d);
+	chk_parms(s_c3d, st_map);
 	ft_free(s_c3d->line);
 	return ;
 }

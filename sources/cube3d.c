@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/16 13:21:39 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:50:54 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_c3d(t_cube *s_c3d)
 void	init_map(t_map *st_map)
 {
 	ft_bzero(st_map, sizeof(t_map));
-	st_map->map_value = "012NSWE";
+	st_map->map_value = "012NSWE \t";
 }
 
 int	main(int argc, char **argv)
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	init_c3d(&s_c3d);
 	init_map(&st_map);
 	chk = chk_args(argc, argv, &s_c3d);
-	chk_file(&s_c3d);
+	chk_file(&s_c3d, &st_map);
 	while (s_c3d.wrk_map[tmp])
 	{
 		printf("map_line: %s\n", s_c3d.wrk_map[tmp]);

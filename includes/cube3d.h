@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/18 13:29:11 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:12:27 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_map
 	char	p_pos;
 	int		x_pos;
 	int		y_pos;
+	int		num_2;
+	int		temp;
 	char	*map_value;
 
 }			t_map;
@@ -47,7 +49,7 @@ typedef struct s_tex
 	char		*name;
 	char		*path;
 	int			exis;
-	void		(*func)(struct s_cube *s_s3d);
+	void		(*func)(struct s_cube *s_s3d, t_map *st_map);
 }				t_tex;
 
 typedef struct s_cube
@@ -74,22 +76,22 @@ typedef struct s_cube
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *s_c3d);
-int				chk_file(t_cube *s_c3d);
+int				chk_file(t_cube *s_c3d, t_map *st_map);
 void			inicialize(t_cube *s_c3d);
 int				chk_ext(char *name, char *ext);
 void			rmv_space(t_cube *s_c3d);
 int				atoi_b(t_cube *s_c3d);
 int				file_exist(char *file, char *name);
-void			texture_all(t_cube *s_c3d);
+void			texture_all(t_cube *s_c3d, t_map *st_map);
 int				chk_value(char *number, int min_value, int max_value);
-void			r_parm(t_cube *s_c3d);
-void			f_parm(t_cube *s_c3d);
-void			c_parm(t_cube *s_c3d);
-void			chk_map(t_cube *s_c3d);
+void			r_parm(t_cube *s_c3d, t_map *st_map);
+void			f_parm(t_cube *s_c3d, t_map *st_map);
+void			c_parm(t_cube *s_c3d, t_map *st_map);
+void			chk_map(t_cube *s_c3d, t_map *st_map);
 void			chk_r_value(t_cube *s_c3d);
 void			chk_fc_value(t_cube *s_c3d);
-void			strg_map(t_cube *s_c3d);
-int				chk_parms(t_cube *s_c3d);
-void			cnvrt_map(t_cube *s_c3d);
+void			strg_map(t_cube *s_c3d, t_map *st_map);
+int				chk_parms(t_cube *s_c3d, t_map *st_map);
+void			cnvrt_map(t_cube *s_c3d, t_map *st_map);
 
 #endif
