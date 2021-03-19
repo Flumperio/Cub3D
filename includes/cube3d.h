@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/18 14:12:27 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:55:51 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ struct	s_cube;
 
 typedef struct s_map
 {
-	char	p_pos;
-	int		x_pos;
-	int		y_pos;
-	int		num_2;
-	int		temp;
-	char	*map_value;
-
+	char			v_pos;
+	int				x_pos;
+	int				y_pos;
+	int				num_2;
+	int				temp;
+	char			*map_value;
 }			t_map;
 
 typedef struct s_tex

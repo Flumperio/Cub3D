@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/18 13:50:54 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/19 13:19:25 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ int	main(int argc, char **argv)
 	while (s_c3d.wrk_map[tmp])
 	{
 		printf("map_line: %s\n", s_c3d.wrk_map[tmp]);
+		tmp++;
+	}
+	tmp = 0;
+	while (s_c3d.tmp_map[tmp])
+	{
+		printf ("\e[31mtmp_line: %s\n\e[0m", s_c3d.tmp_map[tmp]);
 		tmp++;
 	}
 	system("leaks cub3D");
