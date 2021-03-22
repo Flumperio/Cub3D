@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/18 13:47:32 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:49:22 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int	chk_file(t_cube *s_c3d, t_map *st_map)
 	free(s_c3d->line);
 	//init_wrk_map(s_c3d);
 	strg_map(s_c3d, st_map);
+	// tmp_map(s_c3d, st_map);
 	return (0);
 }

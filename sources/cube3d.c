@@ -6,7 +6,7 @@
 /*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/19 13:19:25 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:51:13 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ int	main(int argc, char **argv)
 	tmp = 0;
 	while (s_c3d.tmp_map[tmp])
 	{
-		printf ("\e[31mtmp_line: %s\n\e[0m", s_c3d.tmp_map[tmp]);
+		printf ("\e[31mtmp_line: %s\n", s_c3d.tmp_map[tmp]);
 		tmp++;
 	}
+	tmp_map(&s_c3d, &st_map);
 	system("leaks cub3D");
 	return (0);
 }
