@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/20 12:51:13 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/22 12:47:38 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	init_c3d(t_cube *s_c3d)
 	s_c3d->tex[8] = (t_tex){"1", NULL, 0, chk_map};
 	s_c3d->tex[9] = (t_tex){"0", NULL, 0, chk_map};
 	s_c3d->tex[10].name = NULL;
+	s_c3d->map_value = "012NSWE \t";
 }
 
 void	init_map(t_map *st_map)
 {
 	ft_bzero(st_map, sizeof(t_map));
-	st_map->map_value = "012NSWE \t";
+	//st_map->map_value = "012NSWE \t";
 }
 
 int	main(int argc, char **argv)
@@ -40,8 +41,10 @@ int	main(int argc, char **argv)
 	t_cube		s_c3d;
 	t_map		st_map;
 	int			tmp;
+	int			cnt_3;
 
 	tmp = 0;
+	cnt_3 = 0;
 	init_c3d(&s_c3d);
 	init_map(&st_map);
 	chk = chk_args(argc, argv, &s_c3d);
