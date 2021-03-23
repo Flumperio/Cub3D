@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/22 12:47:38 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/23 13:37:15 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	init_c3d(t_cube *s_c3d)
 void	init_map(t_map *st_map)
 {
 	ft_bzero(st_map, sizeof(t_map));
-	//st_map->map_value = "012NSWE \t";
 }
 
 int	main(int argc, char **argv)
@@ -46,21 +45,25 @@ int	main(int argc, char **argv)
 	tmp = 0;
 	cnt_3 = 0;
 	init_c3d(&s_c3d);
-	init_map(&st_map);
+	//init_map(&st_map);
 	chk = chk_args(argc, argv, &s_c3d);
 	chk_file(&s_c3d, &st_map);
-	while (s_c3d.wrk_map[tmp])
-	{
-		printf("map_line: %s\n", s_c3d.wrk_map[tmp]);
-		tmp++;
-	}
-	tmp = 0;
-	while (s_c3d.tmp_map[tmp])
-	{
-		printf ("\e[31mtmp_line: %s\n", s_c3d.tmp_map[tmp]);
-		tmp++;
-	}
+	strg_map(&s_c3d, &st_map);
+	printf("num_2: %i\n", st_map.num_2);
+	st_map = *(t_map *)malloc(sizeof(t_map) * st_map.num_2 + 1);
 	tmp_map(&s_c3d, &st_map);
-	system("leaks cub3D");
+	//system("leaks cub3D");
 	return (0);
 }
+
+	// while (s_c3d.wrk_map[tmp])
+	// {
+	// 	printf("map_line: %s\n", s_c3d.wrk_map[tmp]);
+	// 	tmp++;
+	// }
+	// tmp = 0;
+	// while (s_c3d.tmp_map[tmp])
+	// {
+	// 	printf ("\e[31mtmp_line: %s\n", s_c3d.tmp_map[tmp]);
+	// 	tmp++;
+	// }

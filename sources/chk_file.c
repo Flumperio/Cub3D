@@ -6,7 +6,7 @@
 /*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/20 12:49:22 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:42:52 by jcsantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,17 @@ int	chk_file(t_cube *s_c3d, t_map *st_map)
 	}
 	chk_parms(s_c3d, st_map);
 	free(s_c3d->line);
-	//init_wrk_map(s_c3d);
-	strg_map(s_c3d, st_map);
+	// strg_map(s_c3d, st_map);
+	// st_map = ft_calloc(st_map->num_2 + 1, sizeof(st_map));
 	// tmp_map(s_c3d, st_map);
+	// printf("%i - %i\n", st_map[0].x_pos, st_map[0].y_pos);
+	// cnt_3 = 0;
+	// printf("num_2: %i\n", st_map->num_2);
+	// while (st_map[cnt_3].x_pos != 0)
+	// {
+	// 	printf("pos: %i, x: %i - y: %i\n", cnt_3, \
+	// 		st_map[cnt_3].x_pos, st_map[cnt_3].y_pos);
+	// 	cnt_3++;
+	// }
 	return (0);
 }
