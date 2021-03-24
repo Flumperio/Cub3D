@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juasanto <juasanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/22 12:47:02 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/24 11:58:04 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@
 
 struct	s_cube;
 
-typedef struct s_map
+struct s_map
 {
-	char			v_pos;
+	//char			v_pos;
 	int				x_pos;
 	int				y_pos;
-	int				num_2;
+	//int				num_2;
 	int				temp;
-}			t_map;
+};
 
 typedef struct s_tex
 {
 	char		*name;
 	char		*path;
 	int			exis;
-	void		(*func)(struct s_cube *s_s3d, t_map *st_map);
+	void		(*func)(struct s_cube *s_s3d);
 }				t_tex;
 
 typedef struct s_cube
@@ -71,6 +71,8 @@ typedef struct s_cube
 	char		**tmp_map;
 	char		*map_value;
 	int			cnt_map;
+	int			cnt_2;
+	int			pl_num;
 	char		pl_view;
 	int			pl_posx;
 	int			pl_posy;
@@ -78,23 +80,23 @@ typedef struct s_cube
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *s_c3d);
-int				chk_file(t_cube *s_c3d, t_map *st_map);
+int				chk_file(t_cube *s_c3d);
 void			inicialize(t_cube *s_c3d);
 int				chk_ext(char *name, char *ext);
 void			rmv_space(t_cube *s_c3d);
 int				atoi_b(t_cube *s_c3d);
 int				file_exist(char *file, char *name);
-void			texture_all(t_cube *s_c3d, t_map *st_map);
+void			texture_all(t_cube *s_c3d);
 int				chk_value(char *number, int min_value, int max_value);
-void			r_parm(t_cube *s_c3d, t_map *st_map);
-void			f_parm(t_cube *s_c3d, t_map *st_map);
-void			c_parm(t_cube *s_c3d, t_map *st_map);
-void			chk_map(t_cube *s_c3d, t_map *st_map);
+void			r_parm(t_cube *s_c3d);
+void			f_parm(t_cube *s_c3d);
+void			c_parm(t_cube *s_c3d);
+void			chk_map(t_cube *s_c3d);
 void			chk_r_value(t_cube *s_c3d);
 void			chk_fc_value(t_cube *s_c3d);
-void			strg_map(t_cube *s_c3d, t_map *st_map);
-int				chk_parms(t_cube *s_c3d, t_map *st_map);
-void			cnvrt_map(t_cube *s_c3d, t_map *st_map);
-void			tmp_map(t_cube *s_c3d, t_map *st_map);
+void			strg_map(t_cube *s_c3d);
+int				chk_parms(t_cube *s_c3d);
+void			cnvrt_map(t_cube *s_c3d);
+void			tmp_map(t_cube *s_c3d, struct s_map *st_map);
 
 #endif

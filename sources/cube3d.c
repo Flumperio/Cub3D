@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/23 13:37:15 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/24 12:56:29 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,47 @@ void	init_c3d(t_cube *s_c3d)
 	s_c3d->map_value = "012NSWE \t";
 }
 
-void	init_map(t_map *st_map)
+void	init_st_map(struct t_map *st_map, int cnt_2)
 {
-	ft_bzero(st_map, sizeof(t_map));
+	while(cnt_2 > 0)
+	{
+
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	int			chk;
 	t_cube		s_c3d;
-	t_map		st_map;
 	int			tmp;
 	int			cnt_3;
 
 	tmp = 0;
 	cnt_3 = 0;
 	init_c3d(&s_c3d);
-	//init_map(&st_map);
 	chk = chk_args(argc, argv, &s_c3d);
-	chk_file(&s_c3d, &st_map);
-	strg_map(&s_c3d, &st_map);
-	printf("num_2: %i\n", st_map.num_2);
-	st_map = *(t_map *)malloc(sizeof(t_map) * st_map.num_2 + 1);
-	tmp_map(&s_c3d, &st_map);
-	//system("leaks cub3D");
+	chk_file(&s_c3d);
+	strg_map(&s_c3d);
+	printf("num_2: %i\n", s_c3d.cnt_2);
+	struct s_map st_map[s_c3d.cnt_2];
+	tmp_map(&s_c3d, st_map);
+	while (s_c3d.wrk_map[tmp])
+	{
+		printf("map_line: %s\n", s_c3d.wrk_map[tmp]);
+		tmp++;
+	}
+	tmp = 0;
+	while (s_c3d.tmp_map[tmp])
+	{
+		printf (" -- tmp_line: %s\n", s_c3d.tmp_map[tmp]);
+		tmp++;
+	}
+	tmp = 0;
+	while (tmp < (s_c3d.cnt_2))
+	{
+		printf("X: %i -- Y: %i\n", st_map[tmp].x_pos, st_map[tmp].y_pos);
+		tmp++;
+	}
+	system("leaks cub3D");
 	return (0);
 }
-
-	// while (s_c3d.wrk_map[tmp])
-	// {
-	// 	printf("map_line: %s\n", s_c3d.wrk_map[tmp]);
-	// 	tmp++;
-	// }
-	// tmp = 0;
-	// while (s_c3d.tmp_map[tmp])
-	// {
-	// 	printf ("\e[31mtmp_line: %s\n", s_c3d.tmp_map[tmp]);
-	// 	tmp++;
-	// }
