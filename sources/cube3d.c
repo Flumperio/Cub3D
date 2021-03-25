@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 14:07:45 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 18:03:33 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,27 @@ int	main(int argc, char **argv)
 	t_map map[cub.cnt_2];
 	init_map(&cub, map);
 	tmp_map(&cub, map);
+	cub.tmp = 0;
 	cls_map(&cub, map);
-	system("leaks cub3D");
-	return (0);
-}
-
-	// while (cub.wrk_map[tmp])
-	// {
-	// 	printf("map_line: %s\n", cub.wrk_map[tmp]);
-	// 	tmp++;
-	// }
-	// tmp = 0;
-	// while (cub.tmp_map[tmp])
-	// {
-	// 	printf (" -- tmp_line: %s\n", cub.tmp_map[tmp]);
-	// 	tmp++;
-	// }
-	// tmp = 0;
+	//system("leaks cub3D");
+	while (cub.wrk_map[tmp])
+	{
+		printf("map_line: %s\n", cub.wrk_map[tmp]);
+		tmp++;
+	}
+	tmp = 0;
+	printf("\n\n");
+	while (cub.tmp_map[tmp])
+	{
+		printf ("tmp_line: %s\n", cub.tmp_map[tmp]);
+		tmp++;
+	}
+	tmp = 0;
 	// while (tmp < (cub.cnt_2))
 	// {
 	// 	printf("X: %i -- Y: %i\n", map[tmp].x_pos, map[tmp].y_pos);
 	// 	tmp++;
 	// }
+	return (0);
+}
+
