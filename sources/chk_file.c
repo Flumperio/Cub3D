@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 12:23:35 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 14:04:11 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	chk_parms(t_cube *cub)
 {
 	cub->tmp = 0;
 	cub->cnt_i = 0;
-	rmv_space(cub);
+	//rmv_space(cub);
 	while (cub->line[cub->cnt_i] != '\0')
 	{
 		if (fill_options(cub) == 1)
 			return (1);
 		else
-			ft_msgerror("Invalid parameters in file.", 6);
+			ft_msgerror("Invalid parameters inn file.", 6);
 		cub->cnt_i++;
 	}
 	return (0);

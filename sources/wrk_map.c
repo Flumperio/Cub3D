@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 12:46:16 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 13:49:07 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ void	tmp_map(t_cube *cub, t_map *map)
 	cnt_x = 0;
 	cnt_y = 0;
 	map->sp_num = 0;
-	while (cub->tmp_map[++cnt_x] != 0)
+	while (cub->tmp_map[cnt_x] != 0)
 	{
-		while (cub->tmp_map[cnt_x][++cnt_y] != 0)
+		while (cub->tmp_map[cnt_x][cnt_y] != 0)
 		{
 			if (ft_strchr("NSWE", cub->tmp_map[cnt_x][cnt_y]))
 				strg_pl_pos(cub, cnt_x, cnt_y);
 			if (cub->tmp_map[cnt_x][cnt_y] == '2')
 				strg_sp_pos(cub, map, cnt_x, cnt_y);
+			cnt_y++;
 		}
 		cnt_y = 0;
+		cnt_x++;
 	}
 }
 
