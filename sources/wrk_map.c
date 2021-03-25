@@ -6,41 +6,44 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/24 12:09:21 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:35:38 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	tmp_map(t_cube *s_c3d, struct s_map *st_map)
+void	strg_pl_pos(t_cube *s_c3d, int x, int y)
+{
+	s_c3d->pl_view = s_c3d->tmp_map[x][y];
+	s_c3d->pl_posx = x;
+	s_c3d->pl_posy = y;
+}
+
+void	strg_sp_pos(t_map *st_map, int x, int y)
+{
+	st_map[st_map->sp_num].x_pos = x;
+	st_map[st_map->sp_num].y_pos = y;
+	st_map->sp_num++;
+}
+
+void	tmp_map(t_cube *s_c3d, t_map *st_map)
 {
 	int	cnt_x;
 	int	cnt_y;
-	int	cnt_2;
 
 	cnt_x = 0;
 	cnt_y = 0;
-	cnt_2 = 0;
-	while (s_c3d->tmp_map[cnt_x] != 0)
+	st_map->sp_num = 0;
+	while (s_c3d->tmp_map[++cnt_x] != 0)
 	{
-		while (s_c3d->tmp_map[cnt_x][cnt_y] != 0)
+		while (s_c3d->tmp_map[cnt_x][++cnt_y] != 0)
 		{
 			if (ft_strchr("NSWE", s_c3d->tmp_map[cnt_x][cnt_y]))
-			{
-				s_c3d->pl_view = s_c3d->tmp_map[cnt_x][cnt_y];
-				s_c3d->pl_posx = cnt_x;
-				s_c3d->pl_posy = cnt_y;
-			}
+				strg_pl_pos(s_c3d, cnt_x, cnt_y);
 			if (s_c3d->tmp_map[cnt_x][cnt_y] == '2')
-			{
-				st_map[cnt_2].x_pos = cnt_x;
-				st_map[cnt_2].y_pos = cnt_y;
-				cnt_2++;
-			}
-			cnt_y++;
+				strg_sp_pos(st_map, cnt_x, cnt_y);
 		}
 		cnt_y = 0;
-		cnt_x++;
 	}
 }
 

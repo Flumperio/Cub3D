@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/24 12:56:29 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:14:37 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ void	init_c3d(t_cube *s_c3d)
 	s_c3d->map_value = "012NSWE \t";
 }
 
-void	init_st_map(struct t_map *st_map, int cnt_2)
+void	init_st_map(t_map *st_map)
 {
-	while(cnt_2 > 0)
-	{
+	int	cnt;
 
+	cnt = 0;
+	while(cnt < 17)
+	{
+		ft_bzero(&st_map[cnt], sizeof(t_map));
+		cnt++;
 	}
 }
 
@@ -51,7 +55,8 @@ int	main(int argc, char **argv)
 	chk_file(&s_c3d);
 	strg_map(&s_c3d);
 	printf("num_2: %i\n", s_c3d.cnt_2);
-	struct s_map st_map[s_c3d.cnt_2];
+	t_map st_map[s_c3d.cnt_2 + 10];
+	init_st_map(st_map);
 	tmp_map(&s_c3d, st_map);
 	while (s_c3d.wrk_map[tmp])
 	{
@@ -65,7 +70,7 @@ int	main(int argc, char **argv)
 		tmp++;
 	}
 	tmp = 0;
-	while (tmp < (s_c3d.cnt_2))
+	while (tmp < (s_c3d.cnt_2 + 10))
 	{
 		printf("X: %i -- Y: %i\n", st_map[tmp].x_pos, st_map[tmp].y_pos);
 		tmp++;

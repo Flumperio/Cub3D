@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/24 11:58:04 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:28:06 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 
 struct	s_cube;
 
-struct s_map
+typedef	struct s_map
 {
-	//char			v_pos;
+	int				sp_num;
 	int				x_pos;
 	int				y_pos;
 	//int				num_2;
 	int				temp;
-};
+}					t_map;
 
 typedef struct s_tex
 {
@@ -97,6 +97,6 @@ void			chk_fc_value(t_cube *s_c3d);
 void			strg_map(t_cube *s_c3d);
 int				chk_parms(t_cube *s_c3d);
 void			cnvrt_map(t_cube *s_c3d);
-void			tmp_map(t_cube *s_c3d, struct s_map *st_map);
+void			tmp_map(t_cube *s_c3d, t_map *st_map);
 
 #endif
