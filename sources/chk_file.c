@@ -6,69 +6,69 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/24 12:08:15 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:23:35 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int	fill_options(t_cube *s_c3d)
+int	fill_options(t_cube *cub)
 {
 	char	*name;
 
-	s_c3d->tmp = 0;
-	name = ft_substr(&s_c3d->line[s_c3d->cnt_i], 0,
-			!ft_isspace(s_c3d->line[s_c3d->cnt_i + 1]) + 1);
-	while (s_c3d->tex[s_c3d->tmp].name != 0)
+	cub->tmp = 0;
+	name = ft_substr(&cub->line[cub->cnt_i], 0,
+			!ft_isspace(cub->line[cub->cnt_i + 1]) + 1);
+	while (cub->tex[cub->tmp].name != 0)
 	{
-		if (ft_strncmp(name, s_c3d->tex[s_c3d->tmp].name, \
-				ft_strlen(s_c3d->tex[s_c3d->tmp].name)) == 0)
+		if (ft_strncmp(name, cub->tex[cub->tmp].name, \
+				ft_strlen(cub->tex[cub->tmp].name)) == 0)
 		{
-			if (s_c3d->tex[s_c3d->tmp].exis == 1 && s_c3d->strg_map == 0)
+			if (cub->tex[cub->tmp].exis == 1 && cub->strg_map == 0)
 				ft_msgerror("Option Duplicated.", 6);
 			else
 			{
-				s_c3d->tex[s_c3d->tmp].exis = 1;
-				s_c3d->tex[s_c3d->tmp].func(s_c3d);
+				cub->tex[cub->tmp].exis = 1;
+				cub->tex[cub->tmp].func(cub);
 				free(name);
 				return (1);
 			}
 		}
-		s_c3d->tmp++;
+		cub->tmp++;
 	}
 	free(name);
 	return (0);
 }
 
-int	chk_parms(t_cube *s_c3d)
+int	chk_parms(t_cube *cub)
 {
-	s_c3d->tmp = 0;
-	s_c3d->cnt_i = 0;
-	rmv_space(s_c3d);
-	while (s_c3d->line[s_c3d->cnt_i] != '\0')
+	cub->tmp = 0;
+	cub->cnt_i = 0;
+	rmv_space(cub);
+	while (cub->line[cub->cnt_i] != '\0')
 	{
-		if (fill_options(s_c3d) == 1)
+		if (fill_options(cub) == 1)
 			return (1);
 		else
 			ft_msgerror("Invalid parameters in file.", 6);
-		s_c3d->cnt_i++;
+		cub->cnt_i++;
 	}
 	return (0);
 }
 
-int	chk_file(t_cube *s_c3d)
+int	chk_file(t_cube *cub)
 {
 	int		fd1;
 
-	fd1 = open(s_c3d->f_name, O_RDONLY);
+	fd1 = open(cub->f_name, O_RDONLY);
 	if (fd1 < 0)
 		ft_msgerror("No existe el ficheo", 5);
-	while (get_next_line(fd1, &s_c3d->line) == 1)
+	while (get_next_line(fd1, &cub->line) == 1)
 	{
-		chk_parms(s_c3d);
-		free(s_c3d->line);
+		chk_parms(cub);
+		free(cub->line);
 	}
-	chk_parms(s_c3d);
-	free(s_c3d->line);
+	chk_parms(cub);
+	free(cub->line);
 	return (0);
 }

@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   utils_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcsantos <jcsantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:49:08 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/09 16:54:05 by jcsantos         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:23:35 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	rmv_space(t_cube *s_c3d)
+void	rmv_space(t_cube *cub)
 {
-	while (ft_isblank(s_c3d->line[s_c3d->cnt_i]) == 1)
-		s_c3d->cnt_i++;
+	while (ft_isblank(cub->line[cub->cnt_i]) == 1)
+		cub->cnt_i++;
 	return ;
 }
 
-int	atoi_b(t_cube *s_c3d)
+int	atoi_b(t_cube *cub)
 {
 	int		result;
 
 	result = 0;
-	while (ft_isdigit(s_c3d->line[s_c3d->cnt_i]))
+	while (ft_isdigit(cub->line[cub->cnt_i]))
 	{
-		result = result * 10 + s_c3d->line[s_c3d->cnt_i] - '0';
-		s_c3d->cnt_i++;
+		result = result * 10 + cub->line[cub->cnt_i] - '0';
+		cub->cnt_i++;
 	}
 	return (result);
 }
@@ -56,30 +56,30 @@ int	chk_value(char *number, int min_value, int max_value)
 	return (value);
 }
 
-void	chk_r_value(t_cube *s_c3d)
+void	chk_r_value(t_cube *cub)
 {
 	int	cnt;
 
 	cnt = 1;
-	while (s_c3d->line[cnt] != '\0')
+	while (cub->line[cnt] != '\0')
 	{
-		if (ft_isblank(s_c3d->line[cnt]) != 1 && \
-			ft_isdigit(s_c3d->line[cnt]) != 1)
+		if (ft_isblank(cub->line[cnt]) != 1 && \
+			ft_isdigit(cub->line[cnt]) != 1)
 			ft_msgerror("Value no valid for R parameter.", 7);
 		cnt++;
 	}
 }
 
-void	chk_fc_value(t_cube *s_c3d)
+void	chk_fc_value(t_cube *cub)
 {
 	int	cnt;
 
 	cnt = 1;
-	while (s_c3d->line[cnt] != '\0')
+	while (cub->line[cnt] != '\0')
 	{
-		if (ft_isblank(s_c3d->line[cnt]) != 1 && \
-			ft_isdigit(s_c3d->line[cnt]) != 1 && \
-			s_c3d->line[cnt] != ',')
+		if (ft_isblank(cub->line[cnt]) != 1 && \
+			ft_isdigit(cub->line[cnt]) != 1 && \
+			cub->line[cnt] != ',')
 			ft_msgerror("Value no valid for F/C parameter.", 7);
 		cnt++;
 	}

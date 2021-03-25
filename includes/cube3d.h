@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 11:28:06 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:24:00 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,24 @@ typedef struct s_cube
 	t_tex		tex[11];
 }				t_cube;
 
-int				chk_args(int argc, char **argv, t_cube *s_c3d);
-int				chk_file(t_cube *s_c3d);
-void			inicialize(t_cube *s_c3d);
+int				chk_args(int argc, char **argv, t_cube *cub);
+int				chk_file(t_cube *cub);
+void			inicialize(t_cube *cub);
 int				chk_ext(char *name, char *ext);
-void			rmv_space(t_cube *s_c3d);
-int				atoi_b(t_cube *s_c3d);
+void			rmv_space(t_cube *cub);
+int				atoi_b(t_cube *cub);
 int				file_exist(char *file, char *name);
-void			texture_all(t_cube *s_c3d);
+void			texture_all(t_cube *cub);
 int				chk_value(char *number, int min_value, int max_value);
-void			r_parm(t_cube *s_c3d);
-void			f_parm(t_cube *s_c3d);
-void			c_parm(t_cube *s_c3d);
-void			chk_map(t_cube *s_c3d);
-void			chk_r_value(t_cube *s_c3d);
-void			chk_fc_value(t_cube *s_c3d);
-void			strg_map(t_cube *s_c3d);
-int				chk_parms(t_cube *s_c3d);
-void			cnvrt_map(t_cube *s_c3d);
-void			tmp_map(t_cube *s_c3d, t_map *st_map);
+void			r_parm(t_cube *cub);
+void			f_parm(t_cube *cub);
+void			c_parm(t_cube *cub);
+void			chk_map(t_cube *cub);
+void			chk_r_value(t_cube *cub);
+void			chk_fc_value(t_cube *cub);
+void			strg_map(t_cube *cub);
+int				chk_parms(t_cube *cub);
+void			cnvrt_map(t_cube *cub);
+void			tmp_map(t_cube *cub, t_map *map);
 
 #endif
