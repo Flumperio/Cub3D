@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/29 13:35:38 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/29 18:35:10 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ int	main(int argc, char **argv)
 	init_map(&cub, map);
 	tmp_map(&cub, map);
 	cub.tmp = 0;
-	cls_map(&cub, map, cub.pl_posx, cub.pl_posy);
-	//system("leaks cub3D");
-	while (cub.wrk_map[tmp])
-	{
-		printf("map_line: %s\n", cub.wrk_map[tmp]);
-		tmp++;
-	}
 	tmp = 0;
 	printf("\n\n");
 	while (cub.tmp_map[tmp])
 	{
 		printf ("tmp_line: %s\n", cub.tmp_map[tmp]);
+		tmp++;
+	}
+	cls_map(&cub, map, cub.pl_posx, cub.pl_posy);
+	//system("leaks cub3D");
+	while (cub.wrk_map[tmp])
+	{
+		printf("map_line: %s\n", cub.wrk_map[tmp]);
 		tmp++;
 	}
 	tmp = 0;
