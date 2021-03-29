@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 14:07:06 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/29 13:35:15 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ void			strg_map(t_cube *cub);
 int				chk_parms(t_cube *cub);
 void			cnvrt_map(t_cube *cub);
 void			tmp_map(t_cube *cub, t_map *map);
-int				cls_map(t_cube *cub, t_map *map);
+int				cls_map(t_cube *cub, t_map *map, int x, int y);
 
 #endif

@@ -6,75 +6,69 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:10:40 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 18:29:25 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/29 14:11:02 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int	cls_map(t_cube *cub, t_map *map)
+int	cls_map(t_cube *cub, t_map *map, int x, int y)
 {
-	int	c_x;
-	int	c_y;
-	int	c_l;
-	//int c_x1, c_y1;
-	//int	l_len;
+	// int	c_x;
+	// int	c_y;
+	// int	c_l;
+	// //int c_x1, c_y1;
+	// //int	l_len;
 
-	c_x = cub->pl_posx;
-	c_y = cub->pl_posy;
-	c_l = cub->map_lines;
-	cub->tmp = 1;
+	// c_x = x;
+	// c_y = y;
+	// c_l = cub->map_lines;
+	//cub->tmp = 1;
 	//map->temp = 0;
-	printf("PL: %c, x: %i - y: %i\n", cub->pl_view, cub->pl_posx, cub->pl_posy);
-	if (cub->tmp_map[cub->pl_posx - 1][cub->pl_posy] != '1' && \
-		map->temp == 0)
+	printf("PL: %c, x: %i - y: %i\n", cub->pl_view, x, y);
+	if (x == 0 || y == 0 || y == ft_strlen(cub->tmp_map[x]) - 1 || cub->tmp_map[x + 1][y] == '\0'||
+		y > ft_strlen(cub->tmp_map[x - 1]) || y > ft_strlen(cub->tmp_map[x + 1]))
+		ft_msgerror("ABIERTO", 6);
+	cub->tmp_map[x][y] = '3';
+	if (cub->tmp_map[x - 1][y] == '0')
 	{
-		cub->tmp_map[cub->pl_posx - 1][cub->pl_posy] = '3';
-		cub->pl_posx--;
-		cls_map(cub, map);
-		map->temp = 1;
+		cls_map(cub, map, x - 1, y);
 	}
-	if (cub->tmp_map[cub->pl_posx][cub->pl_posy + 1] != '1' && \
-		map->temp == 1)
+	if (cub->tmp_map[x][y + 1] == '0')
 	{
-		cub->tmp_map[cub->pl_posx][cub->pl_posy + 1] = '3';
-		cub->pl_posy++;
-		cls_map(cub, map);
-		map->temp = 2;
+		cls_map(cub, map, x, y + 1);
 	}
-	if (cub->tmp_map[cub->pl_posx + 1][cub->pl_posy] != '1' && \
-		map->temp == 2)
+	if (cub->tmp_map[x + 1][y] == '0')
 	{
-		cub->tmp_map[cub->pl_posx + 1][cub->pl_posy] = '3';
-		cub->pl_posx++;
-		cls_map(cub, map);
-		map->temp = 3;
+		cls_map(cub, map, x + 1, y);
 	}
-	if (cub->tmp_map[cub->pl_posx][cub->pl_posy - 1] != '1' && \
-		map->temp == 3)
+	if (cub->tmp_map[x][y - 1] == '0')
 	{
-		cub->tmp_map[cub->pl_posx][cub->pl_posy - 1] = '3';
-		cub->pl_posy--;
-		cls_map(cub, map);
-		map->temp = 0;
+		cls_map(cub, map, x, y - 1);
+	}
 
-	}
-	// if (cub->tmp_map[cub->pl_posx][cub->pl_posy + 1] == '0')
+	// if (cub->tmp_map[x][y + 1] == '0')
 	// {
-	// 	cub->tmp_map[cub->pl_posx][cub->pl_posy + 1] = '3';
-	// 	cub->pl_posy++;
+	// 	cub->tmp_map[x][y + 1] = '3';
+	// 	y++;
 	// 	cls_map(cub, map);
 	// }
-	// if (cub->tmp_map[cub->pl_posx + 1][cub->pl_posy] == '0')
+	// if (cub->tmp_map[x + 1][y] == '0')
 	// {
-	// 	cub->tmp_map[cub->pl_posx + 1][cub->pl_posy] = '3';
-	// 	cub->pl_posx++;
+	// 	cub->tmp_map[x + 1][y] = '3';
+	// 	x++;
 	// 	cls_map(cub, map);
 	// }
-	// if (cub->tmp_map[cub->pl_posx][cub->pl_posy - 1] == '0')
+	// if (cub->tmp_map[x][y - 1] == '0')
 	// {
-	// 	cub->tmp_map[cub->pl_posx][cub->pl_posy - 1] = '3';
-	// 	cub->pl_posy--;
+	// 	cub->tmp_map[x][y - 1] = '3';
+	// 	y--;
+	// 	cls_map(cub, map);
+	// }
+	// if (cub->tmp_map[x][y + 1] == '0')
+	// {
+	// 	cub->tmp_map[x][y + 1] = '3';
+	// 	y++;
 	// 	cls_map(cub, map);
 	// }
 
