@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/30 13:59:50 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 18:03:55 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ int	main(int argc, char **argv)
 	chk_args(argc, argv, &cub);
 	chk_file(&cub);
 	strg_map(&cub);
-	map = ft_calloc(sizeof(t_map), cub.cnt_2);
-	if (!map)
-		exit(1);
+	map = ft_calloc(sizeof(t_map), cub.cnt_2 + 1);
 	tmp_map(&cub, map);
 	cls_map(&cub, map, cub.pl_posx, cub.pl_posy);
 	printf("MAP OK.\n");
