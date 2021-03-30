@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/30 13:11:04 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 13:59:50 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,32 @@ void	init_c3d(t_cube *cub)
 	cub->map_value = "012NSWE \t";
 }
 
-void	init_map(t_cube *cub, t_map *map)
-{
-	int	cnt;
+// void	init_map(t_cube *cub, t_map *map)
+// {
+// 	int	cnt;
 
-	cnt = 0;
-	while (cnt < cub->cnt_2)
-	{
-		ft_bzero(&map[cnt], sizeof(t_map));
-		cnt++;
-	}
-}
+// 	cnt = 0;
+// 	while (cnt < cub->cnt_2)
+// 	{
+// 		ft_bzero(&map[cnt], sizeof(t_map));
+// 		cnt++;
+// 	}
+// }
 
 int	main(int argc, char **argv)
 {
 	t_cube		cub;
 	int			tmp;
+	t_map		*map;
 
 	tmp = 0;
 	init_c3d(&cub);
 	chk_args(argc, argv, &cub);
 	chk_file(&cub);
 	strg_map(&cub);
-	t_map		map[cub.cnt_2];
-	init_map(&cub, map);
+	map = ft_calloc(sizeof(t_map), cub.cnt_2);
+	if (!map)
+		exit(1);
 	tmp_map(&cub, map);
 	cls_map(&cub, map, cub.pl_posx, cub.pl_posy);
 	printf("MAP OK.\n");
