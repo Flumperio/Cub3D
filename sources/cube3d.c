@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/30 18:03:55 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 18:24:05 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void	init_c3d(t_cube *cub)
 	cub->tex[10].name = NULL;
 	cub->map_value = "012NSWE \t";
 }
-
-// void	init_map(t_cube *cub, t_map *map)
-// {
-// 	int	cnt;
-
-// 	cnt = 0;
-// 	while (cnt < cub->cnt_2)
-// 	{
-// 		ft_bzero(&map[cnt], sizeof(t_map));
-// 		cnt++;
-// 	}
-// }
 
 int	main(int argc, char **argv)
 {

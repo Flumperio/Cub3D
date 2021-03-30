@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/03/25 13:15:24 by juasanto         ###   ########.fr        #
+#    Updated: 2021/03/30 19:05:09 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ VPATH = %.o obj
 NAME 		= 	cub3D
 LIBFT 		= 	libft.a
 LIB_DIR		=	libft/
+MINI_LIB	=	libmlx.dylib
+MINI_DIR	=	minilibx/
 OBJ_DIR		=	obj/
 SRCS_DIR	=	sources/
 SRCS		= 	cube3d.c \
@@ -37,11 +39,14 @@ RANLIB = ranlib
 NORM = /usr/bin/norminette
 
 RESET = \033[0m
-YELLOW = \033[33m
-CYAN = \033[36m
-GREEN = \033[32m
-PINK = \033[35m
 RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+PINK = \033[35m
+CYAN = \033[36m
+
+
 
 all: $(OBJ_DIR) $(NAME)
 $(OBJ_DIR):
@@ -52,9 +57,13 @@ $(NAME): $(OBJS)
 		@echo "$(CYAN)=========== Compilando LIBFT.A ==========="
 		make -C $(LIB_DIR)
 		@echo "=========== DONE ==========$(RESET)"
+		@echo "$(BLUE)=========== Compilando minilibX ==========="
+		make -C $(MINI_DIR)
+		@echo "=========== DONE ==========$(RESET)"
 
 		@echo "$(YELLOW)=========== Compilando $(NAME) ==========="
-		$(CC) $(CFLAGS) $(LFLAGS) $(LIB_DIR)$(LIBFT) -o $(NAME) $(OBJS)
+		cp $(MINI_DIR)$(MINI_LIB) .
+		$(CC) $(CFLAGS) $(LFLAGS) $(LIB_DIR)$(LIBFT) $(MINI_LIB) -o $(NAME) $(OBJS)
 		@echo "=========== DONE ==========$(RESET)"
 
 
@@ -68,6 +77,7 @@ clean:
 		$(RM) $(OBJ_DIR)
 		$(RM) $(OBJS)
 		make -C $(LIB_DIR) clean
+		make -C $(MINI_DIR) clean
 		@echo "$(PINK)=========== DONE ===========$(RESET)"
 fclean: clean
 		@echo "$(RED)========== FCLEAN =========="

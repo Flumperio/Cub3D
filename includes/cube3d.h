@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/29 13:35:15 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 19:06:40 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <time.h>
 # include "../Libft/includes/libft.h"
+# include "../minilibx/mlx.h"
 
 # define NO 0
 # define SO 1
