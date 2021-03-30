@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/29 18:35:10 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 13:11:04 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_map(t_cube *cub, t_map *map)
 	int	cnt;
 
 	cnt = 0;
-	while(cnt < cub->cnt_2)
+	while (cnt < cub->cnt_2)
 	{
 		ft_bzero(&map[cnt], sizeof(t_map));
 		cnt++;
@@ -51,30 +51,11 @@ int	main(int argc, char **argv)
 	chk_args(argc, argv, &cub);
 	chk_file(&cub);
 	strg_map(&cub);
-	t_map map[cub.cnt_2];
+	t_map		map[cub.cnt_2];
 	init_map(&cub, map);
 	tmp_map(&cub, map);
-	cub.tmp = 0;
-	tmp = 0;
-	printf("\n\n");
-	while (cub.tmp_map[tmp])
-	{
-		printf ("tmp_line: %s\n", cub.tmp_map[tmp]);
-		tmp++;
-	}
 	cls_map(&cub, map, cub.pl_posx, cub.pl_posy);
-	//system("leaks cub3D");
-	while (cub.wrk_map[tmp])
-	{
-		printf("map_line: %s\n", cub.wrk_map[tmp]);
-		tmp++;
-	}
-	tmp = 0;
-	// while (tmp < (cub.cnt_2))
-	// {
-	// 	printf("X: %i -- Y: %i\n", map[tmp].x_pos, map[tmp].y_pos);
-	// 	tmp++;
-	// }
+	printf("MAP OK.\n");
+	system("leaks cub3D");
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:49:08 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 12:23:35 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 13:00:40 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	chk_r_value(t_cube *cub)
 	int	cnt;
 
 	cnt = 1;
+	rmv_space(cub);
+	cnt = cub->cnt_i + 1;
 	while (cub->line[cnt] != '\0')
 	{
 		if (ft_isblank(cub->line[cnt]) != 1 && \
@@ -75,6 +77,8 @@ void	chk_fc_value(t_cube *cub)
 	int	cnt;
 
 	cnt = 1;
+	rmv_space(cub);
+	cnt = cub->cnt_i + 1;
 	while (cub->line[cnt] != '\0')
 	{
 		if (ft_isblank(cub->line[cnt]) != 1 && \

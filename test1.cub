@@ -1,9 +1,9 @@
-R 1920           1080
-NO ./textures/redbrick.xpm
-SO ./textures/wood.xpm
-WE ./textures/mossy.xpm
-EA ./textures/colorstone.xpm
-S ./textures/barrel.xpm
+R 1920					          1080
+			NO ./textures/redbrick.xpm
+	SO ./textures/wood.xpm
+			WE ./textures/mossy.xpm
+					EA ./textures/colorstone.xpm
+			S ./textures/barrel.xpm
 F 1,2,3
 C 4,5,6
 1111111111111111

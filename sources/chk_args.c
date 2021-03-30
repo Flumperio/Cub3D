@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 12:23:35 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 10:25:49 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ int	chk_args(int argc, char **argv, t_cube *cub)
 
 	cnt = 0;
 	if (argc <= 1)
-		ft_msgerror("No hay parametros", 1);
+		ft_msgerror("No Parameters.", 1);
 	if (argc > 3)
-		ft_msgerror("Demasiados parámetros", 2);
+		ft_msgerror("Too Many Parameters.", 2);
 	if (chk_ext(argv[1], ".cub") == 0)
 		cub->f_name = argv[1];
 	else
-		ft_msgerror("La extensión del archivo no es correcta", 3);
+		ft_msgerror("Extension is not correct.", 3);
 	if (argv[2])
 	{
 		if (chk_save(argv[2]) == 0)
 			cub->save_parm = 1;
 		else
-			ft_msgerror("El argumento no es correcto.", 4);
+			ft_msgerror("Argument is not correct.", 4);
 	}
 	return (0);
 }

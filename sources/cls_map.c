@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:10:40 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/29 18:31:25 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 13:03:22 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int	cls_map(t_cube *cub, t_map *map, int x, int y)
 {
-	printf("PL: %c, x: %i - y: %i - MapLines: %i\n", cub->pl_view, x, y, cub->cnt_map);
 	if (x == 0 || y == 0 || y == ft_strlen(cub->tmp_map[x]) - 1 || x == cub->cnt_map - 1 || \
 		y > ft_strlen(cub->tmp_map[x + 1]))
-		ft_msgerror("ABIERTO", 6);
+		ft_msgerror("Open Map", 6);
 	cub->tmp_map[x][y] = '3';
 	if (cub->tmp_map[x - 1][y] == '0')
 		cls_map(cub, map, x - 1, y);

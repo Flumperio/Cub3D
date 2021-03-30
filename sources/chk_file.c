@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 16:12:11 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 10:24:12 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	chk_parms(t_cube *cub)
 		if (fill_options(cub) == 1)
 			return (1);
 		else
-			ft_msgerror("Invalid parameters inn file.", 6);
+			ft_msgerror("Invalid parameters in file.", 6);
 		cub->cnt_i++;
 	}
 	return (0);
@@ -62,7 +62,7 @@ int	chk_file(t_cube *cub)
 
 	fd1 = open(cub->f_name, O_RDONLY);
 	if (fd1 < 0)
-		ft_msgerror("No existe el ficheo", 5);
+		ft_msgerror("File not exist", 5);
 	while (get_next_line(fd1, &cub->line) == 1)
 	{
 		chk_parms(cub);

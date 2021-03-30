@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/25 12:23:35 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/03/30 12:51:01 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ void	c_parm(t_cube *cub)
 
 void	chk_map(t_cube *cub)
 {
+	int	cnt;
+
+	cnt = 0;
 	cub->tex[8].exis = 0;
 	cub->tex[9].exis = 0;
 	if (cub->strg_map == 1)
@@ -116,9 +119,9 @@ void	chk_map(t_cube *cub)
 	{
 		if (cub->map_lines < 2)
 		{
-			while (cub->tex[cub->tmp].exis == 1)
-				cub->tmp++;
-			if (cub->tmp < 8)
+			while (cub->tex[cnt].exis == 1)
+				cnt++;
+			if (cnt < 8)
 				ft_msgerror("Not enough parameters.", 7);
 		}
 	}
