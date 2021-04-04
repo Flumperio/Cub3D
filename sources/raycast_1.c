@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/03/31 14:13:28 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/04 13:32:45 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,38 +32,36 @@ void	test(t_cube *cub, t_map *map)
 	int		size_y;
 	int		color_f;
 	int		color_c;
-	int		*x = NULL;
-	int		*y = NULL;
+	int		cnt;
+	//void	*img[5];
 
 	size_x = 1;
 	size_y = 1;
-	*x = 1;
-	*y = 1;
 	map->temp = 0;
 	cub->tmp = 0;
+	cnt = -1;
 	color_f = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
 	color_c = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, cub->p_rx, cub->p_ry, cub->f_name);
-	while (size_x++ < 100)
-	{
-		while (size_y++ < 100)
-		{
-			mlx_pixel_put (mlx_ptr, win_ptr, size_x, size_y, color_f);
-		}
-		size_y = 0;
-	}
+
+	while (cnt++ < 4)
+		cub->tex[cnt].img = mlx_xpm_file_to_image(mlx_ptr, cub->tex[cnt].path, &size_x, &size_y);
 	size_x = 1;
 	size_y = 1;
-	while (size_x++ < 100)
+	cnt = 0;
+	while (cnt <= 4)
 	{
-		while (size_y++ < 100)
-		{
-			mlx_pixel_put (mlx_ptr, win_ptr, size_x + 100, size_y + 100, color_c);
-		}
-		size_y = 0;
+		while (size_x < (64 * 10))
+			{
+				mlx_put_image_to_window(mlx_ptr, win_ptr, cub->tex[cnt].img, size_x, size_y);
+				size_x += 63;
+			}
+		cnt++;
+		size_y += 63;
+		size_x = 1;
 	}
-	//mlx_xpm_file_to_image(mlx_ptr, cub->tex[0].path, x, y);
-	//mlx_key_hook (win_ptr, deal_key, (void *) 0);
+	//mlx_put_image_to_window(mlx_ptr, win_ptr, img, 10, 10);
+	mlx_key_hook (win_ptr, deal_key, (void *) 0);
 	mlx_loop(mlx_ptr);
 }
