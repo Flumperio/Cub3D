@@ -6,62 +6,69 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/04 13:32:45 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/05 13:59:35 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
+#include <math.h>
 
-int	deal_key(int key, void *param)
+typedef struct s_data
 {
-	key++;
-	param++;
-	printf("%i -- %i ", key, (int)param);
-	return (0);
-}
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_data;
+
 int	to_rgb(int r, int g, int b)
 {
-	return((b * 1) + (g * 256) + (r * 256 * 256));
+	return ((b * 1) + (g * 256) + (r * 256 * 256));
+}
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	test(t_cube *cub, t_map *map)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		size_x;
-	int		size_y;
-	int		color_f;
-	int		color_c;
-	int		cnt;
-	//void	*img[5];
+	void	*mlx;
+	void	*mlx_win;
+	int		cnt_x;
+	int		cnt_y;
+	int		radius;
+	int		color;
+	t_data	img;
 
-	size_x = 1;
-	size_y = 1;
 	map->temp = 0;
-	cub->tmp = 0;
-	cnt = -1;
-	color_f = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
-	color_c = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, cub->p_rx, cub->p_ry, cub->f_name);
-
-	while (cnt++ < 4)
-		cub->tex[cnt].img = mlx_xpm_file_to_image(mlx_ptr, cub->tex[cnt].path, &size_x, &size_y);
-	size_x = 1;
-	size_y = 1;
-	cnt = 0;
-	while (cnt <= 4)
+	cnt_x = 0;
+	cnt_y = 0;
+	radius = 10;
+	color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, cub->p_rx, cub->p_ry, cub->f_name);
+	img.img = mlx_new_image(mlx, cub->p_rx, cub->p_ry);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	while (cnt_x++ < 100)
 	{
-		while (size_x < (64 * 10))
-			{
-				mlx_put_image_to_window(mlx_ptr, win_ptr, cub->tex[cnt].img, size_x, size_y);
-				size_x += 63;
-			}
-		cnt++;
-		size_y += 63;
-		size_x = 1;
+		while (cnt_y++ < 100)
+			my_mlx_pixel_put(&img, cnt_x, cnt_y, color);
+		cnt_y = 0;
 	}
-	//mlx_put_image_to_window(mlx_ptr, win_ptr, img, 10, 10);
-	mlx_key_hook (win_ptr, deal_key, (void *) 0);
-	mlx_loop(mlx_ptr);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
 }
+
+    // mlx = mlx_init();
+    // mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+    // img.img = mlx_new_image(mlx, 1920, 1080);
+    // img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+    //                              &img.endian);
+    // my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+    // mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+    // mlx_loop(mlx);
