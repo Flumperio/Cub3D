@@ -4,7 +4,7 @@ SO ./textures/wood.xpm
 WE ./textures/blue.xpm
 EA ./textures/grey.xpm
 S ./textures/barrel.xpm
-F 0,0,255
+F 255,255,255
 C 255,125,0
 111111111111111111
 100000000000000001
