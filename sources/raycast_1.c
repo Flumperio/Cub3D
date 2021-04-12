@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/09 13:52:38 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:01:53 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@ typedef struct s_ray
 	int		endian;
 	int		x;
 	int		y;
+	/* LODEV Variables */
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
 }			t_ray;
 
 int	to_rgb(int r, int g, int b)
@@ -76,25 +95,36 @@ int	mouse_hook (int x, int y, t_ray *img)
 	return (0);
 }
 
+void	raycast_loop(t_cube *cub, t_map *map, t_ray *ray)
+{
+	int	x;
+
+	x = 0;
+
+	while (x < cub->p_ry)
+	{
+		ray->cameraX = 2 * x / (double)cub->p_ry - 1;
+		ray->rayDirX = ray->dirX + ray->planeX * ray->cameraX;
+		ray->rayDirY = ray->dirY + ray->planeY * ray->cameraX;
+		ray->deltaDistX = fabs(1 / ray->dirX);
+		ray->deltaDistY = fabs(1 / ray->dirY);
+
+	}
+}
+
 void	test(t_cube *cub, t_map *map)
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
 	double	time;
 	double	oldTime;
 	t_ray	ray;
 
 	map->temp = 0;
-	posX = cub->pl_posx;
-	posY = cub->pl_posy;
-	dirX = -1;
-	dirY = 0;
-	planeX = 0;
-	planeY = 0.66;
+	ray.posX = cub->pl_posx;
+	ray.posY = cub->pl_posy;
+	ray.dirX = -1;
+	ray.dirY = 0;
+	ray.planeX = 0;
+	ray.planeY = 0.66;
 	time = 0;
 	oldTime = 0;
 	ray.mlx = mlx_init();
