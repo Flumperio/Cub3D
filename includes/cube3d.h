@@ -78,6 +78,7 @@ typedef struct s_cube
 	int			pl_posx;
 	int			pl_posy;
 	t_tex		tex[11];
+	t_map		sprites;
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *cub);

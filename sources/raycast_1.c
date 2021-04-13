@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/12 18:22:36 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/13 11:58:28 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ typedef struct s_ray
 	double	deltaDistX;
 	double	deltaDistY;
 	double	perpWallDist;
+	double	rotSpeed;
+	double	moveSpeed;
+	double	oldDirX;
+	double	oldPlaneX;
 	int		stepX;
 	int		stepY;
 	int		hit;
@@ -81,18 +85,40 @@ int	key_hook(int keycode, t_ray *ray)
 		mlx_destroy_window(ray->mlx, ray->mlx_win);
 		exit (0);
 	}
-	if (keycode == 13)
-		ray->posX -= 0.10;
 	if (keycode == 1)
-		ray->posX += 0.10;
+	{
+		ray->posX -= ray->dirX * ray->moveSpeed;
+		ray->posY -= ray->dirY * ray->moveSpeed;
+	}
+	if (keycode == 13)
+	{
+		ray->posX += ray->dirX * ray->moveSpeed;
+		ray->posY += ray->dirY * ray->moveSpeed;
+	}
 	if (keycode == 14)
 		ray->posY += 0.10;
 	if (keycode == 12)
-		ray->posY -= 0.10;
-	if (keycode == 0)
-		ray->planeX -= 0.10;
+	{
+		ray->posY -= ray->posY * ray->moveSpeed;
+	}
 	if (keycode == 2)
-		ray->planeX += 0.10;
+	{
+      ray->oldDirX = ray->dirX;
+      ray->dirX = ray->dirX * cos(-ray->rotSpeed) - ray->dirY * sin(-ray->rotSpeed);
+      ray->dirY = ray->oldDirX * sin(-ray->rotSpeed) + ray->dirY * cos(-ray->rotSpeed);
+      ray->oldPlaneX = ray->planeX;
+      ray->planeX = ray->planeX * cos(-ray->rotSpeed) - ray->planeY * sin(-ray->rotSpeed);
+      ray->planeY = ray->oldPlaneX * sin(-ray->rotSpeed) + ray->planeY * cos(-ray->rotSpeed);
+	}
+	if (keycode == 0)
+	{
+      ray->oldDirX = ray->dirX;
+      ray->dirX = ray->dirX * cos(ray->rotSpeed) - ray->dirY * sin(ray->rotSpeed);
+      ray->dirY = ray->oldDirX * sin(ray->rotSpeed) + ray->dirY * cos(ray->rotSpeed);
+      ray->oldPlaneX = ray->planeX;
+      ray->planeX = ray->planeX * cos(ray->rotSpeed) - ray->planeY * sin(ray->rotSpeed);
+      ray->planeY = ray->oldPlaneX * sin(ray->rotSpeed) + ray->planeY * cos(ray->rotSpeed);
+	}
 	raycast_loop (ray);
 	return (0);
 }
@@ -210,6 +236,8 @@ void	test(t_cube *cub, t_map *map)
 	ray.res_Y = cub->p_ry;
 	ray.f_color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
 	ray.c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
+	ray.moveSpeed = 0.15;
+	ray.rotSpeed = 0.25;
 	cub->wrk_map[cub->pl_posx][cub->pl_posy] = 48;
 	time = 0;
 	oldTime = 0;
