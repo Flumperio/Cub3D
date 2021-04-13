@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/13 11:58:28 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:55:16 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,15 @@ int	key_hook(int keycode, t_ray *ray)
 		ray->posX += ray->dirX * ray->moveSpeed;
 		ray->posY += ray->dirY * ray->moveSpeed;
 	}
-	if (keycode == 14)
-		ray->posY += 0.10;
 	if (keycode == 12)
 	{
-		ray->posY -= ray->posY * ray->moveSpeed;
+		ray->posX -= ray->dirY * ray->moveSpeed;
+		ray->posY += ray->dirX * ray->moveSpeed;
+	}
+	if (keycode == 14)
+	{
+		ray->posX += ray->dirY * ray->moveSpeed;
+		ray->posY -= ray->dirX * ray->moveSpeed;
 	}
 	if (keycode == 2)
 	{
