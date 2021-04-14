@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/04 12:58:44 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/14 16:22:31 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int	main(int argc, char **argv)
 	test(&cub, map);
 	printf("MAP OK.\n");
 	system("leaks cub3D");
+
+	cub.sprites = (t_map *)ft_calloc(sizeof(t_map *), cub.cnt_2 + 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/04 12:57:52 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/14 16:21:52 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_cube
 	int			pl_posx;
 	int			pl_posy;
 	t_tex		tex[11];
-	t_map		sprites;
+	t_map		*sprites;
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *cub);
