@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/15 13:26:48 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/15 19:14:00 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,6 @@
 struct	s_cube;
 
 /*
-** Sprites
-*/
-typedef struct s_map
-{
-	int				sp_num;
-	int				x_pos;
-	int				y_pos;
-}					t_map;
-/*
 ** Gestion Texturas Fichero
 */
 typedef struct s_tex
@@ -61,9 +52,77 @@ typedef struct s_pyr
 {
 	int			num;
 	char		view;
-	int			posX;
-	int			posY;
+	double		posX;
+	double		posY;
 }				t_pyr;
+/*
+** Sprites
+*/
+typedef struct s_map
+{
+	int				sp_num;
+	int				x_pos;
+	int				y_pos;
+}					t_map;
+/*
+** MLX
+*/
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}					t_mlx;
+/*
+** RayTracing
+*/
+typedef struct s_ray
+{
+	int		res_X;
+	int		res_Y;
+	int		mapX;
+	int		mapY;
+	int		pl_X;
+	int		pl_Y;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	double	rotSpeed;
+	double	moveSpeed;
+	double	oldDirX;
+	double	oldPlaneX;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+
+
+
+
+
+	double	posX;
+	double	posY;
+
+	char	**map;
+	int		f_color;
+	int		c_color;
+}					t_ray;
 /*
 ** Main
 */
@@ -89,13 +148,11 @@ typedef struct s_cube
 	char		*map_value;
 	int			cnt_map;
 	int			cnt_2;
-	int			pl_num;
-	char		pl_view;
-	int			pl_posx;
-	int			pl_posy;
 	t_tex		tex[11];
 	t_map		*sprites;
 	t_pyr		pyr;
+	t_mlx		mlx;
+	t_ray		ray;
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *cub);

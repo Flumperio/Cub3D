@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/15 13:48:10 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/15 18:31:39 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	strg_pl_pos(t_cube *cub, int x, int y)
 {
 	cub->pyr.view = cub->tmp_map[x][y];
-	cub->pyr.posX = x;
-	cub->pyr.posY = y;
+	cub->pyr.posX = x + 0.5;
+	cub->pyr.posY = y + 0.5;
 	cub->tmp_map[x][y] = '3';
 	cub->wrk_map[x][y] = '0';
 }
