@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/13 13:55:16 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/15 12:28:54 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,14 +214,13 @@ int		raycast_loop(t_ray *ray)
 	return(0);
 }
 
-void	test(t_cube *cub, t_map *map)
+void	test(t_cube *cub)
 {
 	double	time;
 	double	oldTime;
 	int		cnt;
 	t_ray	ray;
 
-	map->temp = 0;
 	cnt = 0;
 	ft_bzero(&ray, sizeof(t_ray));
 	ray.map = ft_calloc(cub->cnt_map + 1, sizeof(char **));

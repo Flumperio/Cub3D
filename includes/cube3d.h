@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/14 16:21:52 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/15 13:26:48 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,18 @@
 
 struct	s_cube;
 
+/*
+** Sprites
+*/
 typedef struct s_map
 {
 	int				sp_num;
 	int				x_pos;
 	int				y_pos;
-	int				temp;
 }					t_map;
-
+/*
+** Gestion Texturas Fichero
+*/
 typedef struct s_tex
 {
 	char		*name;
@@ -50,7 +54,19 @@ typedef struct s_tex
 	int			exis;
 	void		(*func)(struct s_cube *s_s3d);
 }				t_tex;
-
+/*
+** Player
+*/
+typedef struct s_pyr
+{
+	int			num;
+	char		view;
+	int			posX;
+	int			posY;
+}				t_pyr;
+/*
+** Main
+*/
 typedef struct s_cube
 {
 	char		*line;
@@ -79,6 +95,7 @@ typedef struct s_cube
 	int			pl_posy;
 	t_tex		tex[11];
 	t_map		*sprites;
+	t_pyr		pyr;
 }				t_cube;
 
 int				chk_args(int argc, char **argv, t_cube *cub);
@@ -99,8 +116,8 @@ void			chk_fc_value(t_cube *cub);
 void			strg_map(t_cube *cub);
 int				chk_parms(t_cube *cub);
 void			cnvrt_map(t_cube *cub);
-void			tmp_map(t_cube *cub, t_map *map);
-int				cls_map(t_cube *cub, t_map *map, int x, int y);
-void			test(t_cube *cub, t_map *map);
+void			tmp_map(t_cube *cub);
+int				cls_map(t_cube *cub, int x, int y);
+void			test(t_cube *cub);
 
 #endif

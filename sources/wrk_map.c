@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/12 18:13:55 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/15 13:48:10 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,33 @@
 
 void	strg_pl_pos(t_cube *cub, int x, int y)
 {
-	cub->pl_view = cub->tmp_map[x][y];
-	cub->pl_posx = x;
-	cub->pl_posy = y;
+	cub->pyr.view = cub->tmp_map[x][y];
+	cub->pyr.posX = x;
+	cub->pyr.posY = y;
 	cub->tmp_map[x][y] = '3';
 	cub->wrk_map[x][y] = '0';
 }
 
-void	strg_sp_pos(t_cube *cub, t_map *map, int x, int y)
+void	strg_sp_pos(t_cube *cub, int x, int y)
 {
-	map[map->sp_num].x_pos = x;
-	map[map->sp_num].y_pos = y;
-	map->sp_num++;
+	cub->sprites[cub->sprites->sp_num].x_pos = x;
+	cub->sprites[cub->sprites->sp_num].y_pos = y;
+	cub->sprites->sp_num++;
+	// map[map->sp_num].x_pos = x;
+	// map[map->sp_num].y_pos = y;
+	// map->sp_num++;
 	cub->tmp_map[x][y] = '0';
 }
 
-void	tmp_map(t_cube *cub, t_map *map)
+void	tmp_map(t_cube *cub)
 {
 	int	cnt_x;
 	int	cnt_y;
 
 	cnt_x = 0;
 	cnt_y = 0;
-	map->sp_num = 0;
+	cub->sprites->sp_num = 0;
+	//map->sp_num = 0;
 	while (cub->tmp_map[cnt_x] != 0)
 	{
 		while (cub->tmp_map[cnt_x][cnt_y] != 0)
@@ -44,7 +48,7 @@ void	tmp_map(t_cube *cub, t_map *map)
 			if (ft_strchr("NSWE", cub->tmp_map[cnt_x][cnt_y]))
 				strg_pl_pos(cub, cnt_x, cnt_y);
 			if (cub->tmp_map[cnt_x][cnt_y] == '2')
-				strg_sp_pos(cub, map, cnt_x, cnt_y);
+				strg_sp_pos(cub, cnt_x, cnt_y);
 			cnt_y++;
 		}
 		cnt_y = 0;
@@ -55,7 +59,6 @@ void	tmp_map(t_cube *cub, t_map *map)
 void	cnvrt_map(t_cube *cub)
 {
 	int		cnt;
-
 	cnt = 0;
 	while (cub->line[cnt] != '\0')
 	{
@@ -64,7 +67,7 @@ void	cnvrt_map(t_cube *cub)
 		if (cub->line[cnt] == '2')
 			cub->cnt_2++;
 		if (ft_strchr("NSWE", cub->line[cnt]))
-			cub->pl_num++;
+			cub->pyr.num++;
 		if (!ft_strchr(cub->map_value, cub->line[cnt]))
 			ft_msgerror ("No valid map.", 7);
 		cnt++;
@@ -92,6 +95,6 @@ void	strg_map(t_cube *cub)
 	}
 	chk_parms(cub);
 	ft_free(cub->line);
-	if (cub->pl_num != 1)
+	if (cub->pyr.num != 1)
 		ft_msgerror("No valid map.", 7);
 }

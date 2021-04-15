@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/14 16:22:31 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/15 13:27:11 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,19 @@ int	main(int argc, char **argv)
 {
 	t_cube		cub;
 	int			tmp;
-	t_map		*map;
+	int			cnt;
 
 	tmp = 0;
+	cnt = 0;
 	init_c3d(&cub);
 	chk_args(argc, argv, &cub);
 	chk_file(&cub);
 	strg_map(&cub);
-	map = ft_calloc(sizeof(t_map), cub.cnt_2 + 1);
-	tmp_map(&cub, map);
-	cls_map(&cub, map, cub.pl_posx, cub.pl_posy);
-	test(&cub, map);
+	cub.sprites = (t_map *)ft_calloc(sizeof(t_map), cub.cnt_2 + 1);
+	tmp_map(&cub);
+	cls_map(&cub, cub.pyr.posX, cub.pyr.posY);
+	//test(&cub);
 	printf("MAP OK.\n");
 	system("leaks cub3D");
-
-	cub.sprites = (t_map *)ft_calloc(sizeof(t_map *), cub.cnt_2 + 1);
 	return (0);
 }
