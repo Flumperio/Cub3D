@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_1.c                                        :+:      :+:    :+:   */
+/*   raycast_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/09 10:02:20 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/16 08:16:37 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	close_window (int keycode, t_data *img)
 	return (0);
 }
 
-void	test(t_cube *cub, t_map *map)
+void	test(t_cube *cub)
 {
 
 	int		cnt_x;
@@ -92,7 +92,7 @@ void	test(t_cube *cub, t_map *map)
 	int		val;
 	t_data	img;
 
-	map->temp = 0;
+	//map->temp = 0;
 	cnt_x = 0;
 	cnt_y = 0;
 	img.x = 1;
@@ -100,8 +100,8 @@ void	test(t_cube *cub, t_map *map)
 	val = 0;
 	color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
 	img.mlx = mlx_init();
-	img.mlx_win = mlx_new_window(img.mlx, cub->p_rx, cub->p_ry, cub->f_name);
-	img.img = mlx_new_image(img.mlx, cub->p_rx, cub->p_ry);
+	img.mlx_win = mlx_new_window(img.mlx, cub->resX, cub->resY, cub->f_name);
+	img.img = mlx_new_image(img.mlx, cub->resX, cub->resY);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	while (cnt_x++ < 100)
 	// {

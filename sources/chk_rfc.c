@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/15 13:00:37 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/16 08:12:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	r_parm(t_cube *cub)
 			ft_msgerror("Error in the parametres of Resolution (R).", 6);
 		else
 		{
-			cub->p_rx = chk_value(num_val[0], 1, INT32_MAX);
-			cub->p_ry = chk_value(num_val[1], 1, INT32_MAX);
+			cub->resX = chk_value(num_val[0], 1, INT32_MAX);
+			cub->resY = chk_value(num_val[1], 1, INT32_MAX);
 		}
 		cub->cnt_i = ft_strlen(cub->line);
 		ft_free_array(num_val);

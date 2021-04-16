@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/15 19:14:00 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/16 08:18:50 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ typedef struct s_mlx
 */
 typedef struct s_ray
 {
-	int		res_X;
-	int		res_Y;
 	int		mapX;
 	int		mapY;
 	int		pl_X;
@@ -116,12 +114,9 @@ typedef struct s_ray
 
 
 
-	double	posX;
-	double	posY;
-
-	char	**map;
-	int		f_color;
-	int		c_color;
+	// char	**map;
+	// int		f_color;
+	// int		c_color;
 }					t_ray;
 /*
 ** Main
@@ -132,14 +127,16 @@ typedef struct s_cube
 	char		*f_name;
 	int			save_parm;
 	int			cnt_i;
-	int			p_rx;
-	int			p_ry;
+	int			resX;
+	int			resY;
 	int			p_fr;
 	int			p_fg;
 	int			p_fb;
 	int			p_cr;
 	int			p_cg;
 	int			p_cb;
+	int			f_color;
+	int			c_color;
 	int			map_lines;
 	int			tmp;
 	int			strg_map;
