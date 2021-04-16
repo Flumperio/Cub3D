@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/03/31 11:03:30 by juasanto         ###   ########.fr        #
+#    Updated: 2021/04/16 11:49:57 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ SRCS		= 	cube3d.c \
 				chk_rfc.c \
 				wrk_map.c \
 				cls_map.c \
-				raycast_1.c
+				raycast_1.c \
+				move_1.c \
+				move_2.c
 
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)

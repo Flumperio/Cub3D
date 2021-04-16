@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 08:18:50 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/16 11:48:14 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <time.h>
+# include <math.h>
 # include "../Libft/includes/libft.h"
 # include "../minilibx/mlx.h"
 
@@ -31,9 +32,20 @@
 # define R 5
 # define F 6
 # define C 7
-
+/*
+** Define Keys
+*/
+# define KEY_FW 13
+# define KEY_BW 1
+# define KEY_RR 2
+# define KEY_RL 0
+# define KEY_SR 14
+# define KEY_SL 12
+# define KEY_ESC 53
+/*
+** Predefiniton S_Cube
+*/
 struct	s_cube;
-
 /*
 ** Gestion Texturas Fichero
 */
@@ -84,8 +96,6 @@ typedef struct s_ray
 {
 	int		mapX;
 	int		mapY;
-	int		pl_X;
-	int		pl_Y;
 	double	dirX;
 	double	dirY;
 	double	planeX;
@@ -110,13 +120,6 @@ typedef struct s_ray
 	int		drawStart;
 	int		drawEnd;
 
-
-
-
-
-	// char	**map;
-	// int		f_color;
-	// int		c_color;
 }					t_ray;
 /*
 ** Main
@@ -173,5 +176,14 @@ void			cnvrt_map(t_cube *cub);
 void			tmp_map(t_cube *cub);
 int				cls_map(t_cube *cub, int x, int y);
 void			test(t_cube *cub);
+/*
+** Funtions Moves
+*/
+void			move_fw(t_cube *cub);
+void			move_bw(t_cube *cub);
+void			move_sl(t_cube *cub);
+void			move_sr(t_cube *cub);
+void			move_rr(t_cube *cub);
+void			move_rl(t_cube *cub);
 
 #endif
