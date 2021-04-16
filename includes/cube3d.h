@@ -6,13 +6,16 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 11:48:14 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/16 14:27:41 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
+/*
+** Libraries
+*/
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -122,7 +125,7 @@ typedef struct s_ray
 
 }					t_ray;
 /*
-** Main
+** Main Structure
 */
 typedef struct s_cube
 {
@@ -154,27 +157,41 @@ typedef struct s_cube
 	t_mlx		mlx;
 	t_ray		ray;
 }				t_cube;
-
+/*
+** Check Arguments
+*/
 int				chk_args(int argc, char **argv, t_cube *cub);
 int				chk_file(t_cube *cub);
-void			inicialize(t_cube *cub);
 int				chk_ext(char *name, char *ext);
+int				chk_value(char *number, int min_value, int max_value);
+void			chk_map(t_cube *cub);
+void			chk_r_value(t_cube *cub);
+void			chk_fc_value(t_cube *cub);
+int				chk_parms(t_cube *cub);
+/*
+** Utils
+*/
+void			inicialize(t_cube *cub);
 void			rmv_space(t_cube *cub);
 int				atoi_b(t_cube *cub);
 int				file_exist(char *file, char *name);
 void			texture_all(t_cube *cub);
-int				chk_value(char *number, int min_value, int max_value);
+/*
+** Storage Values
+*/
 void			r_parm(t_cube *cub);
 void			f_parm(t_cube *cub);
 void			c_parm(t_cube *cub);
-void			chk_map(t_cube *cub);
-void			chk_r_value(t_cube *cub);
-void			chk_fc_value(t_cube *cub);
 void			strg_map(t_cube *cub);
-int				chk_parms(t_cube *cub);
+/*
+** Maps Operations
+*/
 void			cnvrt_map(t_cube *cub);
 void			tmp_map(t_cube *cub);
 int				cls_map(t_cube *cub, int x, int y);
+/*
+** RayCast
+*/
 void			test(t_cube *cub);
 /*
 ** Funtions Moves

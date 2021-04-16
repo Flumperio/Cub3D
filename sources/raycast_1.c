@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 11:53:01 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/16 14:20:27 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,33 @@ int	key_hook(int keycode, t_cube *cub)
 	raycast_loop (cub);
 	return (0);
 }
+
+void	init_ray(t_cube *cub)
+{
+	cub->ray.dirX = -1;
+	cub->ray.dirY = 0;
+	cub->ray.planeX = 0;
+	cub->ray.planeY = 0.66;
+	cub->f_color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
+	cub->c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
+	cub->ray.moveSpeed = 0.15;
+	cub->ray.rotSpeed = 0.25;
+	cub->wrk_map[(int)cub->pyr.posX][(int)cub->pyr.posY] = 48;
+	cub->mlx.mlx = mlx_init();
+	cub->mlx.mlx_win = mlx_new_window(cub->mlx.mlx, cub->resX, cub->resY, cub->f_name);
+}
+
+void	init_raydir_x_y(t_cube *cub, int x)
+{
+	cub->ray.cameraX = 2 * x / (double)(cub->resX) - 1;
+	cub->ray.rayDirX = cub->ray.dirX + cub->ray.planeX * cub->ray.cameraX;
+	cub->ray.rayDirY = cub->ray.dirY + cub->ray.planeY * cub->ray.cameraX;
+	cub->ray.mapX = (int)cub->pyr.posX;
+	cub->ray.mapY = (int)cub->pyr.posY;
+	cub->ray.deltaDistX = fabs(1 / cub->ray.rayDirX);
+	cub->ray.deltaDistY = fabs(1 / cub->ray.rayDirY);
+	cub->ray.hit = 0;
+}
 void	set_raydir_x_y(t_cube *cub)
 {
 	if(cub->ray.rayDirX < 0)
@@ -72,7 +99,58 @@ void	set_raydir_x_y(t_cube *cub)
 		cub->ray.stepY = 1;
 		cub->ray.sideDistY = (cub->ray.mapY + 1.0 - cub->pyr.posY) * cub->ray.deltaDistY;
 	}
+}
 
+void	hit_raydir_x_y(t_cube *cub)
+{
+	while (cub->ray.hit == 0)
+	{
+		if(cub->ray.sideDistX < cub->ray.sideDistY)
+		{
+			cub->ray.sideDistX += cub->ray.deltaDistX;
+			cub->ray.mapX += cub->ray.stepX;
+			cub->ray.side = 0;
+		}
+		else
+		{
+			cub->ray.sideDistY += cub->ray.deltaDistY;
+			cub->ray.mapY += cub->ray.stepY;
+			cub->ray.side = 1;
+		}
+		if(cub->wrk_map[cub->ray.mapX][cub->ray.mapY] > '0')
+			cub->ray.hit = 1;
+	}
+}
+void	size_raydir_x_y(t_cube *cub)
+{
+	if(cub->ray.side == 0)
+		cub->ray.perpWallDist = (cub->ray.mapX - cub->pyr.posX + (1 - cub->ray.stepX) / 2) / cub->ray.rayDirX;
+	else
+		cub->ray.perpWallDist = (cub->ray.mapY - cub->pyr.posY + (1 - cub->ray.stepY) / 2) / cub->ray.rayDirY;
+	cub->ray.lineHeight = (int)(cub->resY / cub->ray.perpWallDist);
+	cub->ray.drawStart = -cub->ray.lineHeight / 2 + cub->resY / 2;
+	if(cub->ray.drawStart < 0)
+		cub->ray.drawStart = 0;
+	cub->ray.drawEnd = cub->ray.lineHeight / 2 + cub->resY / 2;
+	if(cub->ray.drawEnd >= cub->resY)
+		cub->ray.drawEnd = cub->resY - 1;
+}
+
+void	print_raydir_x_y(t_cube *cub, int x)
+{
+	int		y;
+
+	y = 0;
+	while(y < cub->resY)
+	{
+		if (y < cub->ray.drawStart)
+			my_mlx_pixel_put(cub, x, y, cub->c_color);
+		else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
+			my_mlx_pixel_put(cub, x, y, 0x0000FF);
+		else if (y > cub->ray.drawEnd)
+			my_mlx_pixel_put(cub, x, y, cub->f_color);
+		y++;
+	}
 }
 
 int		raycast_loop(t_cube *cub)
@@ -84,58 +162,11 @@ int		raycast_loop(t_cube *cub)
 	cub->mlx.addr = mlx_get_data_addr(cub->mlx.img, &cub->mlx.bits_per_pixel, &cub->mlx.line_length, &cub->mlx.endian);
 	while (x < cub->resX)
 	{
-
-		cub->ray.cameraX = 2 * x / (double)(cub->resX) - 1;
-		cub->ray.rayDirX = cub->ray.dirX + cub->ray.planeX * cub->ray.cameraX;
-		cub->ray.rayDirY = cub->ray.dirY + cub->ray.planeY * cub->ray.cameraX;
-		cub->ray.mapX = (int)cub->pyr.posX;
-		cub->ray.mapY = (int)cub->pyr.posY;
-		cub->ray.deltaDistX = fabs(1 / cub->ray.rayDirX);
-		cub->ray.deltaDistY = fabs(1 / cub->ray.rayDirY);
-		cub->ray.hit = 0;
+		init_raydir_x_y(cub, x);
 		set_raydir_x_y(cub);
-		while (cub->ray.hit == 0)
-		{
-			if(cub->ray.sideDistX < cub->ray.sideDistY)
-			{
-				cub->ray.sideDistX += cub->ray.deltaDistX;
-				cub->ray.mapX += cub->ray.stepX;
-				cub->ray.side = 0;
-			}
-			else
-			{
-				cub->ray.sideDistY += cub->ray.deltaDistY;
-				cub->ray.mapY += cub->ray.stepY;
-				cub->ray.side = 1;
-			}
-			if(cub->wrk_map[cub->ray.mapX][cub->ray.mapY] > '0')
-				cub->ray.hit = 1;
-		}
-		if(cub->ray.side == 0)
-			cub->ray.perpWallDist = (cub->ray.mapX - cub->pyr.posX + (1 - cub->ray.stepX) / 2) / cub->ray.rayDirX;
-		else
-			cub->ray.perpWallDist = (cub->ray.mapY - cub->pyr.posY + (1 - cub->ray.stepY) / 2) / cub->ray.rayDirY;
-		cub->ray.lineHeight = (int)(cub->resY / cub->ray.perpWallDist);
-		cub->ray.drawStart = -cub->ray.lineHeight / 2 + cub->resY / 2;
-		if(cub->ray.drawStart < 0)
-			cub->ray.drawStart = 0;
-		cub->ray.drawEnd = cub->ray.lineHeight / 2 + cub->resY / 2;
-		if(cub->ray.drawEnd >= cub->resY)
-			cub->ray.drawEnd = cub->resY - 1;
-
-		int		y;
-
-		y = 0;
-		while(y < cub->resY)
-		{
-			if (y < cub->ray.drawStart)
-				my_mlx_pixel_put(cub, x, y, cub->c_color);
-			else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
-				my_mlx_pixel_put(cub, x, y, 0x0000FF);
-			else if (y > cub->ray.drawEnd)
-				my_mlx_pixel_put(cub, x, y, cub->f_color);
-			y++;
-		}
+		hit_raydir_x_y(cub);
+		size_raydir_x_y(cub);
+		print_raydir_x_y(cub, x);
 		x++;
 	}
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win, cub->mlx.img, 0, 0);
@@ -145,17 +176,7 @@ int		raycast_loop(t_cube *cub)
 
 void	test(t_cube *cub)
 {
-	cub->ray.dirX = -1;
-	cub->ray.dirY = 0;
-	cub->ray.planeX = 0;
-	cub->ray.planeY = 0.66;
-	cub->f_color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
-	cub->c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
-	cub->ray.moveSpeed = 0.15;
-	cub->ray.rotSpeed = 0.25;
-	cub->wrk_map[(int)cub->pyr.posX][(int)cub->pyr.posY] = 48;
-	cub->mlx.mlx = mlx_init();
-	cub->mlx.mlx_win = mlx_new_window(cub->mlx.mlx, cub->resX, cub->resY, cub->f_name);
+	init_ray(cub);
 	mlx_key_hook(cub->mlx.mlx_win, key_hook, cub);
 	mlx_loop_hook(cub->mlx.mlx, raycast_loop, cub);
 	mlx_loop(cub->mlx.mlx);
