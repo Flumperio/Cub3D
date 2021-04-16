@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 14:20:27 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/16 16:31:58 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	hit_raydir_x_y(t_cube *cub)
 			cub->ray.hit = 1;
 	}
 }
+
 void	size_raydir_x_y(t_cube *cub)
 {
 	if(cub->ray.side == 0)
