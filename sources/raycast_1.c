@@ -6,13 +6,14 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 16:31:58 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/17 13:50:39 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
 int		raycast_loop(t_cube *cub);
+void	pl_move(t_cube *cub);
 
 int	to_rgb(int r, int g, int b)
 {
@@ -25,30 +26,6 @@ void	my_mlx_pixel_put(t_cube *cub, int x, int y, int color)
 
 	dst = cub->mlx.addr + (y * cub->mlx.line_length + x * (cub->mlx.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	key_hook(int keycode, t_cube *cub)
-{
-	printf("keykode: %i\n", keycode);
-	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
-		exit (0);
-	}
-	if (keycode == KEY_FW)
-		move_fw(cub);
-	if (keycode == KEY_BW)
-		move_bw(cub);
-	if (keycode == KEY_RL)
-		move_rl(cub);
-	if (keycode == KEY_RR)
-		move_rr(cub);
-	if (keycode == KEY_SL)
-		move_sl(cub);
-	if (keycode == KEY_SR)
-		move_sr(cub);
-	raycast_loop (cub);
-	return (0);
 }
 
 void	init_ray(t_cube *cub)
@@ -153,6 +130,72 @@ void	print_raydir_x_y(t_cube *cub, int x)
 		y++;
 	}
 }
+int		ui_cross_exit(t_cube *cub)
+{
+	mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
+	exit (0);
+}
+
+
+int	key_press(int keycode, t_cube *cub)
+{
+	printf("keykode: %i\n", keycode);
+	if (keycode == KEY_ESC)
+	{
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
+		exit (0);
+	}
+	if (keycode == KEY_FW)
+		cub->bol.key_fw = 1;
+	if (keycode == KEY_BW)
+		cub->bol.key_bw = 1;
+	if (keycode == KEY_RL)
+		cub->bol.key_rl = 1;
+	if (keycode == KEY_RR)
+		cub->bol.key_rr = 1;
+	if (keycode == KEY_SL)
+		cub->bol.key_sl = 1;
+	if (keycode == KEY_SR)
+		cub->bol.key_sr = 1;
+	pl_move(cub);
+	return (0);
+}
+
+int	key_relea(int keycode, t_cube *cub)
+{
+	printf("keykode: %i\n", keycode);
+	if (keycode == KEY_FW)
+		cub->bol.key_fw = 0;
+	if (keycode == KEY_BW)
+		cub->bol.key_bw = 0;
+	if (keycode == KEY_RL)
+		cub->bol.key_rl = 0;
+	if (keycode == KEY_RR)
+		cub->bol.key_rr = 0;
+	if (keycode == KEY_SL)
+		cub->bol.key_sl = 0;
+	if (keycode == KEY_SR)
+		cub->bol.key_sr = 0;
+	pl_move(cub);
+	return (0);
+}
+
+void	pl_move(t_cube *cub)
+{
+	if (cub->bol.key_fw == 1)
+		move_fw(cub);
+	if (cub->bol.key_bw == 1)
+		move_bw(cub);
+	if (cub->bol.key_rl == 1)
+		move_rl(cub);
+	if (cub->bol.key_rr == 1)
+		move_rr(cub);
+	if (cub->bol.key_sl == 1)
+		move_sl(cub);
+	if (cub->bol.key_sr == 1)
+		move_sr(cub);
+	raycast_loop (cub);
+}
 
 int		raycast_loop(t_cube *cub)
 {
@@ -178,7 +221,10 @@ int		raycast_loop(t_cube *cub)
 void	test(t_cube *cub)
 {
 	init_ray(cub);
-	mlx_key_hook(cub->mlx.mlx_win, key_hook, cub);
+	mlx_hook(cub->mlx.mlx_win, 2, 1L<<0, key_press, cub);
+	mlx_hook(cub->mlx.mlx_win, 3, 1L << 1, key_relea, cub);
+	mlx_hook(cub->mlx.mlx_win, 17, 1L << 17, ui_cross_exit, cub);
+
 	mlx_loop_hook(cub->mlx.mlx, raycast_loop, cub);
 	mlx_loop(cub->mlx.mlx);
 }

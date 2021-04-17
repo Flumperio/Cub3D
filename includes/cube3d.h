@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 14:27:41 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/17 13:49:09 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,18 @@ typedef struct s_pyr
 	double		posX;
 	double		posY;
 }				t_pyr;
+/*
+** Move Booleans
+*/
+typedef struct s_bol
+{
+	int				key_fw;
+	int				key_bw;
+	int				key_rl;
+	int				key_rr;
+	int				key_sl;
+	int				key_sr;
+}				t_bol;
 /*
 ** Sprites
 */
@@ -156,6 +168,7 @@ typedef struct s_cube
 	t_pyr		pyr;
 	t_mlx		mlx;
 	t_ray		ray;
+	t_bol		bol;
 }				t_cube;
 /*
 ** Check Arguments
