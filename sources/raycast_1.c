@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/17 13:50:39 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:29:48 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	init_ray(t_cube *cub)
 	cub->ray.planeY = 0.66;
 	cub->f_color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
 	cub->c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
-	cub->ray.moveSpeed = 0.15;
-	cub->ray.rotSpeed = 0.25;
+	cub->ray.moveSpeed = 0.035;
+	cub->ray.rotSpeed = 0.035;
 	cub->wrk_map[(int)cub->pyr.posX][(int)cub->pyr.posY] = 48;
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.mlx_win = mlx_new_window(cub->mlx.mlx, cub->resX, cub->resY, cub->f_name);
@@ -157,7 +157,6 @@ int	key_press(int keycode, t_cube *cub)
 		cub->bol.key_sl = 1;
 	if (keycode == KEY_SR)
 		cub->bol.key_sr = 1;
-	pl_move(cub);
 	return (0);
 }
 
@@ -176,7 +175,6 @@ int	key_relea(int keycode, t_cube *cub)
 		cub->bol.key_sl = 0;
 	if (keycode == KEY_SR)
 		cub->bol.key_sr = 0;
-	pl_move(cub);
 	return (0);
 }
 
@@ -194,7 +192,6 @@ void	pl_move(t_cube *cub)
 		move_sl(cub);
 	if (cub->bol.key_sr == 1)
 		move_sr(cub);
-	raycast_loop (cub);
 }
 
 int		raycast_loop(t_cube *cub)
@@ -202,6 +199,7 @@ int		raycast_loop(t_cube *cub)
 	int	x;
 
 	x = 0;
+	pl_move(cub);
 	cub->mlx.img = mlx_new_image(cub->mlx.mlx, cub->resX, cub->resY);
 	cub->mlx.addr = mlx_get_data_addr(cub->mlx.img, &cub->mlx.bits_per_pixel, &cub->mlx.line_length, &cub->mlx.endian);
 	while (x < cub->resX)
@@ -215,6 +213,7 @@ int		raycast_loop(t_cube *cub)
 	}
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win, cub->mlx.img, 0, 0);
 	mlx_destroy_image(cub->mlx.mlx, cub->mlx.img);
+
 	return(0);
 }
 
