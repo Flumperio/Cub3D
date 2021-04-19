@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/19 14:29:48 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/19 19:15:13 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,30 @@ void	my_mlx_pixel_put(t_cube *cub, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	set_color_wall(t_cube *cub)
+{
+	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
+        cub->ray.wall_color = to_rgb(153, 0, 0); /** Norte **/
+    if (cub->ray.side == 0 && cub->ray.rayDirX <= 0)
+        cub->ray.wall_color = to_rgb(0, 153, 0); /** Sur **/
+    if (cub->ray.side == 1 && cub->ray.rayDirY > 0)
+        cub->ray.wall_color = to_rgb(0, 0, 153); /** Este **/
+    if (cub->ray.side == 1 && cub->ray.rayDirY <= 0)
+        cub->ray.wall_color = to_rgb(153, 153, 153); /** Oeste **/
+}
+
 void	init_ray(t_cube *cub)
 {
-	cub->ray.dirX = -1;
-	cub->ray.dirY = 0;
-	cub->ray.planeX = 0;
-	cub->ray.planeY = 0.66;
+	if(cub->pyr.view == 'N')
+		cub->ray.dirX = -1;
+	if(cub->pyr.view == 'S')
+		cub->ray.dirX = 1;
+	if(cub->pyr.view == 'E')
+		cub->ray.dirY = 1;
+	if(cub->pyr.view == 'W')
+		cub->ray.dirY = -1;
+	cub->ray.planeX = (cub->ray.dirY * ((FOV * M_PI) /180));
+	cub->ray.planeY = -(cub->ray.dirX * ((FOV * M_PI) /180));
 	cub->f_color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
 	cub->c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
 	cub->ray.moveSpeed = 0.035;
@@ -119,12 +137,14 @@ void	print_raydir_x_y(t_cube *cub, int x)
 	int		y;
 
 	y = 0;
+	set_color_wall(cub);
 	while(y < cub->resY)
 	{
+		//set_color_wall(cub);
 		if (y < cub->ray.drawStart)
 			my_mlx_pixel_put(cub, x, y, cub->c_color);
 		else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
-			my_mlx_pixel_put(cub, x, y, 0x0000FF);
+			my_mlx_pixel_put(cub, x, y, cub->ray.wall_color);
 		else if (y > cub->ray.drawEnd)
 			my_mlx_pixel_put(cub, x, y, cub->f_color);
 		y++;

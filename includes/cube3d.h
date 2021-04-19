@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/17 13:49:09 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/19 19:09:01 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define R 5
 # define F 6
 # define C 7
+# define FOV 38
 /*
 ** Define Keys
 */
@@ -134,6 +135,7 @@ typedef struct s_ray
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;
+	int		wall_color;
 
 }					t_ray;
 /*
