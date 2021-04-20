@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/20 13:45:46 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/20 17:14:54 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ typedef struct s_tex
 	int			exis;
 	void		(*func)(struct s_cube *s_s3d);
 }				t_tex;
+/*
+** Storage Textures
+*/
+typedef struct s_stx
+{
+	char		*f_name;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			ll;
+	int			e;
+	int			width;
+	int			height;
+}				t_stx;
 /*
 ** Print Texture
 */
@@ -186,6 +200,7 @@ typedef struct s_cube
 	t_ray		ray;
 	t_bol		bol;
 	t_ptx		ptx;
+	t_stx		stx[5];
 }				t_cube;
 /*
 ** Check Arguments
@@ -206,6 +221,14 @@ void			rmv_space(t_cube *cub);
 int				atoi_b(t_cube *cub);
 int				file_exist(char *file, char *name);
 void			texture_all(t_cube *cub);
+int				to_rgb(int r, int g, int b);
+/*
+** Key Manage
+*/
+int				ui_cross_exit(t_cube *cub);
+int				key_press(int keycode, t_cube *cub);
+int				key_relea(int keycode, t_cube *cub);
+void			pl_move(t_cube *cub);
 /*
 ** Storage Values
 */
@@ -223,6 +246,11 @@ int				cls_map(t_cube *cub, int x, int y);
 ** RayCast
 */
 void			test(t_cube *cub);
+void			init_ray(t_cube *cub);
+void			init_raydir_x_y(t_cube *cub, int x);
+void			set_raydir_x_y(t_cube *cub);
+void			hit_raydir_x_y(t_cube *cub);
+void			size_raydir_x_y(t_cube *cub);
 /*
 ** Funtions Moves
 */

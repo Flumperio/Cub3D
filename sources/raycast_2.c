@@ -6,122 +6,108 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 08:16:37 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:45:12 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-#include <math.h>
 
-typedef struct s_data
+void	init_ray(t_cube *cub)
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		x;
-	int		y;
-}			t_data;
-
-int	to_rgb(int r, int g, int b)
-{
-	return ((b * 1) + (g * 256) + (r * 256 * 256));
+	if (cub->pyr.view == 'N')
+		cub->ray.dirX = -1;
+	if (cub->pyr.view == 'S')
+		cub->ray.dirX = 1;
+	if (cub->pyr.view == 'E')
+		cub->ray.dirY = 1;
+	if (cub->pyr.view == 'W')
+		cub->ray.dirY = -1;
+	cub->ray.planeX = (cub->ray.dirY * ((FOV * M_PI) / 180));
+	cub->ray.planeY = -(cub->ray.dirX * ((FOV * M_PI) / 180));
+	cub->f_color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
+	cub->c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
+	cub->ray.moveSpeed = 0.035;
+	cub->ray.rotSpeed = 0.035;
+	cub->wrk_map[(int)cub->pyr.posX][(int)cub->pyr.posY] = 48;
+	cub->mlx.mlx = mlx_init();
+	cub->mlx.mlx_win = mlx_new_window(cub->mlx.mlx, \
+		cub->resX, cub->resY, cub->f_name);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	init_raydir_x_y(t_cube *cub, int x)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	cub->ray.cameraX = 2 * x / (double)(cub->resX) - 1;
+	cub->ray.rayDirX = cub->ray.dirX + cub->ray.planeX * cub->ray.cameraX;
+	cub->ray.rayDirY = cub->ray.dirY + cub->ray.planeY * cub->ray.cameraX;
+	cub->ray.mapX = (int)cub->pyr.posX;
+	cub->ray.mapY = (int)cub->pyr.posY;
+	cub->ray.deltaDistX = fabs(1 / cub->ray.rayDirX);
+	cub->ray.deltaDistY = fabs(1 / cub->ray.rayDirY);
+	cub->ray.hit = 0;
 }
 
-int	key_hook(int keycode, t_data *img)
+void	set_raydir_x_y(t_cube *cub)
 {
-	printf("Val: %i -- x: %i\n", keycode, img->x);
-	if (keycode == 53)
+	if (cub->ray.rayDirX < 0)
 	{
-		mlx_destroy_window(img->mlx, img->mlx_win);
-		exit (0);
+		cub->ray.stepX = -1;
+		cub->ray.sideDistX = (cub->pyr.posX - cub->ray.mapX) * \
+			cub->ray.deltaDistX;
 	}
-	// if (keycode == 1)
-	// {
-	// 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 1, 1);
-	// 			my_mlx_pixel_put(img, img->x, img->y, 0xFFFFFF);
-	// 	img->y++;
-	// }
-	// if (keycode == 0)
-	// {
-	// 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 1, 1);
-	// 			my_mlx_pixel_put(img, img->x, img->y, 0xFFFFFF);
-	// 	img->x--;
-	// }
-	// if (keycode == 2)
-	// {
-	// 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 1, 1);
-	// 			my_mlx_pixel_put(img, img->x, img->y, 0xFFFFFF);
-	// 	img->x++;
-	// }
-	return (0);
+	else
+	{
+		cub->ray.stepX = 1;
+		cub->ray.sideDistX = (cub->ray.mapX + 1.0 - cub->pyr.posX) * \
+			cub->ray.deltaDistX;
+	}
+	if (cub->ray.rayDirY < 0)
+	{
+		cub->ray.stepY = -1;
+		cub->ray.sideDistY = (cub->pyr.posY - cub->ray.mapY) * \
+			cub->ray.deltaDistY;
+	}
+	else
+	{
+		cub->ray.stepY = 1;
+		cub->ray.sideDistY = (cub->ray.mapY + 1.0 - cub->pyr.posY) * \
+			cub->ray.deltaDistY;
+	}
 }
 
-int	mouse_hook (int x, int y, t_data *img)
+void	hit_raydir_x_y(t_cube *cub)
 {
-	printf("X: %i -- Y: %i\n", x, y);
-	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 1, 1);
-	my_mlx_pixel_put(img, x, y, 0xFFFFFF);
-	return (0);
+	while (cub->ray.hit == 0)
+	{
+		if (cub->ray.sideDistX < cub->ray.sideDistY)
+		{
+			cub->ray.sideDistX += cub->ray.deltaDistX;
+			cub->ray.mapX += cub->ray.stepX;
+			cub->ray.side = 0;
+		}
+		else
+		{
+			cub->ray.sideDistY += cub->ray.deltaDistY;
+			cub->ray.mapY += cub->ray.stepY;
+			cub->ray.side = 1;
+		}
+		if (cub->wrk_map[cub->ray.mapX][cub->ray.mapY] > '0')
+			cub->ray.hit = 1;
+	}
 }
 
-int	close_window (int keycode, t_data *img)
+void	size_raydir_x_y(t_cube *cub)
 {
-	printf("keycode: %i\n", keycode);
-	mlx_destroy_window(img->mlx, img->mlx_win);
-	return (0);
+	if (cub->ray.side == 0)
+		cub->ray.perpWallDist = (cub->ray.mapX - cub->pyr.posX + \
+			(1 - cub->ray.stepX) / 2) / cub->ray.rayDirX;
+	else
+		cub->ray.perpWallDist = (cub->ray.mapY - cub->pyr.posY + \
+			(1 - cub->ray.stepY) / 2) / cub->ray.rayDirY;
+	cub->ray.lineHeight = (int)(cub->resY / cub->ray.perpWallDist);
+	cub->ray.drawStart = -cub->ray.lineHeight / 2 + cub->resY / 2;
+	if (cub->ray.drawStart < 0)
+		cub->ray.drawStart = 0;
+	cub->ray.drawEnd = cub->ray.lineHeight / 2 + cub->resY / 2;
+	if (cub->ray.drawEnd >= cub->resY)
+		cub->ray.drawEnd = cub->resY - 1;
 }
-
-void	test(t_cube *cub)
-{
-
-	int		cnt_x;
-	int		cnt_y;
-	int		color;
-	int		val;
-	t_data	img;
-
-	//map->temp = 0;
-	cnt_x = 0;
-	cnt_y = 0;
-	img.x = 1;
-	img.y = 1;
-	val = 0;
-	color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
-	img.mlx = mlx_init();
-	img.mlx_win = mlx_new_window(img.mlx, cub->resX, cub->resY, cub->f_name);
-	img.img = mlx_new_image(img.mlx, cub->resX, cub->resY);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	while (cnt_x++ < 100)
-	// {
-	// 	while (cnt_y++ < 100)
-	// 		my_mlx_pixel_put(&img, cnt_x, cnt_y, color);
-	// 	cnt_y = 0;
-	// }
-	mlx_do_key_autorepeaton(img.mlx);
-	//mlx_key_hook(img.mlx_win, key_hook, &img);
-	//mlx_mouse_hook (img.mlx_win, mouse_hook, &img);
-	mlx_hook(img.mlx_win, 2, 1L<<3, key_hook, &img);
-	mlx_hook(img.mlx_win, 6, 1L<<6, mouse_hook, &img);
-	mlx_loop(img.mlx);
-}
-
-    // mlx = mlx_init();
-    // mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-    // img.img = mlx_new_image(mlx, 1920, 1080);
-    // img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-    //                              &img.endian);
-    // my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-    // mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-    // mlx_loop(mlx);
