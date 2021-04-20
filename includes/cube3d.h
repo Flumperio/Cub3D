@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/19 19:09:01 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/20 13:45:46 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define F 6
 # define C 7
 # define FOV 38
+# define TEXTWIDTH 64
+# define TEXTHEIGHT 64
 /*
 ** Define Keys
 */
@@ -61,6 +63,18 @@ typedef struct s_tex
 	int			exis;
 	void		(*func)(struct s_cube *s_s3d);
 }				t_tex;
+/*
+** Print Texture
+*/
+typedef struct s_ptx
+{
+	int			texNum;
+	double		wallX;
+	int			texX;
+	int			texY;
+	double		step;
+	double		textPos;
+}				t_ptx;
 /*
 ** Player
 */
@@ -171,6 +185,7 @@ typedef struct s_cube
 	t_mlx		mlx;
 	t_ray		ray;
 	t_bol		bol;
+	t_ptx		ptx;
 }				t_cube;
 /*
 ** Check Arguments
