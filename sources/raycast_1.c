@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/19 19:15:13 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/20 10:12:54 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ void	print_raydir_x_y(t_cube *cub, int x)
 	set_color_wall(cub);
 	while(y < cub->resY)
 	{
-		//set_color_wall(cub);
 		if (y < cub->ray.drawStart)
 			my_mlx_pixel_put(cub, x, y, cub->c_color);
 		else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
@@ -243,7 +242,6 @@ void	test(t_cube *cub)
 	mlx_hook(cub->mlx.mlx_win, 2, 1L<<0, key_press, cub);
 	mlx_hook(cub->mlx.mlx_win, 3, 1L << 1, key_relea, cub);
 	mlx_hook(cub->mlx.mlx_win, 17, 1L << 17, ui_cross_exit, cub);
-
 	mlx_loop_hook(cub->mlx.mlx, raycast_loop, cub);
 	mlx_loop(cub->mlx.mlx);
 }
