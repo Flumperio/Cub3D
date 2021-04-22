@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/04/20 16:54:14 by juasanto         ###   ########.fr        #
+#    Updated: 2021/04/22 16:56:33 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)
 
 LFLAGS = -I includes/
-CFLAGS = -Wall -Wextra -Werror -g
-CC = cc
+CFLAGS = -Wall -Wextra -Werror -g -O3
+CC = gcc
 RM = rm -rf
 AR = ar rc
 RANLIB = ranlib

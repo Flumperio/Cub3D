@@ -1,8 +1,8 @@
 R 1200 600
-NO ./textures/brick.xpm
-SO ./textures/wood.xpm
-WE ./textures/blue.xpm
-EA ./textures/grey.xpm
+NO ./textures/santana.xpm
+SO ./textures/stouf.xpm
+WE ./textures/hitler.xpm
+EA ./textures/blue.xpm
 S ./textures/barrel.xpm
 F 255,165,0
 C 0,255,255
