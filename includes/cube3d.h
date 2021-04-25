@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/20 17:14:54 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/25 12:27:25 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,16 @@ typedef struct s_ptx
 	int			texY;
 	double		step;
 	double		textPos;
+	double		floorXWall;
+	double		floorYWall;
+	double		distWall;
+	double		distPlayer;
+	double		currentDist;
+	double		weight;
+	double		currentFloorX;
+	double		currentFloorY;
+	int			floorTexX;
+	int			floorTexY;
 }				t_ptx;
 /*
 ** Player

@@ -3,7 +3,7 @@ NO ./textures/444.xpm
 SO ./textures/111.xpm
 WE ./textures/222.xpm
 EA ./textures/333.xpm
-S ./textures/barrel.xpm
+S ./textures/GreenWall.xpm
 F 44,41,49
 C 200,200,200
 
