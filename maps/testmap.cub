@@ -1,9 +1,10 @@
 R 1200 600
-NO ./textures/444.xpm
-SO ./textures/111.xpm
-WE ./textures/222.xpm
-EA ./textures/333.xpm
-S ./textures/GreenWall.xpm
+NO ./textures/NO.xpm
+SO ./textures/SO.xpm
+WE ./textures/WE.xpm
+EA ./textures/EA.xpm
+S ./textures/EGG.xpm
+TF ./textures/TF-2.xpm
 F 44,41,49
 C 200,200,200
 

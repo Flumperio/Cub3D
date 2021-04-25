@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/25 12:27:25 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/25 13:06:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,14 +203,14 @@ typedef struct s_cube
 	char		*map_value;
 	int			cnt_map;
 	int			cnt_2;
-	t_tex		tex[11];
 	t_map		*sprites;
 	t_pyr		pyr;
 	t_mlx		mlx;
 	t_ray		ray;
 	t_bol		bol;
 	t_ptx		ptx;
-	t_stx		stx[5];
+	t_tex		tex[12];
+	t_stx		stx[6];
 }				t_cube;
 /*
 ** Check Arguments

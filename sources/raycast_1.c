@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/25 12:39:48 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/25 13:46:30 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	stg_tex(t_cube *cub)
 	int	cnt;
 
 	cnt = 0;
-	while (cnt <= 4)
+	while (cnt <= 5)
 	{
 		cub->stx[cnt].img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->tex[cnt].path, &cub->stx[cnt].width, &cub->stx[cnt].height);
 		cub->stx[cnt].addr = mlx_get_data_addr(cub->stx[cnt].img, &cub->stx[cnt].bpp, &cub->stx[cnt].ll, &cub->stx[cnt].e);
@@ -89,13 +89,18 @@ void	text_calc(t_cube *cub)
 
 int	paint_wall(t_cube *cub, int x, int y)
 {
+	int	color;
+
 	cub->ptx.step = 1.0 * cub->stx[cub->ptx.texNum].height / cub->ray.lineHeight;
 	cub->ptx.textPos = (cub->ray.drawStart - cub->resY / 2 + cub->ray.lineHeight / 2) * cub->ptx.step;
 	while (y < cub->ray.drawEnd)
 	{
+		color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
+		if(cub->ray.side == 1)
+			color = (color >> 1) & 8355711;
 		cub->ptx.texY = (int)cub->ptx.textPos & (cub->stx[cub->ptx.texNum].height - 1);
 		cub->ptx.textPos += cub->ptx.step;
-		my_mlx_pixel_put(cub, x, y, my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY));
+		my_mlx_pixel_put(cub, x, y, color);
 		y++;
 	}
 	return (y);
@@ -125,8 +130,8 @@ int	paint_floor(t_cube *cub, int x, int y)
 	}
 	cub->ptx.distWall = cub->ray.perpWallDist;
     cub->ptx.distPlayer = 0.0;
-	if (cub->ray.drawEnd < 0)
-		cub->ray.drawEnd = cub->resY;
+	// if (cub->ray.drawEnd < 0)
+	// 	cub->ray.drawEnd = cub->resY;
 	while (y < cub->resY)
 	{
 	cub->ptx.currentDist = cub->resY / (2.0 * y - cub->resY); //you could make a small lookup table for this instead
@@ -159,7 +164,7 @@ void	print_raydir_x_y(t_cube *cub, int x)
 			y = paint_wall(cub, x, y);
 		else if (y > cub->ray.drawEnd)
 		{
-			cub->ptx.texNum = 4;
+			cub->ptx.texNum = 5;
 			y = paint_floor(cub, x, y);
 		}
 		y++;
