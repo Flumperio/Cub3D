@@ -1,11 +1,11 @@
 R 1200 600
-NO ./textures/santana.xpm
-SO ./textures/stouf.xpm
-WE ./textures/hitler.xpm
-EA ./textures/blue.xpm
+NO ./textures/444.xpm
+SO ./textures/111.xpm
+WE ./textures/222.xpm
+EA ./textures/333.xpm
 S ./textures/barrel.xpm
-F 255,165,0
-C 0,255,255
+F 44,41,49
+C 200,200,200
 
 111111111111
 100000011111
