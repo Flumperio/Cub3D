@@ -6,14 +6,11 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/22 18:30:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/25 11:58:19 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-// int		raycast_loop(t_cube *cub);
-// void	pl_move(t_cube *cub);
 
 int	to_rgb(int r, int g, int b)
 {
@@ -77,9 +74,6 @@ void	set_tex_id(t_cube *cub)
 
 void	text_calc(t_cube *cub)
 {
-	//int	y;
-
-	//y = cub->ray.drawStart;
 	set_tex_id(cub);
 	if (cub->ray.side == 0)
 		cub->ptx.wallX = cub->pyr.posY + cub->ray.perpWallDist * cub->ray.rayDirY;
@@ -91,18 +85,9 @@ void	text_calc(t_cube *cub)
 		cub->ptx.texX = cub->stx[cub->ptx.texNum].width - cub->ptx.texX - 1;
 	if (cub->ray.side == 1 && cub->ray.rayDirY < 0)
 		cub->ptx.texX = cub->stx[cub->ptx.texNum].width - cub->ptx.texX - 1;
-	/*
-	** Increase Texture
-	*/
-	// cub->ptx.step = 1.0 * cub->stx[cub->ptx.texNum].height / cub->ray.lineHeight;
-	// cub->ptx.textPos = (cub->ray.drawStart - cub->resY / 2 + cub->ray.lineHeight / 2) * cub->ptx.step;
-
- 	// cub->ptx.texY = (int)cub->ptx.textPos & (cub->stx[cub->ptx.texNum].height - 1);
- 	// cub->ptx.textPos += cub->ptx.step;
- 	//cub->ray.wall_color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
 }
 
-void	paint(t_cube *cub, int x, int y)
+int	paint_wall(t_cube *cub, int x, int y)
 {
 	cub->ptx.step = 1.0 * cub->stx[cub->ptx.texNum].height / cub->ray.lineHeight;
 	cub->ptx.textPos = (cub->ray.drawStart - cub->resY / 2 + cub->ray.lineHeight / 2) * cub->ptx.step;
@@ -113,6 +98,7 @@ void	paint(t_cube *cub, int x, int y)
 		my_mlx_pixel_put(cub, x, y, my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY));
 		y++;
 	}
+	return (y);
 }
 
 void	print_raydir_x_y(t_cube *cub, int x)
@@ -126,14 +112,12 @@ void	print_raydir_x_y(t_cube *cub, int x)
 	{
 		if (y < cub->ray.drawStart)
 			my_mlx_pixel_put(cub, x, y, (int)(cub->c_color + cos(y)));
-		// else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
-		// 	my_mlx_pixel_put(cub, x, y, my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY));
+		else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
+			y = paint_wall(cub, x, y);
 		else if (y > cub->ray.drawEnd)
 			my_mlx_pixel_put(cub, x, y, cub->f_color);
 		y++;
 	}
-	y = cub->ray.drawStart;
-	paint(cub, x, y);
 }
 
 int	raycast_loop(t_cube *cub)
@@ -151,7 +135,6 @@ int	raycast_loop(t_cube *cub)
 		set_raydir_x_y(cub);
 		hit_raydir_x_y(cub);
 		size_raydir_x_y(cub);
-		//text_calc(cub);
 		print_raydir_x_y(cub, x);
 		x++;
 	}
