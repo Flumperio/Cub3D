@@ -5,6 +5,7 @@ WE ./textures/WE.xpm
 EA ./textures/EA.xpm
 S ./textures/EGG.xpm
 TF ./textures/TF-2.xpm
+UT ./textures/UT.xpm
 F 44,41,49
 C 200,200,200
 

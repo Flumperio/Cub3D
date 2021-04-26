@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/25 13:06:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:57:28 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,8 +209,8 @@ typedef struct s_cube
 	t_ray		ray;
 	t_bol		bol;
 	t_ptx		ptx;
-	t_tex		tex[12];
-	t_stx		stx[6];
+	t_tex		tex[13];
+	t_stx		stx[7];
 }				t_cube;
 /*
 ** Check Arguments

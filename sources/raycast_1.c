@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/25 13:46:30 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:27:55 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	stg_tex(t_cube *cub)
 	int	cnt;
 
 	cnt = 0;
-	while (cnt <= 5)
+	while (cnt <= 6)
 	{
 		cub->stx[cnt].img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->tex[cnt].path, &cub->stx[cnt].width, &cub->stx[cnt].height);
 		cub->stx[cnt].addr = mlx_get_data_addr(cub->stx[cnt].img, &cub->stx[cnt].bpp, &cub->stx[cnt].ll, &cub->stx[cnt].e);
@@ -79,7 +79,7 @@ void	text_calc(t_cube *cub)
 		cub->ptx.wallX = cub->pyr.posY + cub->ray.perpWallDist * cub->ray.rayDirY;
 	else
 		cub->ptx.wallX = cub->pyr.posX + cub->ray.perpWallDist * cub->ray.rayDirX;
-	cub->ptx.wallX -= floor(cub->ptx.wallX);
+	cub->ptx.wallX -= (int)fabs(cub->ptx.wallX);
 	cub->ptx.texX = (int)(cub->ptx.wallX * (double)cub->stx[cub->ptx.texNum].width);
 	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
 		cub->ptx.texX = cub->stx[cub->ptx.texNum].width - cub->ptx.texX - 1;
@@ -96,8 +96,8 @@ int	paint_wall(t_cube *cub, int x, int y)
 	while (y < cub->ray.drawEnd)
 	{
 		color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
-		if(cub->ray.side == 1)
-			color = (color >> 1) & 8355711;
+		// if(cub->ray.side == 1)
+		// 	color = (color >> 1) & 8355711;
 		cub->ptx.texY = (int)cub->ptx.textPos & (cub->stx[cub->ptx.texNum].height - 1);
 		cub->ptx.textPos += cub->ptx.step;
 		my_mlx_pixel_put(cub, x, y, color);
@@ -113,38 +113,77 @@ int	paint_floor(t_cube *cub, int x, int y)
 		cub->ptx.floorXWall = cub->ray.mapX;
         cub->ptx.floorYWall = cub->ray.mapY + cub->ptx.wallX;
 	}
-	if (cub->ray.side == 0 && cub->ray.rayDirX <= 0)
+	else if (cub->ray.side == 0 && cub->ray.rayDirX <= 0)
 	{
 		cub->ptx.floorXWall = cub->ray.mapX + 1.0;
         cub->ptx.floorYWall = cub->ray.mapY + cub->ptx.wallX;
 	}
-	if (cub->ray.side == 1 && cub->ray.rayDirY > 0)
+	else if (cub->ray.side == 1 && cub->ray.rayDirY > 0)
 	{
 		cub->ptx.floorXWall = cub->ray.mapX + cub->ptx.wallX;
         cub->ptx.floorYWall = cub->ray.mapY;
 	}
-	if (cub->ray.side == 1 && cub->ray.rayDirY <= 0)
+	else
 	{
 		cub->ptx.floorXWall = cub->ray.mapX + cub->ptx.wallX;
         cub->ptx.floorYWall = cub->ray.mapY + 1.0;
 	}
 	cub->ptx.distWall = cub->ray.perpWallDist;
     cub->ptx.distPlayer = 0.0;
-	// if (cub->ray.drawEnd < 0)
-	// 	cub->ray.drawEnd = cub->resY;
 	while (y < cub->resY)
 	{
-	cub->ptx.currentDist = cub->resY / (2.0 * y - cub->resY); //you could make a small lookup table for this instead
+		cub->ptx.currentDist = cub->resY / (2.0 * y - cub->resY); //you could make a small lookup table for this instead
 
-	cub->ptx.weight = (cub->ptx.currentDist - cub->ptx.distPlayer) / (cub->ptx.distWall - cub->ptx.distPlayer);
+		cub->ptx.weight = (cub->ptx.currentDist - cub->ptx.distPlayer) / (cub->ptx.distWall - cub->ptx.distPlayer);
 
-	cub->ptx.currentFloorX = cub->ptx.weight * cub->ptx.floorXWall + (1.0 - cub->ptx.weight) * cub->pyr.posX;
-	cub->ptx.currentFloorY = cub->ptx.weight * cub->ptx.floorYWall + (1.0 - cub->ptx.weight) * cub->pyr.posY;
+		cub->ptx.currentFloorX = cub->ptx.weight * cub->ptx.floorXWall + (1.0 - cub->ptx.weight) * cub->pyr.posX;
+		cub->ptx.currentFloorY = cub->ptx.weight * cub->ptx.floorYWall + (1.0 - cub->ptx.weight) * cub->pyr.posY;
 
-	cub->ptx.floorTexX = (int)(cub->ptx.currentFloorX * cub->stx[cub->ptx.texNum].width) % cub->stx[cub->ptx.texNum].width;
-	cub->ptx.floorTexY = (int)(cub->ptx.currentFloorY * cub->stx[cub->ptx.texNum].height) % cub->stx[cub->ptx.texNum].height;
-	my_mlx_pixel_put(cub, x, y, my_get_color_pixel(cub, cub->ptx.floorTexX, cub->ptx.floorTexY));
-	y++;
+		cub->ptx.floorTexX = (int)(cub->ptx.currentFloorX * cub->stx[cub->ptx.texNum].width) % cub->stx[cub->ptx.texNum].width;
+		cub->ptx.floorTexY = (int)(cub->ptx.currentFloorY * cub->stx[cub->ptx.texNum].height) % cub->stx[cub->ptx.texNum].height;
+		my_mlx_pixel_put(cub, x, y, my_get_color_pixel(cub, cub->ptx.floorTexX, cub->ptx.floorTexY));
+		y++;
+	}
+	return (y);
+}
+
+int	paint_ceiling(t_cube *cub, int x, int y)
+{
+	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
+	{
+		cub->ptx.floorXWall = cub->ray.mapX;
+        cub->ptx.floorYWall = cub->ray.mapY + cub->ptx.wallX;
+	}
+	else if (cub->ray.side == 0 && cub->ray.rayDirX <= 0)
+	{
+		cub->ptx.floorXWall = cub->ray.mapX + 1.0;
+        cub->ptx.floorYWall = cub->ray.mapY + cub->ptx.wallX;
+	}
+	else if (cub->ray.side == 1 && cub->ray.rayDirY > 0)
+	{
+		cub->ptx.floorXWall = cub->ray.mapX + cub->ptx.wallX;
+        cub->ptx.floorYWall = cub->ray.mapY;
+	}
+	else
+	{
+		cub->ptx.floorXWall = cub->ray.mapX + cub->ptx.wallX;
+        cub->ptx.floorYWall = cub->ray.mapY + 1.0;
+	}
+	cub->ptx.distWall = cub->ray.perpWallDist;
+    cub->ptx.distPlayer = 0.0;
+	while (y < cub->ray.drawStart)
+	{
+		cub->ptx.currentDist = cub->resY / (2.0 * y - cub->resY); //you could make a small lookup table for this instead
+
+		cub->ptx.weight = (cub->ptx.currentDist - cub->ptx.distPlayer) / (cub->ptx.distWall - cub->ptx.distPlayer);
+
+		cub->ptx.currentFloorX = cub->ptx.weight * cub->ptx.floorXWall + (1.0 - cub->ptx.weight) * cub->pyr.posX;
+		cub->ptx.currentFloorY = cub->ptx.weight * cub->ptx.floorYWall + (1.0 - cub->ptx.weight) * cub->pyr.posY;
+
+		cub->ptx.floorTexX = (int)(cub->ptx.currentFloorX * cub->stx[cub->ptx.texNum].width) % cub->stx[cub->ptx.texNum].width;
+		cub->ptx.floorTexY = (int)(cub->ptx.currentFloorY * cub->stx[cub->ptx.texNum].height) % cub->stx[cub->ptx.texNum].height;
+		my_mlx_pixel_put(cub, x, y, my_get_color_pixel(cub, cub->ptx.floorTexX, cub->ptx.floorTexY));
+		y++;
 	}
 	return (y);
 }
@@ -159,9 +198,16 @@ void	print_raydir_x_y(t_cube *cub, int x)
 	while (y < cub->resY)
 	{
 		if (y < cub->ray.drawStart)
-			my_mlx_pixel_put(cub, x, y, (int)(cub->c_color + cos(y)));
+		{
+			cub->ptx.texNum = 6;
+			y = paint_ceiling(cub, x, y);
+		}
+
 		else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
+		{
+			text_calc(cub);
 			y = paint_wall(cub, x, y);
+		}
 		else if (y > cub->ray.drawEnd)
 		{
 			cub->ptx.texNum = 5;
@@ -204,3 +250,26 @@ void	test(t_cube *cub)
 	mlx_loop_hook(cub->mlx.mlx, raycast_loop, cub);
 	mlx_loop(cub->mlx.mlx);
 }
+
+
+// void	print_raydir_x_y(t_cube *cub, int x)
+// {
+// 	int		y;
+
+// 	y = 0;
+
+// 	text_calc(cub);
+// 	while (y < cub->resY)
+// 	{
+// 		if (y < cub->ray.drawStart)
+// 			my_mlx_pixel_put(cub, x, y, (int)(cub->c_color + cos(y)));
+// 		else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
+// 			y = paint_wall(cub, x, y);
+// 		else if (y > cub->ray.drawEnd)
+// 		{
+// 			cub->ptx.texNum = 5;
+// 			y = paint_floor(cub, x, y);
+// 		}
+// 		y++;
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 08:12:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:46:08 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ void	chk_map(t_cube *cub)
 	int	cnt;
 
 	cnt = 0;
-	cub->tex[8].exis = 0;
-	cub->tex[9].exis = 0;
+	cub->tex[10].exis = 0;
+	cub->tex[11].exis = 0;
 	if (cub->strg_map == 1)
 		cnvrt_map(cub);
 	else
