@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:39:36 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/19 15:25:28 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:41:19 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	move_sl(t_cube *cub)
 }
 void	move_sr(t_cube *cub)
 {
-	if (cub->wrk_map[(int)(cub->pyr.posX + cub->ray.dirY * cub->ray.moveSpeed)][(int)cub->pyr.posY] == 48)if (cub->wrk_map[(int)(cub->pyr.posX - cub->ray.dirY * cub->ray.moveSpeed)][(int)cub->pyr.posY] == 48)
+	if (cub->wrk_map[(int)(cub->pyr.posX + cub->ray.dirY * cub->ray.moveSpeed)][(int)cub->pyr.posY] == 48)
 		cub->pyr.posX += cub->ray.dirY * cub->ray.moveSpeed;
 	if (cub->wrk_map[(int)cub->pyr.posX][(int)(cub->pyr.posY - cub->ray.dirX * cub->ray.moveSpeed)] == 48)
 		cub->pyr.posY -= cub->ray.dirX * cub->ray.moveSpeed;

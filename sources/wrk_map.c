@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/16 15:58:01 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/28 13:32:49 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	tmp_map(t_cube *cub)
 void	cnvrt_map(t_cube *cub)
 {
 	int		cnt;
+
 	cnt = 0;
 	while (cub->line[cnt] != '\0')
 	{

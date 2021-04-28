@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/26 12:46:08 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:11:27 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	texture_all(t_cube *cub)
 		else
 		{
 			printf("Texture Extension %s is not correct.\n",
-			cub->tex[cub->tmp].name);
+				cub->tex[cub->tmp].name);
 			exit(9);
 		}
 		file_exist(cub->tex[cub->tmp].path, cub->tex[cub->tmp].name);
