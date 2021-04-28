@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/04/22 16:56:33 by juasanto         ###   ########.fr        #
+#    Updated: 2021/04/28 13:28:30 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ SRCS		= 	cube3d.c \
 				cls_map.c \
 				raycast_1.c \
 				raycast_2.c \
+				raycast_3.c \
+				raycast_utils.c \
+				raycast_print.c \
 				key_mng.c \
 				move_1.c \
 				move_2.c

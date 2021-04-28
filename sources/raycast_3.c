@@ -1,67 +1,101 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_1_old.c                                    :+:      :+:    :+:   */
+/*   raycast_3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/05 12:02:48 by juasanto         ###   ########.fr       */
+/*   Created: 2021/04/28 13:17:15 by juasanto          #+#    #+#             */
+/*   Updated: 2021/04/28 13:19:19 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int	deal_key(int key, void *param)
+void	set_tex_id(t_cube *cub)
 {
-	key++;
-	param++;
-	printf("%i -- %i ", key, (int)param);
-	return (0);
+	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
+		cub->ptx.texNum = NO;
+	if (cub->ray.side == 0 && cub->ray.rayDirX <= 0)
+		cub->ptx.texNum = SO;
+	if (cub->ray.side == 1 && cub->ray.rayDirY > 0)
+		cub->ptx.texNum = EA;
+	if (cub->ray.side == 1 && cub->ray.rayDirY <= 0)
+		cub->ptx.texNum = WE;
 }
-int	to_rgb(int r, int g, int b)
+
+void	set_fc_id(t_cube *cub)
 {
-	return((b * 1) + (g * 256) + (r * 256 * 256));
-}
-
-void	test(t_cube *cub, t_map *map)
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		size_x;
-	int		size_y;
-	int		color_f;
-	int		color_c;
-	int		cnt;
-	//void	*img[5];
-
-	size_x = 1;
-	size_y = 1;
-	map->temp = 0;
-	cub->tmp = 0;
-	cnt = -1;
-	color_f = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
-	color_c = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, cub->p_rx, cub->p_ry, cub->f_name);
-
-	while (cnt++ < 4)
-		cub->tex[cnt].img = mlx_xpm_file_to_image(mlx_ptr, cub->tex[cnt].path, &size_x, &size_y);
-	size_x = 1;
-	size_y = 1;
-	cnt = 0;
-	while (cnt <= 4)
+	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
 	{
-		while (size_x < (64 * 10))
-			{
-				mlx_put_image_to_window(mlx_ptr, win_ptr, cub->tex[cnt].img, size_x, size_y);
-				size_x += 63;
-			}
-		cnt++;
-		size_y += 63;
-		size_x = 1;
+		cub->ptx.floorXWall = cub->ray.mapX;
+        cub->ptx.floorYWall = cub->ray.mapY + cub->ptx.wallX;
 	}
-	//mlx_put_image_to_window(mlx_ptr, win_ptr, img, 10, 10);
-	mlx_key_hook (win_ptr, deal_key, (void *) 0);
-	mlx_loop(mlx_ptr);
+	else if (cub->ray.side == 0 && cub->ray.rayDirX < 0)
+	{
+		cub->ptx.floorXWall = cub->ray.mapX + 1.0;
+        cub->ptx.floorYWall = cub->ray.mapY + cub->ptx.wallX;
+	}
+	else if (cub->ray.side == 1 && cub->ray.rayDirY > 0)
+	{
+		cub->ptx.floorXWall = cub->ray.mapX + cub->ptx.wallX;
+        cub->ptx.floorYWall = cub->ray.mapY;
+	}
+	else
+	{
+		cub->ptx.floorXWall = cub->ray.mapX + cub->ptx.wallX;
+        cub->ptx.floorYWall = cub->ray.mapY + 1.0;
+	}
+}
+
+void	text_calc(t_cube *cub)
+{
+	set_tex_id(cub);
+	if (cub->ray.side == 0)
+		cub->ptx.wallX = cub->pyr.posY + cub->ray.perpWallDist * cub->ray.rayDirY;
+	else
+		cub->ptx.wallX = cub->pyr.posX + cub->ray.perpWallDist * cub->ray.rayDirX;
+	cub->ptx.wallX -= (int)fabs(cub->ptx.wallX);
+	cub->ptx.texX = (int)(cub->ptx.wallX * (double)cub->stx[cub->ptx.texNum].width);
+	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
+		cub->ptx.texX = cub->stx[cub->ptx.texNum].width - cub->ptx.texX - 1;
+	if (cub->ray.side == 1 && cub->ray.rayDirY < 0)
+		cub->ptx.texX = cub->stx[cub->ptx.texNum].width - cub->ptx.texX - 1;
+}
+
+int	paint_wall(t_cube *cub, int x, int y)
+{
+	int	color;
+
+	text_calc(cub);
+	cub->ptx.step = 1.0 * cub->stx[cub->ptx.texNum].height / cub->ray.lineHeight;
+	cub->ptx.textPos = (cub->ray.drawStart - cub->resY / 2 + cub->ray.lineHeight / 2) * cub->ptx.step;
+	while (y < cub->ray.drawEnd)
+	{
+		color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
+		cub->ptx.texY = (int)cub->ptx.textPos & (cub->stx[cub->ptx.texNum].height - 1);
+		cub->ptx.textPos += cub->ptx.step;
+		my_mlx_pixel_put(cub, x, y, color);
+		y++;
+	}
+	return (y);
+}
+
+int	print_fc(t_cube *cub, int x, int y, int max_y)
+{
+	while (y < max_y)
+	{
+		cub->ptx.currentDist = cub->resY / (2.0 * y - cub->resY);
+
+		cub->ptx.weight = (cub->ptx.currentDist - cub->ptx.distPlayer) / (cub->ptx.distWall - cub->ptx.distPlayer);
+
+		cub->ptx.currentFloorX = cub->ptx.weight * cub->ptx.floorXWall + (1.0 - cub->ptx.weight) * cub->pyr.posX;
+		cub->ptx.currentFloorY = cub->ptx.weight * cub->ptx.floorYWall + (1.0 - cub->ptx.weight) * cub->pyr.posY;
+
+		cub->ptx.floorTexX = (int)(cub->ptx.currentFloorX * cub->stx[cub->ptx.texNum].width) % cub->stx[cub->ptx.texNum].width;
+		cub->ptx.floorTexY = (int)(cub->ptx.currentFloorY * cub->stx[cub->ptx.texNum].height) % cub->stx[cub->ptx.texNum].height;
+		my_mlx_pixel_put(cub, x, y, my_get_color_pixel(cub, cub->ptx.floorTexX, cub->ptx.floorTexY));
+		y++;
+	}
+	return (y);
 }

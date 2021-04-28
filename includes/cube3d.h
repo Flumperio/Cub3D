@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/26 12:57:28 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/28 13:28:11 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,10 @@ int				atoi_b(t_cube *cub);
 int				file_exist(char *file, char *name);
 void			texture_all(t_cube *cub);
 int				to_rgb(int r, int g, int b);
+void			my_mlx_pixel_put(t_cube *cub, int x, int y, int color);
+int				my_get_color_pixel(t_cube *cub, int x, int y);
+void			stg_tex(t_cube *cub);
+void			set_color_wall(t_cube *cub);
 /*
 ** Key Manage
 */
@@ -261,6 +265,17 @@ void			init_raydir_x_y(t_cube *cub, int x);
 void			set_raydir_x_y(t_cube *cub);
 void			hit_raydir_x_y(t_cube *cub);
 void			size_raydir_x_y(t_cube *cub);
+int				paint_floor(t_cube *cub, int x, int y);
+int				paint_ceiling(t_cube *cub, int x, int y);
+void			print_raydir_x_y(t_cube *cub, int x);
+/*
+** Print RayCast
+*/
+void			set_tex_id(t_cube *cub);
+void			set_fc_id(t_cube *cub);
+void			text_calc(t_cube *cub);
+int				paint_wall(t_cube *cub, int x, int y);
+int				print_fc(t_cube *cub, int x, int y, int max_y);
 /*
 ** Funtions Moves
 */
