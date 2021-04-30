@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/26 12:07:51 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 08:27:30 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	cub.sprites = (t_map *)ft_calloc(sizeof(t_map), cub.cnt_2 + 1);
 	tmp_map(&cub);
 	cls_map(&cub, cub.pyr.posX, cub.pyr.posY);
-	test(&cub);
+	raycast(&cub);
 	printf("MAP OK.\n");
 	system("leaks cub3D");
 	return (0);

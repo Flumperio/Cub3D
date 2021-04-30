@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:06:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 08:27:52 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	raycast_loop(t_cube *cub)
 	return (0);
 }
 
-void	test(t_cube *cub)
+void	raycast(t_cube *cub)
 {
 	init_ray(cub);
 	stg_tex(cub);

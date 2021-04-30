@@ -1,5 +1,12 @@
 {
 	"files.associations": {
-		"cube3d.h": "c"
+		"cube3d.h": "c",
+		"__config": "c",
+		"__cxx_version": "c",
+		"atomic": "c",
+		"bitset": "c",
+		"locale": "c",
+		"type_traits": "c",
+		"algorithm": "c"
 	}
 }

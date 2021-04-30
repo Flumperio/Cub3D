@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/28 13:28:11 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 08:27:49 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ int				cls_map(t_cube *cub, int x, int y);
 /*
 ** RayCast
 */
-void			test(t_cube *cub);
+void			raycast(t_cube *cub);
 void			init_ray(t_cube *cub);
 void			init_raydir_x_y(t_cube *cub, int x);
 void			set_raydir_x_y(t_cube *cub);
