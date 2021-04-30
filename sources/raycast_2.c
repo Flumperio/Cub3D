@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/28 15:45:54 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 08:08:08 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,26 @@ void	set_raydir_x_y(t_cube *cub)
 	if (cub->ray.rayDirX < 0)
 	{
 		cub->ray.stepX = -1;
-		cub->ray.sideDistX = (cub->pyr.posX - cub->ray.mapX) * \
-			cub->ray.deltaDistX;
+		cub->ray.sideDistX = (cub->pyr.posX - cub->ray.mapX)
+			* cub->ray.deltaDistX;
 	}
 	else
 	{
 		cub->ray.stepX = 1;
-		cub->ray.sideDistX = (cub->ray.mapX + 1.0 - cub->pyr.posX) * \
-			cub->ray.deltaDistX;
+		cub->ray.sideDistX = (cub->ray.mapX + 1.0 - cub->pyr.posX)
+			* cub->ray.deltaDistX;
 	}
 	if (cub->ray.rayDirY < 0)
 	{
 		cub->ray.stepY = -1;
-		cub->ray.sideDistY = (cub->pyr.posY - cub->ray.mapY) * \
-			cub->ray.deltaDistY;
+		cub->ray.sideDistY = (cub->pyr.posY - cub->ray.mapY)
+			* cub->ray.deltaDistY;
 	}
 	else
 	{
 		cub->ray.stepY = 1;
-		cub->ray.sideDistY = (cub->ray.mapY + 1.0 - cub->pyr.posY) * \
-			cub->ray.deltaDistY;
+		cub->ray.sideDistY = (cub->ray.mapY + 1.0 - cub->pyr.posY)
+			* cub->ray.deltaDistY;
 	}
 }
 
@@ -98,11 +98,11 @@ void	hit_raydir_x_y(t_cube *cub)
 void	size_raydir_x_y(t_cube *cub)
 {
 	if (cub->ray.side == 0)
-		cub->ray.perpWallDist = (cub->ray.mapX - cub->pyr.posX + \
-			(1 - cub->ray.stepX) / 2) / cub->ray.rayDirX;
+		cub->ray.perpWallDist = (cub->ray.mapX - cub->pyr.posX
+				+ (1 - cub->ray.stepX) / 2) / cub->ray.rayDirX;
 	else
-		cub->ray.perpWallDist = (cub->ray.mapY - cub->pyr.posY + \
-			(1 - cub->ray.stepY) / 2) / cub->ray.rayDirY;
+		cub->ray.perpWallDist = (cub->ray.mapY - cub->pyr.posY
+				+ (1 - cub->ray.stepY) / 2) / cub->ray.rayDirY;
 	cub->ray.lineHeight = (int)(cub->resY / cub->ray.perpWallDist);
 	cub->ray.drawStart = -cub->ray.lineHeight / 2 + cub->resY / 2;
 	if (cub->ray.drawStart < 0)

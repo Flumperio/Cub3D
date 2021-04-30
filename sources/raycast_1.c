@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/28 13:29:11 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 08:06:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	raycast_loop(t_cube *cub)
 	x = 0;
 	pl_move(cub);
 	cub->mlx.img = mlx_new_image(cub->mlx.mlx, cub->resX, cub->resY);
-	cub->mlx.addr = mlx_get_data_addr(cub->mlx.img, &cub->mlx.bits_per_pixel, \
-		&cub->mlx.line_length, &cub->mlx.endian);
+	cub->mlx.addr = mlx_get_data_addr(cub->mlx.img, &cub->mlx.bits_per_pixel,
+			&cub->mlx.line_length, &cub->mlx.endian);
 	while (x < cub->resX)
 	{
 		init_raydir_x_y(cub, x);
