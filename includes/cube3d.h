@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:49:28 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 11:40:35 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ typedef struct s_spr
 	double			x_pos;
 	double			y_pos;
 	double			ZBuffer;
+	int				spriteOrder;
+	double			spriteDistance;
 }					t_spr;
 /*
 ** MLX
@@ -277,6 +279,10 @@ void			set_fc_id(t_cube *cub);
 void			text_calc(t_cube *cub);
 int				paint_wall(t_cube *cub, int x, int y);
 int				print_fc(t_cube *cub, int x, int y, int max_y);
+/*
+** Sprites
+*/
+void			sprites(t_cube *cub);
 /*
 ** Funtions Moves
 */

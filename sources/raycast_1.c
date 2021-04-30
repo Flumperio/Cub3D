@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:27:52 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 12:10:41 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	raycast(t_cube *cub)
 {
 	init_ray(cub);
 	stg_tex(cub);
+	sprites(cub);
 	mlx_hook(cub->mlx.mlx_win, 2, 1L << 0, key_press, cub);
 	mlx_hook(cub->mlx.mlx_win, 3, 1L << 1, key_relea, cub);
 	mlx_hook(cub->mlx.mlx_win, 17, 1L << 17, ui_cross_exit, cub);

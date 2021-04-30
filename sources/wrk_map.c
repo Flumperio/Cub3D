@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:51:32 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 12:49:17 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void	strg_pl_pos(t_cube *cub, int x, int y)
 
 void	strg_sp_pos(t_cube *cub, int x, int y)
 {
-	cub->spr[cub->spr->sp_num].x_pos = x + 0.5;
-	cub->spr[cub->spr->sp_num].y_pos = y + 0.5;
-	cub->spr->sp_num++;
+	cub->spr[cub->spr[0].sp_num].x_pos = x + 0.5;
+	cub->spr[cub->spr[0].sp_num].y_pos = y + 0.5;
+	cub->spr[cub->spr[0].sp_num].spriteOrder = cub->spr[0].sp_num;
+	cub->spr[0].sp_num++;
 	cub->tmp_map[x][y] = '0';
 }
 
