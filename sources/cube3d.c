@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:27:30 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 08:50:09 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	chk_args(argc, argv, &cub);
 	chk_file(&cub);
 	strg_map(&cub);
-	cub.sprites = (t_map *)ft_calloc(sizeof(t_map), cub.cnt_2 + 1);
+	cub.spr = (t_spr *)ft_calloc(sizeof(t_spr), cub.cnt_2 + 1);
 	tmp_map(&cub);
 	cls_map(&cub, cub.pyr.posX, cub.pyr.posY);
 	raycast(&cub);

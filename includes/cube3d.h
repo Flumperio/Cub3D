@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:27:49 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 08:49:28 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,13 @@ typedef struct s_bol
 /*
 ** Sprites
 */
-typedef struct s_map
+typedef struct s_spr
 {
 	int				sp_num;
-	int				x_pos;
-	int				y_pos;
-}					t_map;
+	double			x_pos;
+	double			y_pos;
+	double			ZBuffer;
+}					t_spr;
 /*
 ** MLX
 */
@@ -203,7 +204,7 @@ typedef struct s_cube
 	char		*map_value;
 	int			cnt_map;
 	int			cnt_2;
-	t_map		*sprites;
+	t_spr		*spr;
 	t_pyr		pyr;
 	t_mlx		mlx;
 	t_ray		ray;
