@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 12:24:12 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/04/30 18:09:43 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sprites(t_cube *cub)
 	{
 		//cub->spr[cnt].spriteOrder = cnt;
 		cub->spr[cnt].spriteDistance = ((cub->pyr.posX - cub->spr[cnt].x_pos) * (cub->pyr.posX - cub->spr[cnt].x_pos) + (cub->pyr.posY - cub->spr[cnt].y_pos) * (cub->pyr.posY - cub->spr[cnt].y_pos));
-		printf("SP_num: %i -- SP_Order: %i -- SP_Dis: %f\n", cub->spr[cnt].sp_num, cub->spr[cnt].spriteOrder, cub->spr[cnt].spriteDistance);
+		printf("SP_Order: %i -- SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteOrder, cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
 		cnt++;
 	}
 }
