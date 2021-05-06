@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/05 16:09:28 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/06 14:02:55 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,12 @@ void merge(t_cube *cub, int l, int m, int r)
     int n1 = m - l + 1;
     int n2 = r - m;
 
-    /* create temp arrays */
-    //int L[n1], D[n2];
-
 	t_spr SPR_L[n1];
 	t_spr SPR_D[n2];
-
-    /* Copy data to temp arrays L[] and R[] */
     for (i = 0; i < n1; i++)
         SPR_L[i] = cub->spr[l + i];
     for (j = 0; j < n2; j++)
         SPR_D[j] = cub->spr[m + 1 + j];
-
-    /* Merge the temp arrays back into arr[l..r]*/
     i = 0; // Initial index of first subarray
     j = 0; // Initial index of second subarray
     k = l; // Initial index of merged subarray
@@ -96,17 +89,12 @@ void merge(t_cube *cub, int l, int m, int r)
         }
         k++;
     }
-
-    /* Copy the remaining elements of L[], if there
-    are any */
-    while (i < n1) {
+    while (i < n1)
+	{
         cub->spr[k] = SPR_L[i];
         i++;
         k++;
     }
-
-    /* Copy the remaining elements of R[], if there
-    are any */
     while (j < n2) {
         cub->spr[k] = SPR_D[j];
         j++;
@@ -114,19 +102,13 @@ void merge(t_cube *cub, int l, int m, int r)
     }
 }
 
-/* l is for left index and r is right index of the
-sub-array of arr to be sorted */
 void mergeSort(t_cube *cub, int l, int r)
 {
-    if (l < r) {
-        // Same as (l+r)/2, but avoids overflow for
-        // large l and h
+    if (l < r)
+	{
         int m = l + (r - l) / 2;
-
-        // Sort first and second halves
         mergeSort(cub, l, m);
         mergeSort(cub, m + 1, r);
-
         merge(cub, l, m, r);
     }
 }
