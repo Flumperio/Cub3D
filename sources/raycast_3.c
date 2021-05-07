@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:17:15 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/07 13:45:12 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/07 17:29:14 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,6 @@ int	paint_wall(t_cube *cub, int x, int y)
 		/ cub->ray.lineHeight;
 	cub->ptx.textPos = (cub->ray.drawStart - cub->resY
 			/ 2 + cub->ray.lineHeight / 2) * cub->ptx.step;
-	/**
-	 * bufferZ añadido para los sprites
-	 **/
-	cub->spr->ZBuffer = cub->ray.perpWallDist;
 	while (y < cub->ray.drawEnd)
 	{
 		color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:08:08 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/07 18:02:53 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ void	hit_raydir_x_y(t_cube *cub)
 			cub->ray.mapY += cub->ray.stepY;
 			cub->ray.side = 1;
 		}
-		if (cub->wrk_map[cub->ray.mapX][cub->ray.mapY] > '0')
+			if (cub->wrk_map[cub->ray.mapX][cub->ray.mapY] > '0' &&
+				cub->wrk_map[cub->ray.mapX][cub->ray.mapY] < '2')
 			cub->ray.hit = 1;
+		// if (cub->wrk_map[cub->ray.mapX][cub->ray.mapY] > '0')
+		// 	cub->ray.hit = 1;
 	}
 }
 

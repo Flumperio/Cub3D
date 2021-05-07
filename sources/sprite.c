@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/07 13:59:46 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/07 17:15:58 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ void	sprites(t_cube *cub)
 	while(cnt < max)
 	{
 		cub->spr[cnt].spriteDistance = ((cub->pyr.posX - cub->spr[cnt].x_pos) * (cub->pyr.posX - cub->spr[cnt].x_pos) + (cub->pyr.posY - cub->spr[cnt].y_pos) * (cub->pyr.posY - cub->spr[cnt].y_pos));
-			/**
-	 	* bufferZ añadido para los sprites
-	 	**/
-		cub->spr[cnt].ZBuffer = cub->ray.perpWallDist;
 		printf("SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
 		cnt++;
 	}
@@ -92,7 +88,7 @@ void	sprites(t_cube *cub)
 	}
 }
 
-void	sprites_print (t_cube *cub)
+void	sprites_print (t_cube *cub, int x)
 {
 	int	cnt;
 	int	stripe;
@@ -132,7 +128,7 @@ void	sprites_print (t_cube *cub)
 		while (stripe < cub->spr->drawEndX)
 		{
 			cub->ptx.texX = (int)(256 * (stripe - (-cub->spr->spriteWidth / 2 + cub->spr->spriteScreenX)) * cub->stx->width / cub->spr->spriteWidth) / 256;
-			if (cub->spr->transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr->transformY < cub->spr[stripe].ZBuffer)
+			if (cub->spr->transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr->transformY < cub->resY)
 			{
 				y = cub->spr->drawStartY;
 				while (y < cub->spr->drawEndY)
