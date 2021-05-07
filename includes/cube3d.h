@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 11:40:35 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/07 14:00:33 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,19 @@ typedef struct s_spr
 	double			ZBuffer;
 	int				spriteOrder;
 	double			spriteDistance;
+	double			spriteX;
+	double			spriteY;
+	double			invDet;
+	double			transformX;
+	double			transformY;
+	int				spriteScreenX;
+	int				spriteHeight;
+	int				drawStartY;
+	int				drawEndY;
+	int				spriteWidth;
+	int				drawStartX;
+	int				drawEndX;
+
 }					t_spr;
 /*
 ** MLX
