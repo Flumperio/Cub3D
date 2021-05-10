@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/07 17:15:58 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/09 13:42:09 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void merge(t_cube *cub, int l, int m, int r)
 	k = l; // Initial index of merged subarray
 	while (i < n1 && j < n2)
 	{
-		if (SPR_L[i].spriteDistance <= SPR_D[j].spriteDistance) {
+		if (SPR_L[i].spriteDistance >= SPR_D[j].spriteDistance) {
 			cub->spr[k] = SPR_L[i];
 			i++;
 		}
@@ -72,31 +72,37 @@ void	sprites(t_cube *cub)
 	int	max;
 
 	cnt = 0;
-	max = cub->spr[0].sp_num;
+	max = cub->cnt_2;
 	while(cnt < max)
 	{
 		cub->spr[cnt].spriteDistance = ((cub->pyr.posX - cub->spr[cnt].x_pos) * (cub->pyr.posX - cub->spr[cnt].x_pos) + (cub->pyr.posY - cub->spr[cnt].y_pos) * (cub->pyr.posY - cub->spr[cnt].y_pos));
-		printf("SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
+		//printf("SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
 		cnt++;
 	}
 	sprites_sort (cub, 0, max - 1);
 	cnt = 0;
-	while(cnt < max)
-	{
-		printf("SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
-		cnt++;
-	}
+	// while(cnt < max)
+	// {
+	// 	printf("SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
+	// 	cnt++;
+	// }
 }
 
-void	sprites_print (t_cube *cub, int x)
+void	sprites_print (t_cube *cub)
 {
 	int	cnt;
 	int	stripe;
 	int	y;
 	int	d;
+	int	color;
+	int max;
 
 	cnt = 0;
-	while(cnt < cub->cnt_2)
+	max = cub->cnt_2;
+	cub->ptx.texNum = 4;
+	printf("max: %i\n", max);
+	sprites(cub);
+	while(cnt < max)
 	{
 		cub->spr->spriteX = cub->spr[cnt].x_pos - cub->pyr.posX;
 		cub->spr->spriteY = cub->spr[cnt].y_pos - cub->pyr.posY;
@@ -133,9 +139,11 @@ void	sprites_print (t_cube *cub, int x)
 				y = cub->spr->drawStartY;
 				while (y < cub->spr->drawEndY)
 				{
+					color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
 					d = (y) * 256 - cub->resY * 128 + cub->spr->spriteHeight * 128;
 					cub->ptx.texY = ((d * cub->stx->height) / cub->spr->spriteHeight) / 256;
-					my_mlx_pixel_put(cub, x, y, 0xFFFFFF);
+					if((color & 0x00FFFFFF) != 0)
+						my_mlx_pixel_put(cub, stripe, y, color);
 					y++;
 				}
 

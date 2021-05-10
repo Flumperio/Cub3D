@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/07 17:16:21 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/09 13:36:07 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,7 +296,8 @@ int				print_fc(t_cube *cub, int x, int y, int max_y);
 ** Sprites
 */
 void			sprites(t_cube *cub);
-void			sprites_print (t_cube *cub, int x);
+void			sprites_print (t_cube *cub);
+void 			sprites_sort(t_cube *cub, int l, int r);
 /*
 ** Funtions Moves
 */

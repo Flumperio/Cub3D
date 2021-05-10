@@ -7,6 +7,9 @@
 		"bitset": "c",
 		"locale": "c",
 		"type_traits": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"chrono": "c",
+		"limits": "c",
+		"ratio": "c"
 	}
 }
