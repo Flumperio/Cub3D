@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/07 18:02:53 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/10 18:37:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	init_ray(t_cube *cub)
 {
+	int	cnt;
+
+	cnt = 0;
 	if (cub->pyr.view == 'N')
 		cub->ray.dirX = -1;
 	if (cub->pyr.view == 'S')
@@ -26,8 +29,8 @@ void	init_ray(t_cube *cub)
 	cub->ray.planeY = -(cub->ray.dirX * ((FOV * M_PI) / 180));
 	cub->f_color = to_rgb(cub->p_fr, cub->p_fg, cub->p_fb);
 	cub->c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
-	cub->ray.moveSpeed = 0.065;
-	cub->ray.rotSpeed = 0.065;
+	cub->ray.moveSpeed = 0.02;
+	cub->ray.rotSpeed = 0.02;
 	cub->wrk_map[(int)cub->pyr.posX][(int)cub->pyr.posY] = 48;
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.mlx_win = mlx_new_window(cub->mlx.mlx, \

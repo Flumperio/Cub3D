@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:27:03 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/09 13:23:58 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/10 18:50:52 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ void	print_raydir_x_y(t_cube *cub, int x)
 	int		y;
 
 	y = 0;
+	cub->spr->ZBuffer[x] = cub->ray.perpWallDist;
 	text_calc(cub);
 	while (y < cub->resY)
 	{
 		if (y < cub->ray.drawStart)
 			y = paint_ceiling(cub, x, y);
-		else if (y >= cub->ray.drawStart && y <= cub->ray.drawEnd)
+		else if (y > cub->ray.drawStart && y < cub->ray.drawEnd)
 			y = paint_wall(cub, x, y);
 		else if (y > cub->ray.drawEnd)
 			y = paint_floor(cub, x, y);

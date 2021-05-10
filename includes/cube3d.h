@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/09 13:36:07 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/10 16:55:45 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,14 @@ typedef struct s_bol
 	int				key_sr;
 }				t_bol;
 /*
-** Sprites
+** Sprites , zBuffer (max screen size)
 */
 typedef struct s_spr
 {
 	int				sp_num;
 	double			x_pos;
 	double			y_pos;
-	double			ZBuffer;
+	double			ZBuffer[5120];
 	int				spriteOrder;
 	double			spriteDistance;
 	double			spriteX;

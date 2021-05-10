@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/09 13:42:09 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/10 18:44:52 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,10 @@ void	sprites(t_cube *cub)
 	while(cnt < max)
 	{
 		cub->spr[cnt].spriteDistance = ((cub->pyr.posX - cub->spr[cnt].x_pos) * (cub->pyr.posX - cub->spr[cnt].x_pos) + (cub->pyr.posY - cub->spr[cnt].y_pos) * (cub->pyr.posY - cub->spr[cnt].y_pos));
-		//printf("SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
 		cnt++;
 	}
 	sprites_sort (cub, 0, max - 1);
 	cnt = 0;
-	// while(cnt < max)
-	// {
-	// 	printf("SP_Dis: %f -- X: %f -- Y: %f\n", cub->spr[cnt].spriteDistance, cub->spr[cnt].x_pos, cub->spr[cnt].y_pos);
-	// 	cnt++;
-	// }
 }
 
 void	sprites_print (t_cube *cub)
@@ -96,11 +90,19 @@ void	sprites_print (t_cube *cub)
 	int	d;
 	int	color;
 	int max;
+	int	tmp;
+	int	uDiv;
+	int	vDiv;
+	double	vMove;
+	int	vMoveScreen;
 
+	uDiv = 1;
+	vDiv = 1;
+	vMove = 0.0;
+	tmp = 0;
 	cnt = 0;
 	max = cub->cnt_2;
 	cub->ptx.texNum = 4;
-	printf("max: %i\n", max);
 	sprites(cub);
 	while(cnt < max)
 	{
@@ -112,18 +114,20 @@ void	sprites_print (t_cube *cub)
 		cub->spr->transformX = cub->spr->invDet * (cub->ray.dirY * cub->spr->spriteX - cub->ray.dirX * cub->spr->spriteY);
 		cub->spr->transformY = cub->spr->invDet * (-cub->ray.planeY * cub->spr->spriteX + cub->ray.planeX * cub->spr->spriteY);
 
+		vMoveScreen = (int)(vMove / cub->spr->transformY);
+
 		cub->spr->spriteScreenX = (int)((cub->resX / 2) * (1 + cub->spr->transformX / cub->spr->transformY));
 
-		cub->spr->spriteHeight = abs((int)(cub->resY / (cub->spr->transformY)));
+		cub->spr->spriteHeight = abs((int)(cub->resY / (cub->spr->transformY))) / vDiv;
 
-		cub->spr->drawStartY = -cub->spr->spriteHeight / 2 + cub->resY / 2;
+		cub->spr->drawStartY = -cub->spr->spriteHeight / 2 + cub->resY / 2 + vMoveScreen;
 		if (cub->spr->drawStartY < 0)
 			cub->spr->drawStartY = 0;
-		cub->spr->drawEndY = cub->spr->spriteHeight / 2 + cub->resY / 2;
+		cub->spr->drawEndY = cub->spr->spriteHeight / 2 + cub->resY / 2 + vMoveScreen;
 		if (cub->spr->drawEndY >= cub->resY)
 			cub->spr->drawEndY = cub->resY - 1;
 
-		cub->spr->spriteWidth = abs((int) (cub->resY / (cub->spr->transformY)));
+		cub->spr->spriteWidth = abs((int) (cub->resY / (cub->spr->transformY))) / uDiv;
 		cub->spr->drawStartX = -cub->spr->spriteWidth / 2 + cub->spr->spriteScreenX;
 		if (cub->spr->drawStartX < 0)
 			cub->spr->drawStartX = 0;
@@ -131,22 +135,23 @@ void	sprites_print (t_cube *cub)
 		if (cub->spr->drawEndX >= cub->resX)
 			cub->spr->drawEndX = cub->resX - 1;
 		stripe = cub->spr->drawStartX;
+
 		while (stripe < cub->spr->drawEndX)
 		{
+			//printf("stripe: %d -- Valor: %f\n", stripe, cub->spr->ZBuffer[stripe]);
 			cub->ptx.texX = (int)(256 * (stripe - (-cub->spr->spriteWidth / 2 + cub->spr->spriteScreenX)) * cub->stx->width / cub->spr->spriteWidth) / 256;
-			if (cub->spr->transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr->transformY < cub->resY)
+			if (cub->spr->transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr->transformY < cub->spr->ZBuffer[stripe])
 			{
 				y = cub->spr->drawStartY;
 				while (y < cub->spr->drawEndY)
 				{
 					color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
-					d = (y) * 256 - cub->resY * 128 + cub->spr->spriteHeight * 128;
+					d = (y - vMoveScreen) * 256 - cub->resY * 128 + cub->spr->spriteHeight * 128;
 					cub->ptx.texY = ((d * cub->stx->height) / cub->spr->spriteHeight) / 256;
 					if((color & 0x00FFFFFF) != 0)
 						my_mlx_pixel_put(cub, stripe, y, color);
 					y++;
 				}
-
 			}
 			stripe++;
 		}
