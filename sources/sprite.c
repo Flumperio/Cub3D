@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/10 18:44:52 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/11 16:13:57 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ void	sprites_print (t_cube *cub)
 	double	vMove;
 	int	vMoveScreen;
 
-	uDiv = 1;
-	vDiv = 1;
-	vMove = 0.0;
+	uDiv = 2;
+	vDiv = 2;
+	vMove = 256.0;
 	tmp = 0;
 	cnt = 0;
 	max = cub->cnt_2;
@@ -145,9 +145,9 @@ void	sprites_print (t_cube *cub)
 				y = cub->spr->drawStartY;
 				while (y < cub->spr->drawEndY)
 				{
-					color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
 					d = (y - vMoveScreen) * 256 - cub->resY * 128 + cub->spr->spriteHeight * 128;
 					cub->ptx.texY = ((d * cub->stx->height) / cub->spr->spriteHeight) / 256;
+					color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
 					if((color & 0x00FFFFFF) != 0)
 						my_mlx_pixel_put(cub, stripe, y, color);
 					y++;

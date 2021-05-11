@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:17:15 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/10 18:50:19 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/11 16:12:40 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ int	paint_wall(t_cube *cub, int x, int y)
 			/ 2 + cub->ray.lineHeight / 2) * cub->ptx.step;
 	while (y < cub->ray.drawEnd)
 	{
-		color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
 		cub->ptx.texY = (int)cub->ptx.textPos
 			& (cub->stx[cub->ptx.texNum].height - 1);
 		cub->ptx.textPos += cub->ptx.step;
+		color = my_get_color_pixel(cub, cub->ptx.texX, cub->ptx.texY);
 		my_mlx_pixel_put(cub, x, y, color);
 		y++;
 	}
