@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 12:07:10 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 12:49:17 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/12 16:28:36 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	strg_pl_pos(t_cube *cub, int x, int y)
 
 void	strg_sp_pos(t_cube *cub, int x, int y)
 {
-	cub->spr[cub->spr[0].sp_num].x_pos = x + 0.5;
-	cub->spr[cub->spr[0].sp_num].y_pos = y + 0.5;
-	cub->spr[cub->spr[0].sp_num].spriteOrder = cub->spr[0].sp_num;
-	cub->spr[0].sp_num++;
+	cub->osp[cub->spr.sp_num].x_pos = x + 0.5;
+	cub->osp[cub->spr.sp_num].y_pos = y + 0.5;
+	cub->osp[cub->spr.sp_num].spriteOrder = cub->spr.sp_num;
+	cub->spr.sp_num++;
 	cub->tmp_map[x][y] = '0';
 }
 
@@ -37,7 +37,7 @@ void	tmp_map(t_cube *cub)
 
 	cnt_x = 0;
 	cnt_y = 0;
-	cub->spr->sp_num = 0;
+	cub->spr.sp_num = 0;
 	while (cub->tmp_map[cnt_x] != 0)
 	{
 		while (cub->tmp_map[cnt_x][cnt_y] != 0)

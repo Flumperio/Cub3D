@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/10 18:37:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/12 14:33:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_ray(t_cube *cub)
 	cub->c_color = to_rgb(cub->p_cr, cub->p_cg, cub->p_cb);
 	cub->ray.moveSpeed = 0.02;
 	cub->ray.rotSpeed = 0.02;
+	cub->ZBuffer = ft_calloc(sizeof(double *), cub->resX + 1);
 	cub->wrk_map[(int)cub->pyr.posX][(int)cub->pyr.posY] = 48;
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.mlx_win = mlx_new_window(cub->mlx.mlx, \

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/10 16:55:45 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/12 16:27:50 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,16 +122,21 @@ typedef struct s_bol
 	int				key_sr;
 }				t_bol;
 /*
-** Sprites , zBuffer (max screen size)
+** Sprites
+*/
+typedef struct s_osp
+{
+	double			x_pos; /* * */
+	double			y_pos;	/* * */
+	int				spriteOrder;/* * */
+	double			spriteDistance;/* * */
+}					t_osp;
+/*
+** Calculator Sprites
 */
 typedef struct s_spr
 {
-	int				sp_num;
-	double			x_pos;
-	double			y_pos;
-	double			ZBuffer[5120];
-	int				spriteOrder;
-	double			spriteDistance;
+	int				sp_num; /* * */
 	double			spriteX;
 	double			spriteY;
 	double			invDet;
@@ -144,7 +149,6 @@ typedef struct s_spr
 	int				spriteWidth;
 	int				drawStartX;
 	int				drawEndX;
-
 }					t_spr;
 /*
 ** MLX
@@ -158,7 +162,7 @@ typedef struct s_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}					t_mlx;
+}			t_mlx;
 /*
 ** RayTracing
 */
@@ -219,7 +223,9 @@ typedef struct s_cube
 	char		*map_value;
 	int			cnt_map;
 	int			cnt_2;
-	t_spr		*spr;
+	double		*ZBuffer;
+	t_osp		*osp;
+	t_spr		spr;
 	t_pyr		pyr;
 	t_mlx		mlx;
 	t_ray		ray;

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:27:03 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/11 13:46:23 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/12 15:40:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	print_raydir_x_y(t_cube *cub, int x)
 	int		y;
 
 	y = 0;
-	cub->spr->ZBuffer[x] = cub->ray.perpWallDist;
+	cub->ZBuffer[x] = cub->ray.perpWallDist;
 	text_calc(cub);
 	while (y < cub->resY)
 	{
