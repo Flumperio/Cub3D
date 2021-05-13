@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/12 16:19:51 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/13 09:19:58 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,42 +30,42 @@ void merge(t_cube *cub, int l, int m, int r)
 	int i, j, k;
 	int n1 = m - l + 1;
 	int n2 = r - m;
-	t_osp	*SPR_L;
-	t_osp 	*SPR_D;
+	//t_osp	*SPR_L;
+	//t_osp 	*SPR_D;
 
-	// t_spr SPR_L[n1];
-	// t_spr SPR_D[n2];
+	// t_osp SPR_L[n1];
+	// t_osp SPR_D[n2];
 
-	SPR_L = (t_osp *)ft_calloc(cub->cnt_2, sizeof (t_osp));
-	SPR_D = (t_osp *)ft_calloc(cub->cnt_2, sizeof (t_osp));
+	//SPR_L = (t_osp *)ft_calloc(cub->cnt_2, sizeof (t_osp));
+	//SPR_D = (t_osp *)ft_calloc(cub->cnt_2, sizeof (t_osp));
 	for (i = 0; i < n1; i++)
-		SPR_L[i] = cub->osp[l + i];
+		cub->spr_l[i] = cub->osp[l + i];
 	for (j = 0; j < n2; j++)
-		SPR_D[j] = cub->osp[m + 1 + j];
+		cub->spr_d[j] = cub->osp[m + 1 + j];
 	i = 0; // Initial index of first subarray
 	j = 0; // Initial index of second subarray
 	k = l; // Initial index of merged subarray
 	while (i < n1 && j < n2)
 	{
-		if (SPR_L[i].spriteDistance >= SPR_D[j].spriteDistance) {
-			cub->osp[k] = SPR_L[i];
+		if (cub->spr_l[i].spriteDistance >= cub->spr_d[j].spriteDistance) {
+			cub->osp[k] = cub->spr_l[i];
 			i++;
 		}
 		else {
-			cub->osp[k] = SPR_D[j];
+			cub->osp[k] = cub->spr_d[j];
 			j++;
 		}
 		k++;
 	}
 	while (i < n1)
 	{
-		cub->osp[k] = SPR_L[i];
+		cub->osp[k] = cub->spr_l[i];
 		i++;
 		k++;
 	}
 	while (j < n2)
 	{
-		cub->osp[k] = SPR_D[j];
+		cub->osp[k] = cub->spr_d[j];
 		j++;
 		k++;
 	}
@@ -144,10 +144,10 @@ void	sprites_print (t_cube *cub)
 		while (stripe < cub->spr.drawEndX)
 		{
 			//printf("stripe: %d -- Valor: %f\n", stripe, cub->spr->ZBuffer[stripe]);
-			// cub->ptx.texX = (int)(256 * (stripe - (-cub->spr->spriteWidth / 2 + cub->spr->spriteScreenX)) * cub->stx->width / cub->spr->spriteWidth) / 256;
-			// if (cub->spr->transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr->transformY < cub->spr->ZBuffer[stripe])
 			cub->ptx.texX = (int)(256 * (stripe - (-cub->spr.spriteWidth / 2 + cub->spr.spriteScreenX)) * cub->stx->width / cub->spr.spriteWidth) / 256;
-			if (cub->spr.transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr.transformY < cub->resX)
+			if (cub->spr.transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr.transformY < cub->ZBuffer[stripe])
+			// cub->ptx.texX = (int)(256 * (stripe - (-cub->spr.spriteWidth / 2 + cub->spr.spriteScreenX)) * cub->stx->width / cub->spr.spriteWidth) / 256;
+			// if (cub->spr.transformY > 0 && stripe > 0 && stripe < cub->resX && cub->spr.transformY < cub->resX)
 			{
 				y = cub->spr.drawStartY;
 				while (y < cub->spr.drawEndY)

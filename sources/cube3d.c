@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/12 16:19:24 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/13 09:54:12 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	init_c3d(t_cube *cub)
 {
-	ft_bzero(cub, sizeof(t_cube));
+	//ft_bzero(cub, sizeof(t_cube));
+	//cub->tex = (t_tex *)ft_calloc(sizeof(t_tex *), 12);
 	cub->tex[0] = (t_tex){"NO", NULL, NULL, 0, texture_all};
 	cub->tex[1] = (t_tex){"SO", NULL, NULL, 0, texture_all};
 	cub->tex[2] = (t_tex){"WE", NULL, NULL, 0, texture_all};
@@ -39,6 +40,8 @@ int	main(int argc, char **argv)
 
 	tmp = 0;
 	cnt = 0;
+	ft_bzero(&cub, sizeof(t_cube));
+	cub.tex = (t_tex *)ft_calloc(sizeof(t_tex), 13);
 	init_c3d(&cub);
 	chk_args(argc, argv, &cub);
 	chk_file(&cub);

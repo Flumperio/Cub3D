@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/12 16:27:50 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/13 09:26:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,13 +225,15 @@ typedef struct s_cube
 	int			cnt_2;
 	double		*ZBuffer;
 	t_osp		*osp;
+	t_osp		*spr_l;
+	t_osp		*spr_d;
 	t_spr		spr;
 	t_pyr		pyr;
 	t_mlx		mlx;
 	t_ray		ray;
 	t_bol		bol;
 	t_ptx		ptx;
-	t_tex		tex[13];
+	t_tex		*tex;
 	t_stx		stx[7];
 }				t_cube;
 /*
