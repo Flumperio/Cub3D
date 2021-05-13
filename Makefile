@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/04/30 10:20:29 by juasanto         ###   ########.fr        #
+#    Updated: 2021/05/13 18:18:49 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS		= 	cube3d.c \
 				key_mng.c \
 				move_1.c \
 				move_2.c \
-				sprite.c
+				sprite.c \
+				merge.c
 
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)

@@ -42,7 +42,7 @@ int	chk_save(char *save)
 	return (4);
 }
 
-int	chk_args(int argc, char **argv, t_cube *cub)
+int chk_args(int argc, char **argv, t_cube *cub)
 {
 	int		cnt;
 

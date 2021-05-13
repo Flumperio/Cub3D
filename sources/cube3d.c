@@ -14,8 +14,6 @@
 
 void	init_c3d(t_cube *cub)
 {
-	//ft_bzero(cub, sizeof(t_cube));
-	//cub->tex = (t_tex *)ft_calloc(sizeof(t_tex *), 12);
 	cub->tex[0] = (t_tex){"NO", NULL, NULL, 0, texture_all};
 	cub->tex[1] = (t_tex){"SO", NULL, NULL, 0, texture_all};
 	cub->tex[2] = (t_tex){"WE", NULL, NULL, 0, texture_all};
@@ -34,22 +32,21 @@ void	init_c3d(t_cube *cub)
 
 int	main(int argc, char **argv)
 {
-	t_cube		cub;
+	t_cube		*cub;
 	int			tmp;
 	int			cnt;
 
 	tmp = 0;
 	cnt = 0;
-	ft_bzero(&cub, sizeof(t_cube));
-	cub.tex = (t_tex *)ft_calloc(sizeof(t_tex), 13);
-	init_c3d(&cub);
-	chk_args(argc, argv, &cub);
-	chk_file(&cub);
-	strg_map(&cub);
-	cub.osp = (t_osp *)ft_calloc(sizeof(t_spr), cub.cnt_2 + 1);
-	tmp_map(&cub);
-	cls_map(&cub, cub.pyr.posX, cub.pyr.posY);
-	raycast(&cub);
+	cub = ft_calloc(sizeof(t_cube), 1);
+	init_c3d(cub);
+	chk_args(argc, argv, cub);
+	chk_file(cub);
+	strg_map(cub);
+	cub->osp = (t_osp *)ft_calloc(sizeof(t_spr), cub->cnt_2 + 1);
+	tmp_map(cub);
+	cls_map(cub, cub->pyr.posX, cub->pyr.posY);
+	raycast(cub);
 	printf("MAP OK.\n");
 	system("leaks cub3D");
 	return (0);

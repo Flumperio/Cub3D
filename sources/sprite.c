@@ -6,83 +6,24 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/13 09:19:58 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/13 18:21:15 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-void	merge(t_cube *cub, int l, int m, int r);
-
-void sprites_sort(t_cube *cub, int l, int r)
-{
-	if (l < r)
-	{
-		int m = l + (r - l) / 2;
-		sprites_sort(cub, l, m);
-		sprites_sort(cub, m + 1, r);
-		merge(cub, l, m, r);
-	}
-}
-
-void merge(t_cube *cub, int l, int m, int r)
-{
-	int i, j, k;
-	int n1 = m - l + 1;
-	int n2 = r - m;
-	//t_osp	*SPR_L;
-	//t_osp 	*SPR_D;
-
-	// t_osp SPR_L[n1];
-	// t_osp SPR_D[n2];
-
-	//SPR_L = (t_osp *)ft_calloc(cub->cnt_2, sizeof (t_osp));
-	//SPR_D = (t_osp *)ft_calloc(cub->cnt_2, sizeof (t_osp));
-	for (i = 0; i < n1; i++)
-		cub->spr_l[i] = cub->osp[l + i];
-	for (j = 0; j < n2; j++)
-		cub->spr_d[j] = cub->osp[m + 1 + j];
-	i = 0; // Initial index of first subarray
-	j = 0; // Initial index of second subarray
-	k = l; // Initial index of merged subarray
-	while (i < n1 && j < n2)
-	{
-		if (cub->spr_l[i].spriteDistance >= cub->spr_d[j].spriteDistance) {
-			cub->osp[k] = cub->spr_l[i];
-			i++;
-		}
-		else {
-			cub->osp[k] = cub->spr_d[j];
-			j++;
-		}
-		k++;
-	}
-	while (i < n1)
-	{
-		cub->osp[k] = cub->spr_l[i];
-		i++;
-		k++;
-	}
-	while (j < n2)
-	{
-		cub->osp[k] = cub->spr_d[j];
-		j++;
-		k++;
-	}
-}
 
 void	sprites(t_cube *cub)
 {
 	int	cnt;
 	int	max;
 
-	cnt = 0;
+	cnt = -1;
 	max = cub->cnt_2;
-	while(cnt < max)
-	{
-		cub->osp[cnt].spriteDistance = ((cub->pyr.posX - cub->osp[cnt].x_pos) * (cub->pyr.posX - cub->osp[cnt].x_pos) + (cub->pyr.posY - cub->osp[cnt].y_pos) * (cub->pyr.posY - cub->osp[cnt].y_pos));
-		cnt++;
-	}
+	while (++cnt < max)
+		cub->osp[cnt].spriteDistance = ((cub->pyr.posX - cub->osp[cnt].x_pos)
+				* (cub->pyr.posX - cub->osp[cnt].x_pos)
+				+ (cub->pyr.posY - cub->osp[cnt].y_pos)
+				* (cub->pyr.posY - cub->osp[cnt].y_pos));
 	sprites_sort (cub, 0, max - 1);
 	cnt = 0;
 }
