@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/13 09:26:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/14 09:59:45 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,10 @@ typedef struct s_spr
 	int				spriteWidth;
 	int				drawStartX;
 	int				drawEndX;
+	int				uDiv;
+	int				vDiv;
+	double			vMove;
+	int				vMoveScreen;
 }					t_spr;
 /*
 ** MLX
