@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:51:55 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/09 11:57:29 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/14 17:31:08 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	ui_cross_exit(t_cube *cub)
 {
+	system("pkill afplay");
 	mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
-	system("leaks cub3D");
-	exit (0);
+	//system("leaks cub3D");
+	exit(0);
+	return (1);
 }
 
 int	key_press(int keycode, t_cube *cub)
@@ -24,9 +26,11 @@ int	key_press(int keycode, t_cube *cub)
 	printf("keykode: %i\n", keycode);
 	if (keycode == KEY_ESC)
 	{
+		system("pkill afplay");
 		mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
-		system("leaks cub3D");
-		exit (0);
+		//system("leaks cub3D");
+		exit(0);
+		return (1);
 	}
 	if (keycode == KEY_FW)
 		cub->bol.key_fw = 1;

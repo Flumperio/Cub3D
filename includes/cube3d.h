@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/14 09:59:45 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/14 18:09:54 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_tex
 */
 typedef struct s_stx
 {
-	char			*f_name;
 	void			*img;
 	char			*addr;
 	int				bpp;
@@ -247,6 +246,7 @@ typedef struct s_cube
 	t_ptx			ptx;
 	t_tex			tex[13];
 	t_stx			stx[7];
+	int				id;
 }					t_cube;
 /*
 ** Check Arguments
