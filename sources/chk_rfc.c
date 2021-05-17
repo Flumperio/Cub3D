@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/28 15:11:27 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 17:04:12 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	r_parm(t_cube *cub)
 			cub->resX = chk_value(num_val[0], 1, INT32_MAX);
 			cub->resY = chk_value(num_val[1], 1, INT32_MAX);
 		}
+		if (cub->resX > cub->max_resX)
+			cub->resX = cub->max_resX;
+		if (cub->resY > cub->max_resY)
+			cub->resY = cub->max_resY;
 		cub->cnt_i = ft_strlen(cub->line);
 		ft_free_array(num_val);
 		return ;

@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/05/17 15:15:47 by juasanto         ###   ########.fr        #
+#    Updated: 2021/05/17 17:27:24 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,14 +35,14 @@ SRCS		= 	cube3d.c \
 				move_1.c \
 				move_2.c \
 				sprite.c \
-				merge.c
+				merge.c \
+				screen_capture.c
 
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)
 
 LFLAGS = -I includes/
 CFLAGS = -Wall -Wextra -Werror -g -O3
-#CFLAGS = -Wall -Wextra -Werror -fsanitize=address -shared-libasan
 CC = gcc
 RM = rm -rf
 AR = ar rc

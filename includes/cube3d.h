@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 15:46:02 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:10:17 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,8 @@ typedef struct s_cube
 	char			*f_name;
 	int				save_parm;
 	int				cnt_i;
+	int				max_resX;
+	int				max_resY;
 	int				resX;
 	int				resY;
 	int				p_fr;
@@ -335,5 +337,9 @@ void			move_sl(t_cube *cub);
 void			move_sr(t_cube *cub);
 void			move_rr(t_cube *cub);
 void			move_rl(t_cube *cub);
+/*
+** Screen Capture
+*/
+void			main_bmp(t_cube *cub);
 
 #endif

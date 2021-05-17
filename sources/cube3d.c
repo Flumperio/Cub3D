@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 15:59:44 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 17:00:47 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	free_all(t_cube *cub)
 
 void	init_c3d(t_cube *cub)
 {
+	int	max_res;
+
 	cub->tex[0] = (t_tex){"NO", NULL, NULL, 0, texture_all};
 	cub->tex[1] = (t_tex){"SO", NULL, NULL, 0, texture_all};
 	cub->tex[2] = (t_tex){"WE", NULL, NULL, 0, texture_all};
@@ -48,6 +50,8 @@ void	init_c3d(t_cube *cub)
 	cub->tex[11] = (t_tex){"0", NULL, NULL, 0, chk_map};
 	cub->tex[12].name = NULL;
 	cub->map_value = "012NSWE \t";
+	max_res = mlx_get_screen_size(cub->mlx.mlx_win,
+			&cub->max_resX, &cub->max_resY);
 }
 
 int	main(int argc, char **argv)

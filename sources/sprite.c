@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 10:19:53 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/14 12:05:33 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 17:21:46 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	sprites(t_cube *cub)
 
 void	sprites_calc(t_cube *cub, int cnt)
 {
-	cub->spr.uDiv = 2;
-	cub->spr.vDiv = 2;
-	cub->spr.vMove = 128.0;
+	cub->spr.uDiv = 1;
+	cub->spr.vDiv = 1;
+	cub->spr.vMove = 0;
 	cub->spr.spriteX = cub->osp[cnt].x_pos - cub->pyr.posX;
 	cub->spr.spriteY = cub->osp[cnt].y_pos - cub->pyr.posY;
 	cub->spr.invDet = 1.0 / (cub->ray.planeX * cub->ray.dirY
