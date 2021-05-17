@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:17:56 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/13 18:18:35 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/15 13:35:01 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	sprites_sort(t_cube *cub, int l, int r)
 	}
 }
 
-inline void	merge_copy(t_cube *cub, int l, int m)
+void	merge_copy(t_cube *cub, int l, int m)
 {
 	int	i;
 	int	j;
@@ -38,7 +38,7 @@ inline void	merge_copy(t_cube *cub, int l, int m)
 		cub->spr_d[j] = cub->osp[m + 1 + j];
 }
 
-inline void	merge_swap(t_cube *cub, int i, int j, int k)
+void	merge_swap(t_cube *cub, int i, int j, int k)
 {
 	while (i < cub->mrg.n1)
 	{

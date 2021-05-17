@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/14 18:09:54 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/15 13:34:30 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,8 +322,8 @@ void			sprites_sort(t_cube *cub, int l, int r);
 ** Funtions Moves
 */
 void			sprites_sort(t_cube *cub, int l, int r);
-inline void			merge_copy(t_cube *cub, int l, int m);
-inline void			merge_swap(t_cube *cub, int i, int j, int k);
+void			merge_copy(t_cube *cub, int l, int m);
+void			merge_swap(t_cube *cub, int i, int j, int k);
 void			merge(t_cube *cub, int l, int m, int r);
 /*
 ** Funtions Moves

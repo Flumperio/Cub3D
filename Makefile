@@ -6,7 +6,7 @@
 #    By: juasanto <juasanto>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/09 10:44:34 by juasanto          #+#    #+#              #
-#    Updated: 2021/05/13 18:18:49 by juasanto         ###   ########.fr        #
+#    Updated: 2021/05/15 13:42:32 by juasanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SOURCES = $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS = $(SOURCES:.c=.o)
 
 LFLAGS = -I includes/
-CFLAGS = -Wall -Wextra -Werror -g -O3
+#CFLAGS = -Wall -Wextra -Werror -g -O3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -shared-libasan
 CC = gcc
 RM = rm -rf
 AR = ar rc
