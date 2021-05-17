@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/28 13:34:38 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:59:34 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	chk_save(char *save)
 	return (4);
 }
 
-int chk_args(int argc, char **argv, t_cube *cub)
+int	chk_args(int argc, char **argv, t_cube *cub)
 {
 	int		cnt;
 

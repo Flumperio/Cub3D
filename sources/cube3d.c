@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 15:57:54 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:59:44 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_all(t_cube *cub)
 	ft_free_array(cub->wrk_map);
 	ft_free_array(cub->tmp_map);
 	cnt = 0;
-	while(cnt < 7)
+	while (cnt < 7)
 	{
 		free(cub->tex[cnt].path);
 		free(cub->tex[cnt].img);
