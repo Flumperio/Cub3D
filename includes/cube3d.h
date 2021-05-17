@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/15 13:34:30 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:46:02 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,7 @@ void			my_mlx_pixel_put(t_cube *cub, int x, int y, int color);
 int				my_get_color_pixel(t_cube *cub, int x, int y);
 void			stg_tex(t_cube *cub);
 void			set_color_wall(t_cube *cub);
+void			free_all(t_cube *cub);
 /*
 ** Key Manage
 */

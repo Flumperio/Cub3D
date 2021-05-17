@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/15 13:38:43 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:57:54 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,17 @@ void	free_all(t_cube *cub)
 
 	ft_free_array(cub->wrk_map);
 	ft_free_array(cub->tmp_map);
-	cnt = -1;
-	while(++cnt <= 15)
+	cnt = 0;
+	while(cnt < 7)
+	{
 		free(cub->tex[cnt].path);
-	//ft_bzero(cub, sizeof(t_cube));
+		free(cub->tex[cnt].img);
+		cnt++;
+	}
+	free(cub->osp);
+	free(cub->ZBuffer);
+	free(cub->spr_d);
+	free(cub->spr_l);
 	free(cub);
 }
 
@@ -55,17 +62,9 @@ int	main(int argc, char **argv)
 	cub->osp = (t_osp *)ft_calloc(sizeof(t_spr), cub->cnt_2 + 1);
 	tmp_map(cub);
 	cls_map(cub, cub->pyr.posX, cub->pyr.posY);
-	//system("afplay ./textures/alien.wav &");
-	//raycast(cub);
-	//free(cub);
-	//free(cub->osp);
-	//free(cub->ZBuffer);
-	//free(cub->spr_d);
-	//free(cub->spr_l);
-	//free(cub->wrk_map);
-	//free(cub->tmp_map);
+	system("afplay ./textures/alien.wav &");
+	raycast(cub);
 	free_all(cub);
-	//printf("MAP OK.\n");
 	system("leaks cub3D");
 	return (0);
 }
