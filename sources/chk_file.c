@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 15:59:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:25:05 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ int	chk_file(t_cube *cub)
 	}
 	chk_parms(cub);
 	free(cub->line);
+	close(fd1);
 	return (0);
 }

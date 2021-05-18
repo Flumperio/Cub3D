@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:46:04 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 18:11:04 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:25:50 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	file_exist(char *file, char *name)
 		printf("Error\nFile %s not exist or its no correct.\n", name);
 		exit(9);
 	}
+	close(fd);
 	return (0);
 }
 

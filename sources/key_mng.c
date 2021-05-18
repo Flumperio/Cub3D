@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:51:55 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 15:45:20 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:53:19 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ui_cross_exit(t_cube *cub)
 
 int	key_press(int keycode, t_cube *cub)
 {
-	printf("keykode: %i\n", keycode);
 	if (keycode == KEY_ESC)
 	{
 		system("pkill afplay");
@@ -51,7 +50,6 @@ int	key_press(int keycode, t_cube *cub)
 
 int	key_relea(int keycode, t_cube *cub)
 {
-	printf("keykode: %i\n", keycode);
 	if (keycode == KEY_FW)
 		cub->bol.key_fw = 0;
 	if (keycode == KEY_BW)

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 18:10:36 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:55:35 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	raycast_loop(t_cube *cub)
 	}
 	sprites_print(cub);
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win, cub->mlx.img, 0, 0);
-	//mlx_destroy_image(cub->mlx.mlx, cub->mlx.img);
+	mlx_destroy_image(cub->mlx.mlx, cub->mlx.img);
 	return (0);
 }
 

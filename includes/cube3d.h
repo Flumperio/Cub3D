@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/17 18:10:17 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:46:05 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@
 */
 # define KEY_FW 13
 # define KEY_BW 1
-# define KEY_RR 2
-# define KEY_RL 0
-# define KEY_SR 14
-# define KEY_SL 12
+# define KEY_RR 124
+# define KEY_RL 123
+# define KEY_SR 2
+# define KEY_SL 0
 # define KEY_ESC 53
 /*
 ** Predefiniton S_Cube
