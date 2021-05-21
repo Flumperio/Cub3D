@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:24:18 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/20 16:04:09 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/21 11:42:33 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	main_bmp(t_cube *cub)
 	ret = write(fd, &value, 4);
 	ret = write(fd, &value, 4);
 	ret = write(fd, &value, 4);
-	tmp = ((cub->resX * cub->resY) * 4);
+	tmp = (cub->resY * (cub->stx->ll / 4) * 4);
 	while (cnt < tmp)
 	{
 		write (fd, &cub->mlx.addr[cnt], 1);
