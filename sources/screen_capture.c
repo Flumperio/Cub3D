@@ -6,28 +6,29 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:24:18 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/21 11:42:33 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/23 13:31:42 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	main_bmp(t_cube *cub)
+static int	my_get_img_pixel(t_cube *cub, int x, int y)
 {
-	int	fd;
+	int		color;
+	char	*dst;
+
+	dst = cub->mlx.addr + (y * cub->mlx.line_length + x * cub->mlx.bits_per_pixel / 8);
+	color = *(unsigned int*)dst;
+	return (color);
+}
+
+void	header1(int fd, t_cube *cub)
+{
 	int	ret;
 	int	value;
-	int	tmp;
-	int	cnt;
 
-	cnt = 0;
-	printf("Take ScreenShot\n");
-	system("pkill afplay");
-	fd = open("screen_shot.bmp", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
-	printf("FD: %i\n", fd);
 	ret = write(fd, "BM", sizeof(char) * 2);
 	value = ((cub->resX * cub->resY) * 4) + 14 + 40 ;
-	printf ("v: %i\n", value);/* tamaño del fichero * 3 uso 24bpp */
 	ret = write(fd, &value, 4);
 	value = 0;
 	ret = write(fd, &value, 1);
@@ -35,6 +36,15 @@ void	main_bmp(t_cube *cub)
 	ret = write(fd, &value, 2);
 	value = 54;
 	ret = write(fd, &value, 4);
+	if (ret < 0)
+		ft_msgerror("Save file error.", 6);
+}
+
+void	header2(int fd, t_cube *cub)
+{
+	int	ret;
+	int	value;
+
 	value = 40;
 	ret = write(fd, &value, 4);
 	value = cub->resX;
@@ -52,13 +62,38 @@ void	main_bmp(t_cube *cub)
 	ret = write(fd, &value, 4);
 	ret = write(fd, &value, 4);
 	ret = write(fd, &value, 4);
-	tmp = (cub->resY * (cub->stx->ll / 4) * 4);
-	while (cnt < tmp)
+	if (ret < 0)
+		ft_msgerror("Save file error.", 6);
+}
+
+void	main_bmp(t_cube *cub)
+{
+	int	fd;
+	int	value;
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	system("pkill afplay");
+	fd = open("screen_shot.bmp", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	header1(fd, cub);
+	header2(fd, cub);
+	y = cub->resY - 1;
+	while (y > -1)
 	{
-		write (fd, &cub->mlx.addr[cnt], 1);
-		cnt++;
+		x = 0;
+		while (x < cub->resX)
+		{
+			value = my_get_img_pixel(cub, x, y);
+			if (write(fd, &value, 4) < 0)
+				ft_msgerror("Save file error.", 6);
+			x++;
+		}
+		y--;
 	}
 	close(fd);
 	free_all(cub);
-	exit(0);
+	system("leaks cub3D");
+	exit(6) ;
 }
