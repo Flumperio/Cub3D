@@ -6,19 +6,23 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:24:18 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/23 13:31:42 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/24 11:26:21 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
+
+void	header1(int fd, t_cube *cub);
+void	header2(int fd, t_cube *cub);
 
 static int	my_get_img_pixel(t_cube *cub, int x, int y)
 {
 	int		color;
 	char	*dst;
 
-	dst = cub->mlx.addr + (y * cub->mlx.line_length + x * cub->mlx.bits_per_pixel / 8);
-	color = *(unsigned int*)dst;
+	dst = cub->mlx.addr + (y * cub->mlx.line_length
+			+ x * cub->mlx.bits_per_pixel / 8);
+	color = *(unsigned int *)dst;
 	return (color);
 }
 
@@ -38,6 +42,7 @@ void	header1(int fd, t_cube *cub)
 	ret = write(fd, &value, 4);
 	if (ret < 0)
 		ft_msgerror("Save file error.", 6);
+	header2(fd, cub);
 }
 
 void	header2(int fd, t_cube *cub)
@@ -73,12 +78,9 @@ void	main_bmp(t_cube *cub)
 	int	x;
 	int	y;
 
-	x = 0;
-	y = 0;
 	system("pkill afplay");
 	fd = open("screen_shot.bmp", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
 	header1(fd, cub);
-	header2(fd, cub);
 	y = cub->resY - 1;
 	while (y > -1)
 	{
@@ -95,5 +97,5 @@ void	main_bmp(t_cube *cub)
 	close(fd);
 	free_all(cub);
 	system("leaks cub3D");
-	exit(6) ;
+	exit(6);
 }
