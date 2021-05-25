@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_mng.c                                          :+:      :+:    :+:   */
+/*   key_mng_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:51:55 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/18 09:53:19 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:43:16 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cube3d_bonus.h"
 
 int	ui_cross_exit(t_cube *cub)
 {
 	system("pkill afplay");
 	mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
 	free_all(cub);
-	system("leaks cub3D");
 	exit(0);
 	return (1);
 }
@@ -29,7 +28,6 @@ int	key_press(int keycode, t_cube *cub)
 		system("pkill afplay");
 		mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
 		free_all(cub);
-		system("leaks cub3D");
 		exit(0);
 		return (1);
 	}

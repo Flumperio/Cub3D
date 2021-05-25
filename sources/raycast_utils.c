@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:24:01 by juasanto          #+#    #+#             */
-/*   Updated: 2021/04/30 08:12:45 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 10:39:16 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	stg_tex(t_cube *cub)
 	int	cnt;
 
 	cnt = 0;
-	while (cnt <= 6)
+	while (cnt <= 4)
 	{
 		cub->stx[cnt].img = mlx_xpm_file_to_image(cub->mlx.mlx,
 				cub->tex[cnt].path, &cub->stx[cnt].width,

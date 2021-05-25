@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_print.c                                    :+:      :+:    :+:   */
+/*   raycast_print_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:27:03 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/12 15:40:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:28:02 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cube3d_bonus.h"
 
 int	paint_floor(t_cube *cub, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:36:59 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/18 13:25:05 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:36:56 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	chk_file(t_cube *cub)
 		ft_msgerror("File not exist", 5);
 	while (get_next_line(fd1, &cub->line) == 1)
 	{
+		if (cub->line[0] == '\0' && cub->tmp_mp == 1)
+			ft_msgerror("Map content was ALWAYS has to be the last", 5);
 		chk_parms(cub);
 		free(cub->line);
 	}

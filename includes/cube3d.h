@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:10:39 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/18 09:46:05 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:14:05 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,7 @@ typedef struct s_cube
 	int				c_color;
 	int				map_lines;
 	int				tmp;
+	int				tmp_mp;
 	int				strg_map;
 	char			**wrk_map;
 	char			**tmp_map;
@@ -246,7 +247,7 @@ typedef struct s_cube
 	t_ray			ray;
 	t_bol			bol;
 	t_ptx			ptx;
-	t_tex			tex[13];
+	t_tex			tex[11];
 	t_stx			stx[7];
 	int				id;
 }					t_cube;

@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/24 16:39:03 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 09:56:25 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	raycast_loop(t_cube *cub)
 
 void	raycast(t_cube *cub)
 {
+	if (cub->save_parm == 1 && (cub->resX > 16384 || cub->resY > 16384))
+		ft_msgerror("Max. resolution for BMP is exceeded.", 6);
 	init_ray(cub);
 	stg_tex(cub);
 	sprites(cub);

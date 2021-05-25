@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.c                                           :+:      :+:    :+:   */
+/*   cube3d_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:31:45 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/24 11:51:14 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:43:24 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cube3d_bonus.h"
 
 void	free_all(t_cube *cub)
 {
@@ -69,6 +69,5 @@ int	main(int argc, char **argv)
 	system("afplay ./textures/alien.wav &");
 	raycast(cub);
 	free_all(cub);
-	system("leaks cub3D");
 	return (0);
 }

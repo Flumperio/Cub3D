@@ -6,7 +6,7 @@
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:27:03 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/12 15:40:56 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 10:31:43 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	print_raydir_x_y(t_cube *cub, int x)
 	while (y < cub->resY)
 	{
 		if (y < cub->ray.drawStart)
-			y = paint_ceiling(cub, x, y);
+			my_mlx_pixel_put(cub, x, y, 0x079099);
 		else if (y > cub->ray.drawStart && y < cub->ray.drawEnd)
 			y = paint_wall(cub, x, y);
 		else if (y > cub->ray.drawEnd)
-			y = paint_floor(cub, x, y);
+			my_mlx_pixel_put(cub, x, y, 0x445555);
 		y++;
 	}
 }

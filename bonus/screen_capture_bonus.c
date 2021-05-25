@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen_capture.c                                   :+:      :+:    :+:   */
+/*   screen_capture_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:24:18 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/24 11:26:21 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:43:02 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cube3d_bonus.h"
 
 void	header1(int fd, t_cube *cub);
 void	header2(int fd, t_cube *cub);
@@ -79,7 +79,7 @@ void	main_bmp(t_cube *cub)
 	int	y;
 
 	system("pkill afplay");
-	fd = open("screen_shot.bmp", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	fd = open("screen_shot.bmp", O_RDWR | O_CREAT, S_IRWXU | S_IRWXG);
 	header1(fd, cub);
 	y = cub->resY - 1;
 	while (y > -1)
@@ -96,6 +96,5 @@ void	main_bmp(t_cube *cub)
 	}
 	close(fd);
 	free_all(cub);
-	system("leaks cub3D");
 	exit(6);
 }

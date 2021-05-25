@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_1.c                                        :+:      :+:    :+:   */
+/*   raycast_1_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:07:38 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/24 11:29:14 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:27:35 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cube3d_bonus.h"
 
 int	raycast_loop(t_cube *cub)
 {
@@ -40,6 +40,8 @@ int	raycast_loop(t_cube *cub)
 
 void	raycast(t_cube *cub)
 {
+	if (cub->save_parm == 1 && (cub->resX > 16384 || cub->resY > 16384))
+		ft_msgerror("Max. resolution for BMP is exceeded.", 6);
 	init_ray(cub);
 	stg_tex(cub);
 	sprites(cub);

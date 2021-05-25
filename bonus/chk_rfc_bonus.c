@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chk_rfc.c                                          :+:      :+:    :+:   */
+/*   chk_rfc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 12:47:28 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/24 11:51:13 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:14:34 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cube3d_bonus.h"
 
 void	texture_all(t_cube *cub)
 {
@@ -115,6 +115,7 @@ void	chk_map(t_cube *cub)
 	int	cnt;
 
 	cnt = 0;
+	cub->tmp_mp = 1;
 	cub->tex[10].exis = 0;
 	cub->tex[11].exis = 0;
 	if (cub->strg_map == 1)

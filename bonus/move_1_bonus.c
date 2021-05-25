@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_1.c                                           :+:      :+:    :+:   */
+/*   move_1_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juasanto <juasanto>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:39:36 by juasanto          #+#    #+#             */
-/*   Updated: 2021/05/14 16:36:34 by juasanto         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:27:23 by juasanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
-
+#include "../includes/cube3d_bonus.h"
 void	move_fw(t_cube *cub)
 {
 	if (cub->wrk_map[(int)(cub->pyr.posX + cub->ray.dirX
